@@ -1,0 +1,17 @@
+{
+  "name": "mod-02",
+  "version": "1.0.0",
+  "main": "src/js/index.js",
+  "scripts": {},
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "devDependencies": {
+    "eslint": "^7.30.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.23.4"
+  },
+  "dependencies": {},
+  "description": ""
+}
