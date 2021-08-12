@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jokenpo</title>
+
+  <!-- Icon -->
+  <link rel="apple-touch-icon" sizes="180x180" href="../assets/icon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../assets/icon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../assets/icon/favicon-16x16.png">
+  <link rel="manifest" href="../assets/icon/site.webmanifest">
+
+  <!-- Fonts -->
+  <!-- Open Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+  
+  <!-- Roboto -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet"
+
+  <!-- Style CSS -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header>
+    <h1>Jokenpo &#x270A; &#x270B; &#x270C;</h1>
+  </header>
+
+  <main>
+    <section id="scoreboard">
+      <div id='vitorias'>
+        <h2>Vitorias:</h2>
+      </div>
+      <div id='derrotas'>
+        <h2>Derrotas:</h2>
+      </div>
+    </section>
+    <section id="game-board">
+      <div>
+        <div class="escolhas">
+          <h2>O jogador escolheu:</h2>
+          <div class="escolha">
+            <p></p>
+          </div>
+        </div>
+        <div class="icones">
+          <img src="../assets/img/rock.png" alt="Rock-icon" class="rock-icon icon in-gray jogador" data-icon="Pedra">
+          <img src="../assets/img/paper.png" alt="Paper-icon" class="paper-icon icon in-gray jogador" data-icon="Papel">
+          <img src="../assets/img/scissor.png" alt="Scissor-icon" class="scissor-icon icon in-gray jogador" data-icon="Tesoura">
+        </div>
+      </div>
+      <div class="btn">
+        <button class="btn-jogar" disabled>Jogar</button>
+        <button class="btn-reiniciar" disabled>Reiniciar</button>
+      </div>
+      <div>
+        <div class="escolhas">
+          <h2>O computador escolheu:</h2>
+          <div class="escolha">
+            <p></p>
+          </div>
+        </div>
+        <div class="icones">
+          <img src="../assets/img/rock.png" alt="Rock-icon" class="rock-icon in-gray" data-icon="Pedra">
+          <img src="../assets/img/paper.png" alt="Paper-icon" class="paper-icon in-gray" data-icon="Papel">
+          <img src="../assets/img/scissor.png" alt="Scissor-icon" class="scissor-icon in-gray" data-icon="Tesoura">
+        </div>
+      </div>
+    </section>
+    <section id="resultado">
+      <h3>Resultado:</h3>
+      <div class="mensagem">
+        <h4>Escolha um movimento.</h4>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <h2>Projeto de treino feito por: <a href="https://github.com/VictorKayk">@VictorKayk</a></h2>
+  </footer>
+
+  <script type="module" src="js/modules/utilities.js"></script>
+  <script type="module" src="js/index.js"></script>
+</body>
+</html>

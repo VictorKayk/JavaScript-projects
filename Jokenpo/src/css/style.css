@@ -1,0 +1,164 @@
+/* Configurações globais */
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+/* Header */
+header {
+  background-color: #173f7e;
+  display:flex;
+  justify-content: center;
+  padding: 1rem;
+  
+  color:white;
+  font: normal 1.5rem 'Open Sans', sans-serif;
+}
+
+/* main */
+main {
+  font: normal 1rem 'Roboto', sans-serif;
+  margin-top: 1.7rem;
+}
+
+/* Scoreboard */
+#scoreboard {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 0.8rem 1rem 0.8rem;
+}
+
+#derrotas {
+  margin-right: 23.7rem;
+}
+
+/* Game Board */
+#game-board {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 0.8rem;
+}
+
+#game-board .escolhas {
+  display: flex;
+}
+
+#game-board .escolhas .escolha {
+  display:flex;
+  align-items: flex-end;
+
+  margin-left: 0.5rem
+}
+
+#game-board .escolhas .escolha p {
+  font-size: 1.3rem;
+}
+
+#game-board .icones .jogador{
+  cursor: pointer;
+}
+
+#game-board .icones .jogada{
+  cursor: not-allowed;
+}
+
+#game-board .in-gray {
+  filter: grayscale(100);
+}
+
+/* Botão Jogar */
+.btn {
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.btn button{
+  background-color: #25529b;
+  padding: 0.6rem 1rem;
+  
+  color:white;
+  font-size: 1rem;
+  border-radius: 0.4rem;
+  border:none;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+
+.btn button:hover{
+  background-color: #173f7e;
+
+}
+
+.btn button:disabled, .btn button:hover:disabled{
+  background-color: gray;
+  cursor: not-allowed;
+}
+
+.btn button:active, .btn button:checked{
+  background-color: #062049;
+}
+
+.btn .btn-jogar {
+  margin-bottom: 1.2rem;
+}
+
+
+/* Resultado */
+#resultado {
+  margin-top: 1.6rem;
+  font-size: 1.2rem;
+}
+
+#resultado h3{
+  margin: 0 0.5rem 1.3rem 0.5rem;
+}
+
+#resultado div {
+  display: flex;
+  justify-content: center;
+  padding: 1.78rem;
+
+  color:white;
+}
+
+/* Classe de mensagem, vitoria e derrota */
+.mensagem {
+  background-color: #2b5aa7;
+}
+
+.victory {
+  background-color: green;
+}
+
+.defeat {
+  background-color: red;
+}
+
+.draw {
+  background-color: rgb(135, 141, 135);
+}
+
+/* Footer */
+footer {
+  background-color: #173f7e;
+  display:flex;
+  justify-content: center;
+  padding: 0.68rem;
+
+  color:white;
+  font: normal 0.7rem 'Open Sans', sans-serif;
+}
+
+footer a, footer a:active, footer a:checked {
+  color:white;
+
+  transition: all 0.3s;
+} 
+
+footer a:hover {
+  color: #7a7b7c
+}
