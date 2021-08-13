@@ -33,16 +33,17 @@ function createPokemonCard(firstType) {
   return li;
 }
 
-function getPokemonImgCard(imgLink) {
+function getPokemonImgCard(imgLink, alt = '') {
   const imgConteiner = createElement('img');
   addClassToElement(imgConteiner)('card-image');
   imgConteiner.setAttribute('src', imgLink);
+  imgConteiner.setAttribute('alt', alt);
   return imgConteiner;
 }
 
-function getTextCard(symbol) {
-  return (texts) => {
-    const pConteiner = createElement('p');
+function getTextCard(element) {
+  return (symbol) => (texts) => {
+    const pConteiner = createElement(element);
     const text = texts.join(symbol);
     pConteiner.innerText = text;
     return pConteiner;
@@ -50,7 +51,7 @@ function getTextCard(symbol) {
 }
 
 function getPokemonTitle(title) {
-  const pokemonTitles = getTextCard('. ')(title);
+  const pokemonTitles = getTextCard('h2')('. ')(title);
   addClassToElement(pokemonTitles)('card-title');
   return pokemonTitles;
 }
@@ -63,7 +64,7 @@ function getTypes(types) {
 
 function getPokemonTypesCard(types) {
   const pokemonTypes = getTypes(types);
-  const pokemonTypesInText = getTextCard(' - ')(pokemonTypes);
+  const pokemonTypesInText = getTextCard('p')(' - ')(pokemonTypes);
   return pokemonTypesInText;
 }
 
@@ -75,7 +76,7 @@ function getPokemonSubtitle(types) {
 
 export function getPokemonCard(firstTypeOfPokemon, front_default, id, name, types) {
   const pokemonCard = createPokemonCard(firstTypeOfPokemon);
-  const pokemonImg = getPokemonImgCard(front_default);
+  const pokemonImg = getPokemonImgCard(front_default, name);
   const pokemonTitles = getPokemonTitle([id, name]);
   const pokemonSubtitle = getPokemonSubtitle(types);
   pokemonCard.appendChild(pokemonImg);

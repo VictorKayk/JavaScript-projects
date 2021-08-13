@@ -2,14 +2,16 @@ import { getPokemonInfos, getPokemonCard, concat2Strings } from './module/utilit
 
 const pokedexConteiner = document.querySelector('main ul.pokedex');
 
-(function() {
+(function () {
   function getPokedex(pokedexConteiner) {
     return async (url) => {
-      for (let cont = 1; cont <= 150; cont += 1) {
+      for (let cont = 1; cont <= 890; cont += 1) {
         const realUrl = concat2Strings(url, cont);
+
         const { front_default, id, name, types } = await getPokemonInfos(realUrl);
         const firstTypeOfPokemon = types[0].type.name;
         const pokemonCard = getPokemonCard(firstTypeOfPokemon, front_default, id, name, types);
+
         pokedexConteiner.appendChild(pokemonCard);
       }
     };
