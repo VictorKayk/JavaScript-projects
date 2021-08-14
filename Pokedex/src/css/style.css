@@ -27,7 +27,7 @@ h1 {
 }
 
 div.card {
-  max-width: 450px;
+  max-width: 300px;
   margin: 0 auto;
 }
 
@@ -96,6 +96,10 @@ a:link, a:hover, a:visited, a:active, a:checked {
   position: absolute;
   top: 15%;
   left: 25%;
+}
+
+section#pokemon-img div.card::after {
+  height: 65%;
 }
 
 .steel {

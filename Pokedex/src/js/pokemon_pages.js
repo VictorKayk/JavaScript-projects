@@ -1,4 +1,14 @@
-import { getPokemonInfos, concat2Strings } from './module/utilities.js';
+import * as utilities from './module/utilities.js';
+
+// Conteiners
+const idConteiner = document.body.querySelector('section#pokemon-infos div#id h2 strong');
+const pokemonNameConteiner = document.body.querySelector('#pokemon-name');
+const pokemonImgConteiner = document.body.querySelector('#pokemon #pokemon-img');
+const typesConteiner = document.querySelector('section#pokemon-infos div ul#types');
+const alturaConteiner = document.body.querySelector('section#pokemon-infos h2#altura strong');
+const pesoConteiner = document.body.querySelector('section#pokemon-infos h2#peso strong');
+const movesConteiner = document.body.querySelector('section#pokemon-infos #moves ul');
+const abilitiesConteiner = document.body.querySelector('section#pokemon-infos #abilities ul');
 
 function getPokemonIdOnUrl() {
   const url = new URLSearchParams(window.location.search);
@@ -6,32 +16,39 @@ function getPokemonIdOnUrl() {
   return pokemonId;
 }
 
-function capitalizeText(text) {
-  return text.slice(0, 1).toUpperCase() + text.slice(1);
+function getTheAPIUrl() {
+  return 'https://pokeapi.co/api/v2/pokemon/';
 }
 
-function putPokemonNameOnTitle(id) {
-  return (name) => {
-    const title = document.querySelector('title');
-    const nameCapitalized = capitalizeText(name);
-    title.innerText = `${id}. ${nameCapitalized}`;
-  };
-}
-
-const pokemonNameConteiner = document.body.querySelector('#pokemon-name');
-function putPokemonName(name) {
-  pokemonNameConteiner.innerText = capitalizeText(name);
+function putPokemonInfosOnPage(name, types, front_default, id, height, weight, moves, abilities) {
+  utilities.putPokemonNameOnTitle(name);
+  utilities.putPokemonName(pokemonNameConteiner)(name);
+  const firstType = utilities.getFirstType(types);
+  utilities.putPokemonImgCard(pokemonImgConteiner)(firstType)(front_default, name);
+  utilities.putPokemonInfoText(idConteiner)(id);
+  utilities.putPokemonTypes(typesConteiner)(types);
+  utilities.putPokemonInfoText(alturaConteiner)(height);
+  utilities.putPokemonInfoText(pesoConteiner)(weight);
+  utilities.putPokemonListInfo(movesConteiner)(moves);
+  utilities.putPokemonListInfo(abilitiesConteiner)(abilities);
 }
 
 (function () {
   async function getPokemonPage() {
-    const url = 'https://pokeapi.co/api/v2/pokemon/';
     const pokemonId = getPokemonIdOnUrl();
-    const realUrl = concat2Strings(url, pokemonId);
-    const { sprites: { front_default }, id, name, types, moves, abilities } = await getPokemonInfos(realUrl);
+    const url = getTheAPIUrl();
+    const realUrl = utilities.concat2Strings(url, pokemonId);
+    const {
+      sprites: { front_default },
+      name,
+      types,
+      height,
+      weight,
+      moves,
+      abilities,
+    } = await utilities.getPokemonInfos(realUrl);
 
-    putPokemonNameOnTitle(id)(name);
-    putPokemonName(name);
+    putPokemonInfosOnPage(name, types, front_default, pokemonId, height, weight, moves, abilities);
   }
 
   getPokemonPage();
