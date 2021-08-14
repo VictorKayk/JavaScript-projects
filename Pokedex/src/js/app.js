@@ -5,12 +5,12 @@ const pokedexConteiner = document.querySelector('main ul.pokedex');
 (function () {
   function getPokedex(pokedexConteiner) {
     return async (url) => {
-      for (let cont = 1; cont <= 890; cont += 1) {
+      for (let cont = 1; cont <= 10; cont += 1) {
         const realUrl = concat2Strings(url, cont);
 
-        const { front_default, id, name, types } = await getPokemonInfos(realUrl);
+        const { sprites: { front_default }, id, name, types } = await getPokemonInfos(realUrl);
         const firstTypeOfPokemon = types[0].type.name;
-        const pokemonCard = getPokemonCard(firstTypeOfPokemon, front_default, id, name, types);
+        const pokemonCard = getPokemonCard(id, firstTypeOfPokemon, front_default, name, types);
 
         pokedexConteiner.appendChild(pokemonCard);
       }

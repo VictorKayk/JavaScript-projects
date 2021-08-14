@@ -16,6 +16,52 @@ h1 {
 	font-size: 54px;
 }
 
+#pokemon {
+  border-radius: 20px;
+  width: 650px;
+	padding: 40px;
+  min-height: 479px;
+  background-color:white;
+  color:#222;
+  margin: 0 auto;
+}
+
+div.card {
+  max-width: 450px;
+  margin: 0 auto;
+}
+
+#pokemon-infos {
+  margin-top: 50px;
+  padding: 0 30px;
+}
+
+#types {
+  list-style: none;
+  padding: 0;
+}
+
+#types > li {
+  margin: 0 0 0 15px;
+}
+
+#types > li > p {
+  padding: 10px 15px;
+  border-radius: 20px;
+}
+
+.display-flex {
+  display: flex;
+}
+
+.justify-content-sb {
+  justify-content: space-between;
+}
+
+.align-items-c {
+  align-items: center;
+}
+
 .pokedex {
 	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -23,8 +69,15 @@ h1 {
 	padding-inline-start: 0;
 }
 
+.pokemon-conteiner {
+  list-style: none;
+}
+
+a:link, a:hover, a:visited, a:active, a:checked {
+  text-decoration: none;
+}
+
 .card {
-	list-style: none;
 	padding: 40px;
 	color: #222;
 	text-align: center;
@@ -105,7 +158,7 @@ h1 {
 	background-color: #F5F5F5;
 }
 
-.card:hover {
+li .card:hover {
 	animation: bounce 0.5s linear;
 }
 
