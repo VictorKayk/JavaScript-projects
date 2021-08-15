@@ -1,16 +1,204 @@
+/* Global */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-body {
-  background-image: url('../../assets/img/background/bg-mobile-light.jpg');
-  background-repeat: no-repeat;
-  background-attachment: fixed;
+/* Variables */
+:root {
+  --bright-blue: hsl(220, 98%, 61%);
+
+  --very-light-gray: hsl(0, 0%, 98%);
+  --very-light-grayish-blue: hsl(236, 33%, 92%);
+  --light-grayish-blue: hsl(233, 11%, 84%);
+  --dark-grayish-blue: hsl(236, 9%, 61%);
+  --very-dark-grayish-blue: hsl(235, 19%, 35%);
 }
 
-footer {
+/* Body's style config */
+body {
+  background-image: url('../../assets/img/background/bg-mobile-light.jpg');
+  background-repeat: repeat-x;
+  background-attachment: fixed;
+  background-color: var(--very-light-gray);
+
+  font: normal 1rem 'Josefin Sans', sans-serif;
+  color: var(--very-dark-grayish-blue);
+}
+
+/* Todo's style */
+main {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  padding: 50px 25px;
+}
+
+main #todo-header {
+  display:flex;
+  align-items: center;
+  justify-content: space-between;
+
+  color: white;
+}
+
+main #todo-header h1 {
+  font-size: 25px;
+  letter-spacing: 11px;
+}
+
+main #todo-header img {
+  width: 20px;
+}
+
+section#tasks-conteiner {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+section#tasks-conteiner div#create-todo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  background-color: white;
+  padding: 10px 25px;
+  border-radius: 5px;
+}
+
+section#tasks-conteiner div#create-todo #create {
+  height: 2rem;
+  width: 14rem;
+  background-color: white;
+  border:none;
+  outline: none;
+}
+
+section#tasks-conteiner div#create-todo #save {
+  border:none;
+  color:var(--bright-blue);
+  background-color: white;
+  font: normal 1.125rem 'Josefin Sans', sans-serif;
+}
+
+.btn-img {
+  background-color: transparent;
+  border: none;
+}
+
+/* Viewing tasks */
+section#tasks-conteiner div#viewing-tasks {
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.055);
+}
+
+section#tasks-conteiner div#viewing-tasks div.task {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  
+  padding: 20px 25px;
+  border-bottom: 0.3px solid var(--light-grayish-blue); 
+}
+
+section#tasks-conteiner div#viewing-tasks div.task .item {
+  display: flex;
+  align-content: stretch;
+  gap: 15px; 
+}
+
+/* section#tasks-conteiner div#viewing-tasks div.task .item p {
+} */
+
+section#tasks-conteiner div#viewing-tasks div.task .item div {
+  display: block;
+  position: relative;
+  cursor: pointer;
+  height: 25px;
+  width: 25px;
+  font-size: 22px;
+  user-select: none;
+}
+
+section#tasks-conteiner div#viewing-tasks div.task .item div input{
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  cursor: pointer;
+  height: 25px;
+  width: 25px;
+  z-index: 1;
+}
+
+section#tasks-conteiner div#viewing-tasks div.task .item div .checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: white;
+  border: 0.2px solid var(--light-grayish-blue);
+  border-radius: 50%;
+  z-index: 0;
+}
+
+section#tasks-conteiner div#viewing-tasks div.task .item div:hover input ~ .checkmark {
+  background-color: var(--light-grayish-blue);
+}
+
+section#tasks-conteiner div#viewing-tasks div.task .item div input:checked ~ .checkmark {
+  background-image: linear-gradient(135deg, hsl(192, 100%, 67%), hsl(280, 87%, 65%));
+}
+
+section#tasks-conteiner div#viewing-tasks div.task .item div .checkmark::after {
+  content: url('../../assets/img/icons/icon-check.svg');
+  position: absolute;
+  display: none;
+}
+
+section#tasks-conteiner div#viewing-tasks div.task .item div input:checked ~ .checkmark:after {
+  display: block;
+}
+
+section#tasks-conteiner div#viewing-tasks div.task .item div .checkmark::after {
+  top: -1px;
+	left: 6.2px;
+	width: 8px;
+	height: 8px;
+}
+
+section#tasks-conteiner div#viewing-tasks div.task img {
+  width: 15px;
+}
+
+section#tasks-conteiner div#viewing-tasks #tasks-footer {
+  display: flex;
+  justify-content: space-between;
+
+  padding: 20px 25px;
+}
+
+/* Options */
+section#tasks-conteiner div#options {
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.055);
+  padding: 20px 25px;
+}
+
+section#tasks-conteiner div#options ul {
+  display:flex;
+  justify-content: center;
+  gap: 20px;
+  list-style: none;
+}
+
+/* Page's footer */
+footer#da-pagina {
   position:fixed;
   bottom: 0;
   right: 12.5%;
