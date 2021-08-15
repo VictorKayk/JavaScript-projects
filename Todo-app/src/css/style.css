@@ -58,6 +58,7 @@ section#tasks-conteiner {
   gap: 20px;
 }
 
+/* Create todo */
 section#tasks-conteiner div#create-todo {
   display: flex;
   align-items: center;
@@ -74,11 +75,12 @@ section#tasks-conteiner div#create-todo #create {
   background-color: white;
   border:none;
   outline: none;
+  color: var(--dark-grayish-blue)
 }
 
 section#tasks-conteiner div#create-todo #save {
   border:none;
-  color:var(--bright-blue);
+  color: var(--bright-blue);
   background-color: white;
   font: normal 1.125rem 'Josefin Sans', sans-serif;
 }
@@ -86,6 +88,7 @@ section#tasks-conteiner div#create-todo #save {
 .btn-img {
   background-color: transparent;
   border: none;
+  cursor: pointer;
 }
 
 /* Viewing tasks */
@@ -106,12 +109,9 @@ section#tasks-conteiner div#viewing-tasks div.task {
 
 section#tasks-conteiner div#viewing-tasks div.task .item {
   display: flex;
-  align-content: stretch;
+  align-items: center;
   gap: 15px; 
 }
-
-/* section#tasks-conteiner div#viewing-tasks div.task .item p {
-} */
 
 section#tasks-conteiner div#viewing-tasks div.task .item div {
   display: block;
@@ -178,8 +178,28 @@ section#tasks-conteiner div#viewing-tasks div.task img {
 section#tasks-conteiner div#viewing-tasks #tasks-footer {
   display: flex;
   justify-content: space-between;
+  color: var(--dark-grayish-blue);
+  font: normal 0.9375rem 'Josefin Sans', sans-serif;
 
   padding: 20px 25px;
+  margin: 2.5px 0;
+}
+
+
+button.btn-action {
+  color: var(--dark-grayish-blue);
+  font: normal 0.9375rem 'Josefin Sans', sans-serif;
+  text-decoration: none;
+  transition: all 0.3s;
+}
+
+button.btn-action.active {
+  color: var(--bright-blue);
+  font: bold 0.9375rem 'Josefin Sans', sans-serif;
+}
+
+button.btn-action:hover {
+  color: var(--bright-blue);
 }
 
 /* Options */
@@ -195,6 +215,14 @@ section#tasks-conteiner div#options ul {
   justify-content: center;
   gap: 20px;
   list-style: none;
+}
+
+/* Todo footer */
+
+footer#todo-footer {
+  margin-top: 20px;
+  text-align: center;
+  color: var(--dark-grayish-blue);
 }
 
 /* Page's footer */
