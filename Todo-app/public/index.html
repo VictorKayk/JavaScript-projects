@@ -19,71 +19,86 @@
 </head>
 <body>
 
+  <header id="todo-header">
+    <h1>TODO</h1>
+    <button type="submit" class="btn"><img src="../assets/img/icons/icon-moon.svg" alt=""></button>
+  </header>
+
   <main>
-    <header id="todo-header">
-      <h1>TODO</h1>
-      <button class="btn-img"><img src="../assets/img/icons/icon-moon.svg" alt=""></button>
-    </header>
-
-    <section id="tasks-conteiner">
-      <div id="create-todo">
-        <input type="text" name="" id="create" placeholder="Create a new todo...">
-        <button id="save">Save</button>
+    <div id="create-todo">
+      <input type="text" name="" id="create" placeholder="Create a new todo...">
+      <button id="save" class="btn">Save</button>
+    </div>
+    <div id="viewing-tasks">
+      <div class="task">
+        <div class="item">
+          <div>
+            <input type="radio" name="" id="">
+            <span class="checkmark"></span>
+          </div>
+          <p class="checked">Item1</p>
+        </div>
+        <button class="btn"><img src="../assets/img/icons/icon-cross.svg" alt=""></button>
+      </div>
+      <div class="task">
+        <div class="item">
+          <div>
+            <input type="radio" name="" id="">
+            <span class="checkmark"></span>
+          </div>
+          <p class="checked">Item2</p>
+        </div>
+        <button class="btn"><img src="../assets/img/icons/icon-cross.svg" alt=""></button>
+      </div>
+      <div class="task">
+        <div class="item">
+          <div>
+            <input type="radio" name="" id="">
+            <span class="checkmark"></span>
+          </div>
+          <p>Item3</p>
+        </div>
+        <button class="btn"><img src="../assets/img/icons/icon-cross.svg" alt=""></button>
+      </div>
+      <div class="task">
+        <div class="item">
+          <div>
+            <input type="radio" name="" id="">
+            <span class="checkmark"></span>
+          </div>
+          <p>Item4</p>
+        </div>
+        <button class="btn"><img src="../assets/img/icons/icon-cross.svg" alt=""></button>
+      </div>
+      <div class="task">
+        <div class="item">
+          <div>
+            <input type="radio" name="" id="">
+            <span class="checkmark"></span>
+          </div>
+          <p>Item5</p>
+        </div>
+        <button class="btn"><img src="../assets/img/icons/icon-cross.svg" alt=""></button>
       </div>
 
-      <div id="viewing-tasks">
-        <div class="task">
-          <div class="item">
-            <div>
-              <input type="radio" name="" id="">
-              <span class="checkmark"></span>
-            </div>
-            <p>Item1</p>
-          </div>
-          <button class="btn-img"><img src="../assets/img/icons/icon-cross.svg" alt=""></button>
-        </div>
-
-        <div class="task">
-          <div class="item">
-            <div>
-              <input type="radio" name="" id="">
-              <span class="checkmark"></span>
-            </div>
-            <p>Item2</p>
-          </div>
-          <button class="btn-img"><img src="../assets/img/icons/icon-cross.svg" alt=""></button>
-        </div>
-
-        <div class="task">
-          <div class="item">
-            <div>
-              <input type="radio" name="" id="">
-              <span class="checkmark"></span>
-            </div>
-            <p>Item3</p>
-          </div>
-          <button class="btn-img"><img src="../assets/img/icons/icon-cross.svg" alt=""></button>
-        </div>
-
-        <footer id="tasks-footer">
-          <p><strong>?</strong> items left</p>
-          <button class="btn-img btn-action">Clear Completed</button>
-        </footer>
-      </div>
-      
-      <div id="options">
-        <ul>
-          <li><button class="btn-img btn-action"><strong>All</strong></button></li>
-          <li><button class="btn-img btn-action"><strong>Active</strong></button></li>
-          <li><button class="btn-img btn-action"><strong>Completed</strong></button></li>
-        </ul>
-      </div>
-    </section>
-
-    <footer id="todo-footer">
-      <p>Drag and drop to reorder list</p>
-    </footer>
+      <footer id="tasks-footer">
+        <p><strong>?</strong> items left</p>
+        <button class="btn btn-action">Clear Completed</button>
+      </footer>
+    </div>
+  
+    <div id="options">
+      <ul>
+        <li><button class="btn btn-action active"><strong>All</strong></button></li>
+        <li><button class="btn btn-action"><strong>Active</strong></button></li>
+        <li><button class="btn btn-action"><strong>Completed</strong></button></li>
+      </ul>
+    </div>
   </main>
+
+  <footer id="todo-footer">
+    <p>Drag and drop to reorder list</p>
+  </footer>
 
   <!-- Todo -->
 
@@ -96,11 +111,6 @@
   <!-- Clear Completed -->
 
   <!-- Drag and drop to reorder list -->
-
-  <footer id="da-pagina" class="attribution">
-    <p>Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. </p>
-    <p>Coded by <a href="https://github.com/VictorKayk" target="_blank">Victor Kayk</a>.</p>
-  </footer>
 
   <script type="module" src="../src/js/index.js"></script>
 </body>
