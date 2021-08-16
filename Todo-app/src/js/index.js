@@ -1,34 +1,31 @@
-// import toogleTheme from './modules/toogle-theme-color.js';
-
-localStorage.theme = localStorage.theme || 'light';
+// import toggleTheme from './modules/toggle-theme-color.js';
 
 const buttonThemeChanger = document.body.querySelector('#theme-changer');
+const imgThemeChanger = document.body.querySelector('#theme-changer img');
 
-function isTheCorrectTheme(tagTheme) {
-  const tag = tagTheme.firstChild || tagTheme;
-  const possibleChoices = {
-    '../assets/img/icons/icon-moon.svg': 'light',
-    '../assets/img/icons/icon-sun.svg': 'dark',
-  };
-  const imgButton = tag.getAttribute('src');
-  return localStorage.theme === possibleChoices[imgButton];
+function initialTheme() {
+  localStorage.theme = localStorage.theme || 'light';
 }
 
-function toogleImgTheme(tagTheme) {
-  const tag = tagTheme.firstChild || tagTheme;
-  const imgButton = tag.getAttribute('src');
-  if (imgButton.includes('moon')) {
-    tag.setAttribute('src', imgButton.replace('moon', 'sun'));
-  } else {
-    tag.setAttribute('src', imgButton.replace('sun', 'moon'));
-  }
+initialTheme();
+
+function isTheCorrectTheme(imgTagTheme) {
+  const imgButton = imgTagTheme.getAttribute('src');
+  if (imgButton.includes('light')) return localStorage.theme === 'light';
+  return localStorage.theme === 'dark';
 }
 
-function toogleTheme(tagTheme) {
-  toogleImgTheme(tagTheme);
+function toggleImgTheme(imgTagTheme) {
+  const imgButton = imgTagTheme.getAttribute('src');
+  if (imgButton.includes('dark')) imgTagTheme.setAttribute('src', imgButton.replace('dark', 'light'));
+  else if (imgButton.includes('light')) imgTagTheme.setAttribute('src', imgButton.replace('light', 'dark'));
 }
 
-function toogleLocalStorageTheme() {
+function toggleTheme(imgTagTheme) {
+  toggleImgTheme(imgTagTheme);
+}
+
+function toggleLocalStorageTheme() {
   const possibleChoices = {
     light: 'dark',
     dark: 'light',
@@ -36,13 +33,12 @@ function toogleLocalStorageTheme() {
   localStorage.theme = possibleChoices[localStorage.theme];
 }
 
-if (!isTheCorrectTheme(buttonThemeChanger.firstChild)) toogleImgTheme(buttonThemeChanger.firstChild);
+if (!isTheCorrectTheme(imgThemeChanger)) toggleImgTheme(imgThemeChanger);
 
 window.addEventListener('click', (e) => {
   const { target } = e;
-  console.log(target);
-  if (target === buttonThemeChanger || target === buttonThemeChanger.firstChild) {
-    toogleLocalStorageTheme();
-    toogleTheme(target);
+  if (target.getAttribute('data-js')) {
+    toggleLocalStorageTheme();
+    toggleTheme(imgThemeChanger);
   }
 });
