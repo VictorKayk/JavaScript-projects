@@ -68,6 +68,7 @@ Then crop/optimize/edit your image however you like, add it to your project, and
   - [ ] Put the checked style on Todo
 - [ ] Remove Todo
 - [ ] Remove all completed Todo
+- [ ] Add dynamic number to items left
 - [ ] Show only active Todo
 - [ ] Show only checked Todo
 - [ ] Drag and drop to reorder list
