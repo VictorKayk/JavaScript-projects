@@ -115,6 +115,7 @@ main div#create-todo #create {
   outline: none;
   color: var(--dark-grayish-blue);
   font-size: 16px;
+  font-weight: bold;
 }
 
 main div#create-todo #save {
@@ -224,7 +225,6 @@ main div#viewing-tasks #tasks-footer {
   font: normal 0.9375rem 'Josefin Sans', sans-serif;
 
   padding: 20px;
-  margin: 2.5px 0;
 }
 
 /* Options */
@@ -315,7 +315,6 @@ footer#todo-footer {
     font: normal 1.125rem 'Josefin Sans', sans-serif;
   
     padding: 20px 25px;
-    margin: 2.5px 0;
   }
 
   /* Options */
@@ -337,11 +336,97 @@ footer#todo-footer {
   }
 }
 
-@media screen and (min-width: 1030px) {
+@media screen and (min-width: 1100px) {
+  /* Body's style config */
   body {
     grid-template-columns: 1fr 1.25fr 1fr;
-    grid-template-rows: 70px 62px auto 62px 70px;
+    grid-template-rows: 75px 80px auto 80px 75px;
 
-    font-size: 1.375rem;
+    font: normal 1.375rem 'Josefin Sans', sans-serif;
+  }
+
+  /* Todo's style */
+  /* Header */
+  header#todo-header h1 {
+    font-size: 37px;
+    letter-spacing: 16px;
+  }
+  
+  header#todo-header img {
+    width: 26px;
+  }
+
+  /* Main */
+  main {
+    gap: 1.375rem;
+  }
+
+  /* Create todo */
+  main div#create-todo {
+    padding: 20px 25px;
+  }
+  
+  main div#create-todo #create {
+    height: 1.5rem;
+    width: 86%;
+    font-size: 1.25rem;
+  }
+  
+  main div#create-todo #save {
+    font: normal 1.375rem 'Josefin Sans', sans-serif;
+  }
+
+  /* Viewing Tasks */
+  main div#viewing-tasks div.task {
+    padding: 20px 25px;
+  }
+
+  main div#viewing-tasks div.task img {
+    width: 17px;
+  }
+
+  main div#viewing-tasks div.task .item div input{
+    height: 22px;
+    width: 22px;
+  }
+
+  main div#viewing-tasks div.task .item div .checkmark {
+    height: 22px;
+    width: 22px;
+  }
+
+  main div#viewing-tasks div.task .item div .checkmark::after {
+    top: -2.015px;
+    left: 3.495px;
+    width: 8px;
+    height: 8px;
+  }
+
+  main div#viewing-tasks #tasks-footer {
+    font: normal 1.25rem 'Josefin Sans', sans-serif;
+  
+    padding: 22px 25px;
+  }
+
+  main div#viewing-tasks #tasks-footer button {
+    font: normal 1.125rem 'Josefin Sans', sans-serif;
+  }
+
+  /* Options */
+  main div#options {
+    padding: 22.5px 20px;
+  }
+
+  main div#options ul {
+    gap: 30px;
+  }
+
+  main div#options ul li button {
+    font-size: 1.125rem;
+  }
+
+  /* Todo footer */
+  footer#todo-footer {
+    font-size: 1.125rem;
   }
 }
