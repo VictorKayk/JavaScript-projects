@@ -2,7 +2,8 @@
 
 # Frontend Mentor - Todo app solution
 
-This is a solution to the [Todo app challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/todo-app-Su1_KokOW), coded by [Victor Kayk](https://github.com/VictorKayk). Frontend Mentor challenges help you improve your coding skills by building realistic projects. 
+This is a solution to the [Todo app challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/todo-app-Su1_KokOW), coded by [Victor Kayk](https://github.com/VictorKayk). You can access the resolution on: [The project on GitHub pages.](https://victorkayk.github.io/Projetos-JavaScript/Todo-app/public/) <br>
+Frontend Mentor challenges help you improve your coding skills by building realistic projects. 
 
 ## Table of contents
 
