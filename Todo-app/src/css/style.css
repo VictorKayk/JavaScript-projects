@@ -8,12 +8,6 @@
 /* Variables */
 :root {
   --bright-blue: hsl(220, 98%, 61%);
-
-  /* Light mode */
-  
-
-  /* Dark mode */
-  
 }
 
 /* Utilities */
@@ -149,14 +143,6 @@ main div#create-todo #create {
   font-size: 16px;
   font-weight: bold;
 }
-
-/* .light main div#create-todo #create {
-  color: white;
-}
-
-.dark main div#create-todo #create {
-  color: var(--very-dark-desaturated-blue);
-} */
 
 main div#create-todo #save {
   color: var(--dark-grayish-blue);
@@ -400,10 +386,17 @@ footer#todo-footer {
   main div#viewing-tasks div.task {
     padding: 18px 25px;
   }
-
-  main div#viewing-tasks div.task img {
-    width: 15px;
+  
+  main div#viewing-tasks div.task > button {
     display:none;
+  }
+  
+  main div#viewing-tasks div.task:hover > button {
+    display:block;
+  }
+
+  main div#viewing-tasks div.task button img {
+    width: 15px;
   }
 
   main div#viewing-tasks #tasks-footer {
