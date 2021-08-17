@@ -58,21 +58,29 @@ Then crop/optimize/edit your image however you like, add it to your project, and
 
 ### Implemented features
 
-- [ ] Switch theme
-  - [ ] Dark mode style
-- [ ] Add Todo
-  - [ ] Show Todo added
-  - [ ] Clean the Todo creator
-  - [ ] Put focus on Todo creator
-- [ ] Check Todo
-  - [ ] Put the Todo on end of list
-  - [ ] Put the checked style on Todo
-- [ ] Remove Todo
-- [ ] Remove all completed Todo
-- [ ] Add dynamic number to items left
-- [ ] Show only active Todo
-- [ ] Show only checked Todo
-- [ ] Drag and drop to reorder list
+- [x] HTML
+    - [x] Header
+    - [x] Main
+    - [x] Footer
+- [x] CSS
+    - [x] Page design
+    - [x] Ligth mode
+    - [x] Dark mode
+- [ ] JavaScript
+  - [x] Switch theme
+  - [ ] Add Todo
+    - [ ] Show Todo added
+    - [ ] Clean the Todo creator
+    - [ ] Put focus on Todo creator
+  - [ ] Check Todo
+    - [ ] Put the Todo on end of list
+    - [ ] Put the checked style on Todo
+  - [ ] Remove Todo
+  - [ ] Remove all completed Todo
+  - [ ] Add dynamic number to items left
+  - [ ] Show only active Todo
+  - [ ] Show only checked Todo
+  - [ ] **Drag and drop to reorder list (Bonus)**
 
 ### Built with
 
