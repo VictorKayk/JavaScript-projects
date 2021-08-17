@@ -18,7 +18,7 @@ function toggleThemeInBody() {
   putTheThemeClassOnBody();
 }
 
-function initialTheme(iconThemeTag) {
+export function initialTheme(iconThemeTag) {
   localStorage.theme = localStorage.theme || 'light';
   toggleIconTheme(iconThemeTag);
   toggleThemeInBody();
@@ -30,7 +30,7 @@ function isTheCorrectTheme(iconThemeTag) {
   return localStorage.theme === 'dark';
 }
 
-function toggleIconThemeIfNotCorrect(iconThemeTag) {
+export function toggleIconThemeIfNotCorrect(iconThemeTag) {
   if (!isTheCorrectTheme(iconThemeTag)) toggleIconTheme(iconThemeTag);
 }
 
@@ -42,20 +42,8 @@ function toggleLocalStorageTheme() {
   localStorage.theme = possibleChoices[localStorage.theme];
 }
 
-function toggleTheme(iconThemeTag) {
+export function toggleTheme(iconThemeTag) {
   toggleLocalStorageTheme();
   toggleIconTheme(iconThemeTag);
   toggleThemeInBody();
-}
-
-export default function themeChanger(iconThemeTag) {
-  initialTheme(iconThemeTag);
-  toggleIconThemeIfNotCorrect(iconThemeTag);
-
-  window.addEventListener('click', (e) => {
-    const { target } = e;
-    if (target.getAttribute('data-js')) {
-      toggleTheme(iconThemeTag);
-    }
-  });
 }

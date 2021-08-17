@@ -116,7 +116,7 @@ main {
 }
 
 /* Create todo */
-main div#create-todo {
+main form#create-todo {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -126,15 +126,15 @@ main div#create-todo {
   color: var(--dark-grayish-blue);
 }
 
-.light main div#create-todo {
+.light main form#create-todo {
   background-color: white;
 }
 
-.dark main div#create-todo {
+.dark main form#create-todo {
   background-color: var(--very-dark-desaturated-blue);
 }
 
-main div#create-todo #create {
+main form#create-todo #create {
   height: 1rem;
   width: 80%;
   background-color: transparent;
@@ -144,14 +144,21 @@ main div#create-todo #create {
   font-weight: bold;
 }
 
-main div#create-todo #save {
+.light main form#create-todo #create {
+  color: var(--very-dark-grayish-blue)}
+
+.dark main form#create-todo #create {
+  color: var(--light-grayish-blue);
+}
+
+main form#create-todo #save {
   color: var(--dark-grayish-blue);
   background-color: transparent;
   font: normal 1.125rem 'Josefin Sans', sans-serif;
   transition: all 0.3s;
 }
 
-main div#create-todo #save:hover {
+main form#create-todo #save:hover {
   color: var(--bright-blue);
 }
 
