@@ -9,11 +9,11 @@
 :root {
   --bright-blue: hsl(220, 98%, 61%);
 
-  --very-light-gray: hsl(0, 0%, 98%);
-  --very-light-grayish-blue: hsl(236, 33%, 92%);
-  --light-grayish-blue: hsl(233, 11%, 84%);
-  --dark-grayish-blue: hsl(236, 9%, 61%);
-  --very-dark-grayish-blue: hsl(235, 19%, 35%);
+  /* Light mode */
+  
+
+  /* Dark mode */
+  
 }
 
 /* Utilities */
@@ -48,15 +48,41 @@ body {
   grid-template-columns: 25px 1fr 25px;
   grid-template-rows: 45px 62px auto 62px 45px;
 
-  background-image: url('../../assets/img/background/bg-mobile-light.jpg');
+  background-repeat: repeat-x;
+  background-attachment: fixed;
+  
+  font: normal 18px 'Josefin Sans', sans-serif;
+}
+
+.light {
+  --very-light-gray: hsl(0, 0%, 98%);
+  --very-light-grayish-blue: hsl(236, 33%, 92%);
+  --light-grayish-blue: hsl(233, 11%, 84%);
+  --dark-grayish-blue: hsl(236, 9%, 61%);
+  --very-dark-grayish-blue: hsl(235, 19%, 35%);
+
+  background: url('../../assets/img/background/bg-mobile-light.jpg');
   background-repeat: repeat-x;
   background-attachment: fixed;
   background-color: var(--very-light-gray);
-
-  font: normal 18px 'Josefin Sans', sans-serif;
   color: var(--very-dark-grayish-blue);
 }
 
+.dark {
+  --very-dark-blue: hsl(235, 21%, 11%);
+  --very-dark-desaturated-blue: hsl(235, 24%, 19%);
+  --light-grayish-blue: hsl(234, 39%, 85%);
+  --light-grayish-blue-hover: hsl(236, 33%, 92%);
+  --dark-grayish-blue: hsl(234, 11%, 52%);
+  --very-dark-grayish-blue: hsl(233, 14%, 35%);
+  --very-dark-grayish-blue: hsl(237, 14%, 26%);
+
+  background: url('../../assets/img/background/bg-mobile-dark.jpg');
+  background-repeat: repeat-x;
+  background-attachment: fixed;
+  background-color: var(--very-dark-blue);
+  color: var(--light-grayish-blue);
+}
 
 /* Todo's style */
 /* Header */
@@ -101,26 +127,40 @@ main div#create-todo {
   align-items: center;
   justify-content: space-between;
 
-  background-color: white;
   padding: 16px 20px;
   border-radius: 5px;
   color: var(--dark-grayish-blue);
 }
 
+.light main div#create-todo {
+  background-color: white;
+}
+
+.dark main div#create-todo {
+  background-color: var(--very-dark-desaturated-blue);
+}
+
 main div#create-todo #create {
   height: 1rem;
   width: 80%;
-  background-color: white;
+  background-color: transparent;
   border:none;
   outline: none;
-  color: var(--dark-grayish-blue);
   font-size: 16px;
   font-weight: bold;
 }
 
+/* .light main div#create-todo #create {
+  color: white;
+}
+
+.dark main div#create-todo #create {
+  color: var(--very-dark-desaturated-blue);
+} */
+
 main div#create-todo #save {
   color: var(--dark-grayish-blue);
-  background-color: white;
+  background-color: transparent;
   font: normal 1.125rem 'Josefin Sans', sans-serif;
   transition: all 0.3s;
 }
@@ -131,9 +171,16 @@ main div#create-todo #save:hover {
 
 /* Viewing tasks */
 main div#viewing-tasks {
-  background-color: white;
   border-radius: 5px;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.055);
+}
+
+.light main div#viewing-tasks {
+  background-color: white;
+}
+
+.dark main div#viewing-tasks {
+  background-color: var(--very-dark-desaturated-blue);
 }
 
 main div#viewing-tasks div.task {
@@ -142,7 +189,15 @@ main div#viewing-tasks div.task {
   justify-content: space-between;
   
   padding: 16px 20px;
-  border-bottom: 0.2px solid var(--light-grayish-blue); 
+  border-bottom: 0.2px solid;
+}
+
+.light main div#viewing-tasks div.task {
+  border-color: var(--light-grayish-blue);
+}
+
+.dark main div#viewing-tasks div.task {
+  border-color: var(--very-dark-grayish-blue);
 }
 
 main div#viewing-tasks div.task .item {
@@ -152,8 +207,15 @@ main div#viewing-tasks div.task .item {
 }
 
 main div#viewing-tasks div.task .item p.checked{
-  color: var(--light-grayish-blue);
   text-decoration: line-through;
+}
+
+.light main div#viewing-tasks div.task .item p.checked {
+  color: var(--light-grayish-blue);
+}
+
+.dark main div#viewing-tasks div.task .item p.checked {
+  color: var(--dark-grayish-blue);
 }
 
 main div#viewing-tasks div.task .item div {
@@ -183,14 +245,26 @@ main div#viewing-tasks div.task .item div .checkmark {
   left: 0;
   height: 20px;
   width: 20px;
-  background-color: white;
-  border: 0.2px solid var(--light-grayish-blue);
+  border: 1.5px solid;
+  background-color: transparent;
   border-radius: 50%;
   z-index: 0;
 }
 
-main div#viewing-tasks div.task .item div:hover input ~ .checkmark {
+.light main div#viewing-tasks div.task .item div .checkmark {
+  border-color: var(--light-grayish-blue);
+}
+
+.dark main div#viewing-tasks div.task .item div .checkmark {
+  border-color: var(--very-dark-grayish-blue);
+}
+
+.light main div#viewing-tasks div.task .item div:hover input ~ .checkmark {
   background-color: var(--light-grayish-blue);
+}
+
+.dark main div#viewing-tasks div.task .item div:hover input ~ .checkmark {
+  background-color: var(--very-dark-grayish-blue);
 }
 
 main div#viewing-tasks div.task .item div input:checked ~ .checkmark {
@@ -235,6 +309,14 @@ main div#options {
   padding: 20px;
 }
 
+.light main div#options {
+  background-color: white;
+}
+
+.dark main div#options {
+  background-color: var(--very-dark-desaturated-blue);
+}
+
 main div#options ul {
   display:flex;
   justify-content: center;
@@ -265,10 +347,22 @@ footer#todo-footer {
   body {
     grid-template-columns: 80px 1fr 80px;
     grid-template-rows: 65px 75px auto 75px 65px;
-  
-    background-image: url('../../assets/img/background/bg-desktop-light.jpg');
     
     font: normal 1.125rem 'Josefin Sans', sans-serif;
+  }
+
+  .light {
+    background: url('../../assets/img/background/bg-desktop-light.jpg');
+    background-repeat: repeat-x;
+    background-attachment: fixed;
+    background-color: var(--very-light-gray);
+  }
+  
+  .dark {
+    background: url('../../assets/img/background/bg-desktop-dark.jpg');
+    background-repeat: repeat-x;
+    background-attachment: fixed;
+    background-color: var(--very-dark-blue)
   }
 
   /* Todo's style */
@@ -309,6 +403,7 @@ footer#todo-footer {
 
   main div#viewing-tasks div.task img {
     width: 15px;
+    display:none;
   }
 
   main div#viewing-tasks #tasks-footer {
@@ -336,7 +431,7 @@ footer#todo-footer {
   }
 }
 
-@media screen and (min-width: 1100px) {
+@media screen and (min-width: 1050px) {
   /* Body's style config */
   body {
     grid-template-columns: 1fr 1.25fr 1fr;
