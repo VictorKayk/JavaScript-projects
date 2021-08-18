@@ -144,6 +144,10 @@ main header form#create-todo #create {
   font-weight: bold;
 }
 
+main header form#create-todo #create.error::placeholder {
+  color: #d11507;
+}
+
 .light main header form#create-todo #create {
   color: var(--very-dark-grayish-blue)}
 
@@ -354,7 +358,7 @@ footer#todo-footer {
     grid-template-columns: 80px 1fr 80px;
     grid-template-rows: 65px 75px auto 75px 65px;
     
-    font: normal 1.125rem 'Josefin Sans', sans-serif;
+    font: normal 1.25rem 'Josefin Sans', sans-serif;
   }
 
   .light {
@@ -399,7 +403,7 @@ footer#todo-footer {
   }
   
   main div#create-todo #save {
-    font: normal 1.265625rem 'Josefin Sans', sans-serif;
+    font: normal 1.25rem 'Josefin Sans', sans-serif;
   }
 
   /* Viewing Tasks */
@@ -444,7 +448,7 @@ footer#todo-footer {
   }
 }
 
-@media screen and (min-width: 1050px) {
+@media screen and (min-width: 950px) {
   /* Body's style config */
   body {
     grid-template-columns: 1fr 1.25fr 1fr;

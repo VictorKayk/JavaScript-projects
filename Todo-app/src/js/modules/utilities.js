@@ -7,7 +7,11 @@ export function createElement(element) {
 }
 
 export function addClassToElement(element) {
-  return (classToElement) => element.classList.add(classToElement);
+  return (classOfElement) => element.classList.add(classOfElement);
+}
+
+export function removeClassToElement(element) {
+  return (classOfElement) => element.classList.remove(classOfElement);
 }
 
 export function addIdToElement(element) {
@@ -19,4 +23,8 @@ export function addIdToElement(element) {
 export function addAttributeToElement(element) {
   return (nameOfAttribute) => (attributeToElement) => element
     .setAttribute(nameOfAttribute, attributeToElement);
+}
+
+export function putPlaceholderInTarget(target) {
+  return (msg) => target.placeholder = msg;
 }
