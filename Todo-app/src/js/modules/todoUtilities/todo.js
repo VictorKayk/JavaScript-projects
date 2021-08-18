@@ -4,7 +4,8 @@ import { putFocusOn } from '../utilities.js';
 export function addTodo(conteiner) {
   return (target) => {
     const input = target.querySelector('input#create');
-    createTodo(conteiner)(input.value);
+    const inputValue = input.value.trim();
+    if (inputValue) createTodo(conteiner)(inputValue);
     input.value = '';
     putFocusOn(input);
   };
