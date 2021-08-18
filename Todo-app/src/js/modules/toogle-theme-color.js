@@ -18,7 +18,7 @@ function toggleThemeInBody() {
   putTheThemeClassOnBody();
 }
 
-export function initialTheme(iconThemeTag) {
+function initialTheme(iconThemeTag) {
   localStorage.theme = localStorage.theme || 'light';
   toggleIconTheme(iconThemeTag);
   toggleThemeInBody();
@@ -30,7 +30,7 @@ function isTheCorrectTheme(iconThemeTag) {
   return localStorage.theme === 'dark';
 }
 
-export function toggleIconThemeIfNotCorrect(iconThemeTag) {
+function toggleIconThemeIfNotCorrect(iconThemeTag) {
   if (!isTheCorrectTheme(iconThemeTag)) toggleIconTheme(iconThemeTag);
 }
 
@@ -40,6 +40,11 @@ function toggleLocalStorageTheme() {
     dark: 'light',
   };
   localStorage.theme = possibleChoices[localStorage.theme];
+}
+
+export function changeInitialTheme(iconThemeTag) {
+  initialTheme(iconThemeTag);
+  toggleIconThemeIfNotCorrect(iconThemeTag);
 }
 
 export function toggleTheme(iconThemeTag) {
