@@ -68,13 +68,14 @@ Then crop/optimize/edit your image however you like, add it to your project, and
     - [x] Dark mode
 - [ ] JavaScript
   - [x] Switch theme
-  - [ ] Add Todo
-    - [ ] Show Todo added
-    - [ ] Clean the Todo creator
-    - [ ] Put focus on Todo creator
-  - [ ] Check Todo
-    - [ ] Put the Todo on end of list
-    - [ ] Put the checked style on Todo
+  - [x] Add Todo
+    - [x] Show Todo added
+    - [x] Clean the Todo creator
+    - [x] Put focus on Todo creator
+  - [x] Check Todo
+    - [x] Put the Todo on end of list
+    - [x] Put the checked style on Todo
+    - [x] Remove the checked style on Todo
   - [ ] Remove Todo
   - [ ] Remove all completed Todo
   - [ ] Add dynamic number to items left
