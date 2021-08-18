@@ -9,3 +9,10 @@ export function addTodo(conteiner) {
     putFocusOn(input);
   };
 }
+
+export function toggleItemChecked(target) {
+  const parentCheckboxInput = target.parentElement;
+  const item = parentCheckboxInput.parentElement;
+  const itemText = item.querySelector('p');
+  itemText.classList.toggle('checked');
+}

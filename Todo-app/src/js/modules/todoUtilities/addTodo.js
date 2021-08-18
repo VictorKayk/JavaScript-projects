@@ -1,14 +1,16 @@
 import { createElement, addClassToElement, addAttributeToElement } from '../utilities.js';
 
-function createRadioInput() {
-  const radio = createElement('div');
-  const radioInput = createElement('input');
-  addAttributeToElement(radioInput)('type')('radio');
+function createCheckboxInput() {
+  const checkbox = createElement('div');
+  const checkboxInput = createElement('input');
+  addClassToElement(checkboxInput)('checkboxInput');
+  addAttributeToElement(checkboxInput)('type')('checkbox');
   const checkMark = createElement('span');
+  addClassToElement(checkMark)('checkboxInput');
   addClassToElement(checkMark)('checkmark');
-  radio.appendChild(radioInput);
-  radio.appendChild(checkMark);
-  return radio;
+  checkbox.appendChild(checkboxInput);
+  checkbox.appendChild(checkMark);
+  return checkbox;
 }
 
 function createItemTextConteiner() {
@@ -18,9 +20,9 @@ function createItemTextConteiner() {
 
 function createItemConteiner() {
   const item = createElement('div');
-  const radio = createRadioInput();
+  const checkbox = createCheckboxInput();
   const itemText = createItemTextConteiner();
-  item.appendChild(radio);
+  item.appendChild(checkbox);
   item.appendChild(itemText);
   addClassToElement(item)('item');
   return item;

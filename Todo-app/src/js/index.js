@@ -1,6 +1,6 @@
 import { putFocusOn } from './modules/utilities.js';
 import { changeInitialTheme, toggleTheme } from './modules/toogle-theme-color.js';
-import { addTodo } from './modules/todoUtilities/todo.js';
+import { addTodo, toggleItemChecked } from './modules/todoUtilities/todo.js';
 
 // Conteiners
 const todoCreate = document.body.querySelector('main form#create-todo input#create');
@@ -14,6 +14,7 @@ const viewingTasks = document.body.querySelector('main div#viewing-tasks');
   window.addEventListener('click', (e) => {
     const { target } = e;
     if (target.getAttribute('data-js')) toggleTheme(iconThemeChanger);
+    else if (target.classList.contains('checkboxInput')) toggleItemChecked(target);
   });
 
   window.addEventListener('submit', (e) => {
