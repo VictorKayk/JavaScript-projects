@@ -16,3 +16,12 @@ export function toggleItemChecked(target) {
   const itemText = item.querySelector('p');
   itemText.classList.toggle('checked');
 }
+
+export function countTheLeftItem(conteinerToContTask) {
+  const tasks = [...conteinerToContTask.querySelectorAll('.task .item p')];
+  const itemsNotChecked = tasks.filter((el) => !el.classList.contains('checked'));
+  const numberOfItemsNotChecked = itemsNotChecked.length;
+  return (conteinerToPutTheCont) => {
+    conteinerToPutTheCont.innerText = numberOfItemsNotChecked;
+  };
+}
