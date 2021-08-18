@@ -25,75 +25,80 @@
   </header>
 
   <main>
-    <form id="create-todo">
-      <input type="text" name="" id="create" placeholder="Create a new todo...">
-      <button type="submit"  id="save" class="btn">Save</button>
-    </form>
-    <div id="viewing-tasks">
-      <div class="task">
-        <div class="item">
-          <div>
-            <input type="radio" name="" id="">
-            <span class="checkmark"></span>
-          </div>
-          <p class="checked">Item1</p>
-        </div>
-        <button class="btn"><img src="../assets/img/icons/icon-cross.svg" alt=""></button>
-      </div>
-      <div class="task">
-        <div class="item">
-          <div>
-            <input type="radio" name="" id="">
-            <span class="checkmark"></span>
-          </div>
-          <p class="checked">Item2</p>
-        </div>
-        <button class="btn"><img src="../assets/img/icons/icon-cross.svg" alt=""></button>
-      </div>
-      <div class="task">
-        <div class="item">
-          <div>
-            <input type="radio" name="" id="">
-            <span class="checkmark"></span>
-          </div>
-          <p>Item3</p>
-        </div>
-        <button class="btn"><img src="../assets/img/icons/icon-cross.svg" alt=""></button>
-      </div>
-      <div class="task">
-        <div class="item">
-          <div>
-            <input type="radio" name="" id="">
-            <span class="checkmark"></span>
-          </div>
-          <p>Item4</p>
-        </div>
-        <button class="btn"><img src="../assets/img/icons/icon-cross.svg" alt=""></button>
-      </div>
-      <div class="task">
-        <div class="item">
-          <div>
-            <input type="radio" name="" id="">
-            <span class="checkmark"></span>
-          </div>
-          <p>Item5</p>
-        </div>
-        <button class="btn"><img src="../assets/img/icons/icon-cross.svg" alt=""></button>
-      </div>
+    <header>
+      <form id="create-todo">
+        <input type="text" name="todo-create" id="create" placeholder="Create a new todo...">
+        <button type="submit"  id="save" class="btn">Save</button>
+      </form>
+    </header>
 
+    <section>
+      <div id="viewing-tasks">
+        <div class="task">
+          <div class="item">
+            <div>
+              <input type="radio" name="radioInput" id="radioInput">
+              <span class="checkmark"></span>
+            </div>
+            <p class="checked">Item1</p>
+          </div>
+          <button class="btn"><img src="../assets/img/icons/icon-cross.svg" alt=""></button>
+        </div>
+        <div class="task">
+          <div class="item">
+            <div>
+              <input type="radio" name="" id="">
+              <span class="checkmark"></span>
+            </div>
+            <p class="checked">Item2</p>
+          </div>
+          <button class="btn"><img src="../assets/img/icons/icon-cross.svg" alt=""></button>
+        </div>
+        <div class="task">
+          <div class="item">
+            <div>
+              <input type="radio" name="" id="">
+              <span class="checkmark"></span>
+            </div>
+            <p>Item3</p>
+          </div>
+          <button class="btn"><img src="../assets/img/icons/icon-cross.svg" alt=""></button>
+        </div>
+        <div class="task">
+          <div class="item">
+            <div>
+              <input type="radio" name="" id="">
+              <span class="checkmark"></span>
+            </div>
+            <p>Item4</p>
+          </div>
+          <button class="btn"><img src="../assets/img/icons/icon-cross.svg" alt=""></button>
+        </div>
+        <div class="task">
+          <div class="item">
+            <div>
+              <input type="radio" name="" id="">
+              <span class="checkmark"></span>
+            </div>
+            <p>Item5</p>
+          </div>
+          <button class="btn"><img src="../assets/img/icons/icon-cross.svg" alt=""></button>
+        </div>
+      </div>
+      
       <footer id="tasks-footer">
         <p><strong>?</strong> items left</p>
         <button class="btn btn-action">Clear Completed</button>
       </footer>
-    </div>
-  
-    <div id="options">
+    </section>
+
+    <footer id="options">
       <ul>
         <li><button class="btn btn-action active"><strong>All</strong></button></li>
         <li><button class="btn btn-action"><strong>Active</strong></button></li>
         <li><button class="btn btn-action"><strong>Completed</strong></button></li>
       </ul>
-    </div>
+    </footer>
   </main>
 
   <footer id="todo-footer">
