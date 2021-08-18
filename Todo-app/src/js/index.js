@@ -1,16 +1,12 @@
 import { putFocusOn } from './modules/utilities.js';
 import { changeInitialTheme, toggleTheme } from './modules/toogle-theme-color.js';
-import { addTodo, toggleItemChecked, countTheLeftItem } from './modules/todoUtilities/todo.js';
+import { addTodo, toggleItemChecked, countTheLeftItem, deleteElement } from './modules/todoUtilities/todo.js';
 
 // Conteiners
 const todoCreate = document.body.querySelector('main form#create-todo input#create');
 const iconThemeChanger = document.body.querySelector('#theme-changer img');
 const viewingTasks = document.body.querySelector('main div#viewing-tasks');
 const itemsLeft = document.body.querySelector('main section footer p strong');
-
-function deleteElement(target) {
-
-}
 
 (function () {
   putFocusOn(todoCreate);
@@ -23,7 +19,7 @@ function deleteElement(target) {
     else if (target.classList.contains('checkboxInput')) {
       toggleItemChecked(target);
       countTheLeftItem(viewingTasks)(itemsLeft);
-    } else if (target.classList.contains('delete-btn')) console.log(target);
+    } else if (target.classList.contains('delete-btn')) deleteElement(target);
   });
 
   window.addEventListener('submit', (e) => {

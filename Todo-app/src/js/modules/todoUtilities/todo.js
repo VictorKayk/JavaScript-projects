@@ -35,3 +35,8 @@ export function countTheLeftItem(conteinerToContTask) {
     conteinerToPutTheCont.innerText = numberOfItemsNotChecked;
   };
 }
+
+export function deleteElement(target) {
+  const item = target.parentElement;
+  item.remove();
+}

@@ -29,15 +29,12 @@ function createItemConteiner() {
 }
 
 function createDeleteButtonConteiner() {
-  const deleteButton = createElement('button');
   const imgDeleteButton = createElement('img');
   addAttributeToElement(imgDeleteButton)('src')('../assets/img/icons/icon-cross.svg');
   addAttributeToElement(imgDeleteButton)('alt')('Delete Button');
+  addClassToElement(imgDeleteButton)('btn');
   addClassToElement(imgDeleteButton)('delete-btn');
-  deleteButton.appendChild(imgDeleteButton);
-  addClassToElement(deleteButton)('btn');
-  addClassToElement(deleteButton)('delete-btn');
-  return deleteButton;
+  return imgDeleteButton;
 }
 
 function createTaskConteiner() {

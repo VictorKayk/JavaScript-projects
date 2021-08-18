@@ -411,15 +411,15 @@ footer#todo-footer {
     padding: 18px 25px;
   }
   
-  main div#viewing-tasks div.task > button {
+  main div#viewing-tasks div.task > img {
     display:none;
   }
   
-  main div#viewing-tasks div.task:hover > button {
+  main div#viewing-tasks div.task:hover > img {
     display:block;
   }
 
-  main div#viewing-tasks div.task button img {
+  main div#viewing-tasks div.task img {
     width: 15px;
   }
 
