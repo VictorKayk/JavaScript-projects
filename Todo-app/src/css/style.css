@@ -392,17 +392,17 @@ footer#todo-footer {
   }
 
   /* Create todo */
-  main div#create-todo {
+  main header form#create-todo {
     padding: 16px 25px;
   }
   
-  main div#create-todo #create {
-    height: 1.3rem;
+  main header form#create-todo #create {
+    height: 1.4rem;
     width: 85%;
     font-size: 1.125rem;
   }
   
-  main div#create-todo #save {
+  main header form#create-todo #save {
     font: normal 1.25rem 'Josefin Sans', sans-serif;
   }
 
@@ -426,7 +426,7 @@ footer#todo-footer {
   main section footer#tasks-footer {
     font: normal 1.125rem 'Josefin Sans', sans-serif;
   
-    padding: 20px 25px;
+    padding: 19px 25px;
   }
 
   /* Options */
@@ -474,17 +474,17 @@ footer#todo-footer {
   }
 
   /* Create todo */
-  main div#create-todo {
-    padding: 20px 25px;
+  main header form#create-todo {
+    padding: 18px 25px;
   }
   
-  main div#create-todo #create {
+  main header form#create-todo #create {
     height: 1.5rem;
     width: 86%;
     font-size: 1.25rem;
   }
   
-  main div#create-todo #save {
+  main header form#create-todo #save {
     font: normal 1.375rem 'Josefin Sans', sans-serif;
   }
 

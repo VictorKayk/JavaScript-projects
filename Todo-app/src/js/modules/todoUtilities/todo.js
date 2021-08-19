@@ -21,8 +21,7 @@ export function addTodo(conteiner) {
 }
 
 export function toggleItemChecked(target) {
-  const parentCheckboxInput = target.parentElement;
-  const item = parentCheckboxInput.parentElement;
+  const item = target.closest('div.item');
   const itemText = item.querySelector('p');
   itemText.classList.toggle('checked');
 }
@@ -36,7 +35,14 @@ export function countTheLeftItem(conteinerToContTask) {
   };
 }
 
-export function deleteElement(target) {
-  const item = target.parentElement;
+export function deleteElement(item) {
   item.remove();
+}
+
+export function deleteAllCompletedTasks(conteinerToContTask) {
+  const tasksConteiner = conteinerToContTask.querySelectorAll('.task .item p.checked');
+  tasksConteiner.forEach((taskCompleted) => {
+    const task = taskCompleted.closest('div.task');
+    deleteElement(task);
+  });
 }
