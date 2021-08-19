@@ -1,5 +1,5 @@
 import createTodo from './addTodo.js';
-import { putFocusOn, addClassToElement, removeClassToElement, putPlaceholderInTarget } from '../utilities.js';
+import { putFocusOn, addClassToElement, removeClassToElement, putPlaceholderInTarget, getTasksConteiners } from '../common.js';
 
 export function addTodo(conteiner) {
   return (target) => {
@@ -7,7 +7,7 @@ export function addTodo(conteiner) {
     const inputValue = input.value.trim();
     if (inputValue) {
       if (inputValue.length <= 20) {
-        createTodo(conteiner)(inputValue);
+        createTodo(conteiner)(false)(inputValue);
         removeClassToElement(input)('error');
         putPlaceholderInTarget(input)('Create a new todo...');
       } else {
@@ -27,8 +27,8 @@ export function toggleItemChecked(target) {
 }
 
 export function countTheLeftItem(conteinerToContTask) {
-  const tasks = [...conteinerToContTask.querySelectorAll('.task .item p')];
-  const itemsNotChecked = tasks.filter((el) => !el.classList.contains('checked'));
+  const tasksConteiners = getTasksConteiners(conteinerToContTask);
+  const itemsNotChecked = tasksConteiners.filter((el) => !el.classList.contains('checked'));
   const numberOfItemsNotChecked = itemsNotChecked.length;
   return (conteinerToPutTheCont) => {
     conteinerToPutTheCont.innerText = numberOfItemsNotChecked;
@@ -44,5 +44,29 @@ export function deleteAllCompletedTasks(conteinerToContTask) {
   tasksConteiner.forEach((taskCompleted) => {
     const task = taskCompleted.closest('div.task');
     deleteElement(task);
+  });
+}
+
+export function savingTodos(conteiner) {
+  const tasksConteiners = getTasksConteiners(conteiner);
+  const tasksTexts = [...tasksConteiners].map((e) => {
+    if (e.classList.contains('checked')) return `Checked.${e.innerText}`;
+    return e.innerText;
+  });
+  const tasksInObject = tasksTexts.reduce((acc, item, index) => {
+    acc[index] = item;
+    return acc;
+  }, {});
+  const tasksInJson = JSON.stringify(tasksInObject);
+  localStorage.tasks = tasksInJson;
+}
+
+export function gettingTheTodos(conteiner) { // Reafator isso aqui
+  const tasks = JSON.parse(localStorage.tasks);
+  const tasksInArray = Object.values(tasks);
+  tasksInArray.forEach((task) => {
+    const isChecked = task.includes('Checked.');
+    const taskWithoutCheck = task.replace('Checked.', '');
+    createTodo(conteiner)(isChecked)(taskWithoutCheck);
   });
 }

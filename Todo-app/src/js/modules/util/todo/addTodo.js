@@ -1,10 +1,10 @@
-import { createElement, addClassToElement, addAttributeToElement } from '../utilities.js';
+import { createElement, addClassToElement, addAttributeToElement, getTasksConteiners } from '../common.js';
 
 function createCheckboxInput() {
   const checkbox = createElement('div');
   const checkboxInput = createElement('input');
-  addClassToElement(checkboxInput)('checkboxInput');
   addAttributeToElement(checkboxInput)('type')('checkbox');
+  addClassToElement(checkboxInput)('checkboxInput');
   const checkMark = createElement('span');
   addClassToElement(checkMark)('checkboxInput');
   addClassToElement(checkMark)('checkmark');
@@ -47,11 +47,21 @@ function createTaskConteiner() {
   return task;
 }
 
+function checkTodo(task) {
+  const checkboxInput = task.querySelector('.task .item div input');
+  addAttributeToElement(checkboxInput)('checked')('true');
+  const itemText = task.querySelector('.task .item p');
+  addClassToElement(itemText)('checked');
+}
+
 export default function createTodo(conteiner) {
   const task = createTaskConteiner();
-  return (text) => {
-    const itemText = task.querySelector('.task .item p');
-    itemText.innerText = text;
-    conteiner.appendChild(task);
+  return (isChecked) => {
+    if (isChecked) checkTodo(task);
+    return (text) => {
+      const itemText = task.querySelector('.task .item p');
+      itemText.innerText = text;
+      conteiner.appendChild(task);
+    };
   };
 }

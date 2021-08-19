@@ -28,3 +28,7 @@ export function addAttributeToElement(element) {
 export function putPlaceholderInTarget(target) {
   return (msg) => target.placeholder = msg;
 }
+
+export function getTasksConteiners(conteiner) {
+  return [...conteiner.querySelectorAll('.task .item p')];
+}
