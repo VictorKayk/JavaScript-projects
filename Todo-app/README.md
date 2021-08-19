@@ -76,12 +76,15 @@ Then crop/optimize/edit your image however you like, add it to your project, and
     - [x] Put the Todo on end of list
     - [x] Put the checked style on Todo
     - [x] Remove the checked style on Todo
-  - [ ] Remove Todo
-  - [ ] Remove all completed Todo
-  - [ ] Add dynamic number to items left
+  - [x] Remove Todo
+  - [x] Remove all completed Todo
+  - [x] Add dynamic number to items left
+  - [x] Save Todo on localStorage
+  - [ ] Get the Todo saved
   - [ ] Show only active Todo
   - [ ] Show only checked Todo
   - [ ] **Drag and drop to reorder list (Bonus)**
+  - [ ] **Loading screen (Bonus)**
 
 ### Built with
 
