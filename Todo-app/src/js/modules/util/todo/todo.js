@@ -1,5 +1,5 @@
 import createTodo from './addTodo.js';
-import { putFocusOn, addClassToElement, removeClassToElement, putPlaceholderInTarget, getTasksConteiners } from '../common.js';
+import { putFocusOn, addClassOfElement, removeClassOfElement, putPlaceholderInTarget, getTasksConteiners, removeClassOfMutipleElements } from '../common.js';
 
 export function addTodo(conteiner) {
   return (target) => {
@@ -8,10 +8,10 @@ export function addTodo(conteiner) {
     if (inputValue) {
       if (inputValue.length <= 20) {
         createTodo(conteiner)(false)(inputValue);
-        removeClassToElement(input)('error');
+        removeClassOfElement(input)('error');
         putPlaceholderInTarget(input)('Create a new todo...');
       } else {
-        addClassToElement(input)('error');
+        addClassOfElement(input)('error');
         putPlaceholderInTarget(input)('Task too long. (20 characters max)');
       }
     }
@@ -39,12 +39,16 @@ export function deleteElement(item) {
   item.remove();
 }
 
-export function deleteAllCompletedTasks(conteinerToContTask) {
-  const tasksConteiner = conteinerToContTask.querySelectorAll('.task .item p.checked');
-  tasksConteiner.forEach((taskCompleted) => {
-    const task = taskCompleted.closest('div.task');
+function deleteTasks(tasksConteiner) {
+  return tasksConteiner.forEach((tasks) => {
+    const task = tasks.closest('div.task');
     deleteElement(task);
   });
+}
+
+export function deleteAllCompletedTasks(conteinerToContTask) {
+  const tasksConteiner = conteinerToContTask.querySelectorAll('.task .item p.checked');
+  deleteTasks(tasksConteiner);
 }
 
 export function initialTodo() {
@@ -69,4 +73,24 @@ export function gettingTheTodos(conteiner) {
   const tasks = JSON.parse(localStorage.tasks);
   const tasksInArray = Object.values(tasks);
   tasksInArray.forEach(({ task, isChecked }) => createTodo(conteiner)(isChecked)(task));
+}
+
+export function deactivatingAllTheOptions(conteiner) {
+  const options = conteiner.querySelectorAll('button.option');
+  return removeClassOfMutipleElements(options)('active');
+}
+
+export function showAllTasks(conteiner) {
+  const tasks = conteiner.querySelectorAll('.task .item  p');
+  //   const tasksInArray = [...tasks];
+  deleteTasks(tasks);
+  //   tasksInArray.forEach((task) => createTodo(conteiner)(task.classList.contains('checked'))(task.innerText));
+  gettingTheTodos(conteiner);
+}
+
+export function showOnlyActiveTasks(conteiner) {
+  deleteAllCompletedTasks(conteiner);
+}
+
+export function showOnlyCompletedTasks(conteiner) {
 }

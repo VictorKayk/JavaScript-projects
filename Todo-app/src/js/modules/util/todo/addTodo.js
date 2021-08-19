@@ -1,13 +1,13 @@
-import { createElement, addClassToElement, addAttributeToElement, getTasksConteiners } from '../common.js';
+import { createElement, addClassOfElement, addAttributeToElement, getTasksConteiners } from '../common.js';
 
 function createCheckboxInput() {
   const checkbox = createElement('div');
   const checkboxInput = createElement('input');
   addAttributeToElement(checkboxInput)('type')('checkbox');
-  addClassToElement(checkboxInput)('checkboxInput');
+  addClassOfElement(checkboxInput)('checkboxInput');
   const checkMark = createElement('span');
-  addClassToElement(checkMark)('checkboxInput');
-  addClassToElement(checkMark)('checkmark');
+  addClassOfElement(checkMark)('checkboxInput');
+  addClassOfElement(checkMark)('checkmark');
   checkbox.appendChild(checkboxInput);
   checkbox.appendChild(checkMark);
   return checkbox;
@@ -24,7 +24,7 @@ function createItemConteiner() {
   const itemText = createItemTextConteiner();
   item.appendChild(checkbox);
   item.appendChild(itemText);
-  addClassToElement(item)('item');
+  addClassOfElement(item)('item');
   return item;
 }
 
@@ -32,8 +32,8 @@ function createDeleteButtonConteiner() {
   const imgDeleteButton = createElement('img');
   addAttributeToElement(imgDeleteButton)('src')('../assets/img/icons/icon-cross.svg');
   addAttributeToElement(imgDeleteButton)('alt')('Delete Button');
-  addClassToElement(imgDeleteButton)('btn');
-  addClassToElement(imgDeleteButton)('delete-btn');
+  addClassOfElement(imgDeleteButton)('btn');
+  addClassOfElement(imgDeleteButton)('delete-btn');
   return imgDeleteButton;
 }
 
@@ -43,7 +43,7 @@ function createTaskConteiner() {
   const deleteButton = createDeleteButtonConteiner();
   task.appendChild(item);
   task.appendChild(deleteButton);
-  addClassToElement(task)('task');
+  addClassOfElement(task)('task');
   return task;
 }
 
@@ -51,7 +51,7 @@ function checkTodo(task) {
   const checkboxInput = task.querySelector('.task .item div input');
   addAttributeToElement(checkboxInput)('checked')('true');
   const itemText = task.querySelector('.task .item p');
-  addClassToElement(itemText)('checked');
+  addClassOfElement(itemText)('checked');
 }
 
 export default function createTodo(conteiner) {

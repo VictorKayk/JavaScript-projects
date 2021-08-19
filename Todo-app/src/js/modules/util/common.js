@@ -6,12 +6,16 @@ export function createElement(element) {
   return document.createElement(element);
 }
 
-export function addClassToElement(element) {
+export function addClassOfElement(element) {
   return (classOfElement) => element.classList.add(classOfElement);
 }
 
-export function removeClassToElement(element) {
+export function removeClassOfElement(element) {
   return (classOfElement) => element.classList.remove(classOfElement);
+}
+
+export function removeClassOfMutipleElements(conteiner) {
+  return (classOfElement) => conteiner.forEach((el) => removeClassOfElement(el)(classOfElement));
 }
 
 export function addIdToElement(element) {

@@ -335,6 +335,10 @@ main footer#options ul {
   font-size: 16px;
 }
 
+main footer#options ul li button {
+  font-weight: bold;
+}
+
 /* Todo footer */
 footer#todo-footer {
   grid-column-start: 2;
