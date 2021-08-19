@@ -14,6 +14,11 @@ function initialConfig() {
   putFocusOn(todoCreate);
   changeInitialTheme(iconThemeChanger);
   countTheLeftItem(viewingTasks)(itemsLeft);
+}
+
+function createTodo(target) {
+  addTodo(viewingTasks)(target);
+  countTheLeftItem(viewingTasks)(itemsLeft);
   savingTodos(viewingTasks);
 }
 
@@ -36,14 +41,14 @@ function clearAllCompletedElement() {
   savingTodos(viewingTasks);
 }
 
-function createTodo(target) {
-  addTodo(viewingTasks)(target);
-  countTheLeftItem(viewingTasks)(itemsLeft);
-  savingTodos(viewingTasks);
-}
-
 (function () {
   initialConfig();
+
+  window.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const { target } = e;
+    if (target.id === 'create-todo') createTodo(target);
+  });
 
   window.addEventListener('click', (e) => {
     const { target } = e;
@@ -51,11 +56,5 @@ function createTodo(target) {
     else if (target.classList.contains('checkboxInput')) checkTheInput(target);
     else if (target.classList.contains('delete-btn')) deleteElementFromTheConteiner(target);
     else if (target.id === 'clear-completed') clearAllCompletedElement();
-  });
-
-  window.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const { target } = e;
-    if (target.id === 'create-todo') createTodo(target);
   });
 }());

@@ -47,30 +47,26 @@ export function deleteAllCompletedTasks(conteinerToContTask) {
   });
 }
 
+export function initialTodo() {
+  localStorage.tasks = localStorage.tasks || JSON.stringify({});
+}
+
 export function savingTodos(conteiner) {
   const tasksConteiners = getTasksConteiners(conteiner);
-  const tasksTexts = [...tasksConteiners].map((e) => {
-    if (e.classList.contains('checked')) return `Checked.${e.innerText}`;
-    return e.innerText;
-  });
-  const tasksInObject = tasksTexts.reduce((acc, item, index) => {
-    acc[index] = item;
+  const tasksInArray = [...tasksConteiners];
+  const tasksInObject = tasksInArray.reduce((acc, item, index) => {
+    acc[index] = {
+      task: item.innerText,
+      isChecked: item.classList.contains('checked'),
+    };
     return acc;
   }, {});
   const tasksInJson = JSON.stringify(tasksInObject);
   localStorage.tasks = tasksInJson;
 }
 
-export function initialTodo() {
-  localStorage.tasks = localStorage.tasks || JSON.stringify({});
-}
-
-export function gettingTheTodos(conteiner) { // Reafator isso aqui
+export function gettingTheTodos(conteiner) {
   const tasks = JSON.parse(localStorage.tasks);
   const tasksInArray = Object.values(tasks);
-  tasksInArray.forEach((task) => {
-    const isChecked = task.includes('Checked.');
-    const taskWithoutCheck = task.replace('Checked.', '');
-    createTodo(conteiner)(isChecked)(taskWithoutCheck);
-  });
+  tasksInArray.forEach(({ task, isChecked }) => createTodo(conteiner)(isChecked)(task));
 }
