@@ -1,6 +1,6 @@
 import { putFocusOn } from './modules/util/common.js';
 import { changeInitialTheme, toggleTheme } from './modules/toogle-theme-color.js';
-import { addTodo, toggleItemChecked, countTheLeftItem, deleteElement, deleteAllCompletedTasks, savingTodos, gettingTheTodos } from './modules/util/todo/todo.js';
+import { addTodo, toggleItemChecked, countTheLeftItem, deleteElement, deleteAllCompletedTasks, savingTodos, gettingTheTodos, initialTodo } from './modules/util/todo/todo.js';
 
 // Conteiners
 const todoCreate = document.body.querySelector('main form#create-todo input#create');
@@ -9,6 +9,8 @@ const viewingTasks = document.body.querySelector('main section div#viewing-tasks
 const itemsLeft = document.body.querySelector('main section footer p strong');
 
 function initialConfig() {
+  initialTodo();
+  gettingTheTodos(viewingTasks);
   putFocusOn(todoCreate);
   changeInitialTheme(iconThemeChanger);
   countTheLeftItem(viewingTasks)(itemsLeft);
@@ -41,7 +43,6 @@ function createTodo(target) {
 }
 
 (function () {
-  gettingTheTodos(viewingTasks); // Colocar isso no lugar correto
   initialConfig();
 
   window.addEventListener('click', (e) => {

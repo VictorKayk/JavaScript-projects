@@ -61,6 +61,10 @@ export function savingTodos(conteiner) {
   localStorage.tasks = tasksInJson;
 }
 
+export function initialTodo() {
+  localStorage.tasks = localStorage.tasks || JSON.stringify({});
+}
+
 export function gettingTheTodos(conteiner) { // Reafator isso aqui
   const tasks = JSON.parse(localStorage.tasks);
   const tasksInArray = Object.values(tasks);
