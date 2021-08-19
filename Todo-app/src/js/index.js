@@ -10,10 +10,13 @@ const itemsLeft = document.body.querySelector('main section footer p strong');
 const optionsContiner = document.body.querySelector('main footer#options');
 
 function initialConfig() {
-  initialTodo();
-  gettingTheTodos(viewingTasks);
   putFocusOn(todoCreate);
   changeInitialTheme(iconThemeChanger);
+  initialState();
+  activeStateSetted(optionsContiner);
+  initialTodo();
+  gettingTheTodos(viewingTasks);
+  showTodosOnState(viewingTasks);
   countTheLeftItem(viewingTasks)(itemsLeft);
 }
 
@@ -47,6 +50,26 @@ function changeOption(target) {
   addClassOfElement(target)('active');
 }
 
+function initialState() {
+  localStorage.state = localStorage.state || 'All';
+}
+
+function setState(state) {
+  localStorage.state = state;
+}
+
+function activeStateSetted(conteiner) {
+  const { state } = localStorage;
+  const option = conteiner.querySelector(`#${state}`);
+  addClassOfElement(option)('active');
+}
+
+function showTodosOnState(conteiner) {
+  if (localStorage.state === 'All') showAllTasks(conteiner);
+  else if (localStorage.state === 'Active') showOnlyActiveTasks(conteiner);
+  else if (localStorage.state === 'Completed') showOnlyCompletedTasks(conteiner);
+}
+
 (function () {
   initialConfig();
 
@@ -64,6 +87,7 @@ function changeOption(target) {
     else if (target.id === 'clear-completed') clearAllCompletedElement();
     else if (target.classList.contains('option')) {
       changeOption(target);
+      setState(target.id);
       if (target.id === 'All') {
         showAllTasks(viewingTasks);
         countTheLeftItem(viewingTasks)(itemsLeft);

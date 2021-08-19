@@ -82,15 +82,26 @@ export function deactivatingAllTheOptions(conteiner) {
 
 export function showAllTasks(conteiner) {
   const tasks = conteiner.querySelectorAll('.task .item  p');
-  //   const tasksInArray = [...tasks];
   deleteTasks(tasks);
-  //   tasksInArray.forEach((task) => createTodo(conteiner)(task.classList.contains('checked'))(task.innerText));
   gettingTheTodos(conteiner);
 }
 
 export function showOnlyActiveTasks(conteiner) {
-  deleteAllCompletedTasks(conteiner);
+  const tasksConteiner = conteiner.querySelectorAll('.task .item  p');
+  deleteTasks(tasksConteiner);
+  const tasks = JSON.parse(localStorage.tasks);
+  const tasksInArray = Object.values(tasks);
+  tasksInArray.forEach(({ task, isChecked }) => {
+    if (!isChecked) createTodo(conteiner)(isChecked)(task);
+  });
 }
 
 export function showOnlyCompletedTasks(conteiner) {
+  const tasksConteiner = conteiner.querySelectorAll('.task .item  p');
+  deleteTasks(tasksConteiner);
+  const tasks = JSON.parse(localStorage.tasks);
+  const tasksInArray = Object.values(tasks);
+  tasksInArray.forEach(({ task, isChecked }) => {
+    if (isChecked) createTodo(conteiner)(isChecked)(task);
+  });
 }
