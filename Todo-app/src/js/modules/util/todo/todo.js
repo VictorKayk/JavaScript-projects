@@ -1,5 +1,5 @@
 import createTodo from './addTodo.js';
-import { putFocusOn, addClassOfElement, removeClassOfElement, putPlaceholderInTarget, getTasksConteiners, removeClassOfMutipleElements } from '../common.js';
+import { putFocusOn, addClassOfElement, removeClassOfElement, putPlaceholderInTarget, getTasksConteiners, removeClassOfMutipleElements, createElement } from '../common.js';
 
 export function addTodo(conteiner) {
   return (target) => {
@@ -104,4 +104,25 @@ export function showOnlyCompletedTasks(conteiner) {
   tasksInArray.forEach(({ task, isChecked }) => {
     if (isChecked) createTodo(conteiner)(isChecked)(task);
   });
+}
+
+function createDefaultMsgConteiner() {
+  const defaultMsg = createElement('div');
+  addClassOfElement(defaultMsg)('default');
+  const defaultText = createElement('p');
+  defaultText.innerText = 'It has no todo. Create one.';
+  defaultMsg.appendChild(defaultText);
+  return defaultMsg;
+}
+
+export function defaultMsgIfIsEmpty(conteiner) {
+  if (conteiner.children.length === 0) {
+    const defaultMsg = createDefaultMsgConteiner();
+    conteiner.appendChild(defaultMsg);
+  }
+}
+
+export function deleteDefaultMsg(conteiner) {
+  const defaultMsg = conteiner.querySelector('div.default');
+  if (defaultMsg) deleteElement(defaultMsg);
 }

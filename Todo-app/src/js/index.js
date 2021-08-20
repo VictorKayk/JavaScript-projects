@@ -1,6 +1,6 @@
 import { putFocusOn, addClassOfElement } from './modules/util/common.js';
 import { changeInitialTheme, toggleTheme } from './modules/toogle-theme-color.js';
-import { addTodo, toggleItemChecked, countTheLeftItem, deleteElement, deleteAllCompletedTasks, savingTodos, gettingTheTodos, initialTodo, deactivatingAllTheOptions, showAllTasks, showOnlyActiveTasks, showOnlyCompletedTasks } from './modules/util/todo/todo.js';
+import { addTodo, toggleItemChecked, countTheLeftItem, deleteElement, deleteAllCompletedTasks, savingTodos, gettingTheTodos, initialTodo, deactivatingAllTheOptions, showAllTasks, showOnlyActiveTasks, showOnlyCompletedTasks, defaultMsgIfIsEmpty, deleteDefaultMsg } from './modules/util/todo/todo.js';
 
 // Conteiners
 const todoCreate = document.body.querySelector('main form#create-todo input#create');
@@ -17,10 +17,12 @@ function initialConfig() {
   initialTodo();
   gettingTheTodos(viewingTasks);
   showTodosOnState(viewingTasks);
+  defaultMsgIfIsEmpty(viewingTasks);
   countTheLeftItem(viewingTasks)(itemsLeft);
 }
 
 function createTodo(target) {
+  deleteDefaultMsg(viewingTasks);
   addTodo(viewingTasks)(target);
   countTheLeftItem(viewingTasks)(itemsLeft);
   savingTodos(viewingTasks);
@@ -30,6 +32,7 @@ function checkTheInput(target) {
   toggleItemChecked(target);
   countTheLeftItem(viewingTasks)(itemsLeft);
   savingTodos(viewingTasks);
+  // console.log(JSON.parse(localStorage.tasks)[0]);
 }
 
 function deleteElementFromTheConteiner(target) {
@@ -37,12 +40,14 @@ function deleteElementFromTheConteiner(target) {
   deleteElement(task);
   countTheLeftItem(viewingTasks)(itemsLeft);
   savingTodos(viewingTasks);
+  defaultMsgIfIsEmpty(viewingTasks);
 }
 
 function clearAllCompletedElement() {
   deleteAllCompletedTasks(viewingTasks);
   countTheLeftItem(viewingTasks)(itemsLeft);
   savingTodos(viewingTasks);
+  defaultMsgIfIsEmpty(viewingTasks);
 }
 
 function changeOption(target) {
@@ -88,6 +93,7 @@ function showTodosOnState(conteiner) {
     else if (target.classList.contains('option')) {
       changeOption(target);
       setState(target.id);
+      deleteDefaultMsg(viewingTasks);
       if (target.id === 'All') {
         showAllTasks(viewingTasks);
         countTheLeftItem(viewingTasks)(itemsLeft);
@@ -98,6 +104,11 @@ function showTodosOnState(conteiner) {
         showOnlyCompletedTasks(viewingTasks);
         countTheLeftItem(viewingTasks)(itemsLeft);
       }
+      defaultMsgIfIsEmpty(viewingTasks);
     }
   });
 }());
+
+// Fazer o bug fix do input que salva o atual estado dos todos
+// Fazer a imagem padrão de quando não tem nenhum todo - Se possivel melhorar
+// Fazer os todos criados ou modificados respeitarem o estado atual

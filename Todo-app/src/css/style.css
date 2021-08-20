@@ -184,6 +184,23 @@ main div#viewing-tasks {
   background-color: var(--very-dark-desaturated-blue);
 }
 
+main div#viewing-tasks div.default {
+  font: normal 1.25rem 'Josefin Sans', sans-serif;
+  color: var(--dark-grayish-blue);
+  text-align: center;
+
+  padding: 64px 20px;
+  border-bottom: 0.2px solid;
+}
+
+.light main div#viewing-tasks div.default {
+  border-color: var(--light-grayish-blue);
+}
+
+.dark main div#viewing-tasks div.default {
+  border-color: var(--very-dark-grayish-blue);
+}
+
 main div#viewing-tasks div.task {
   display: flex;
   align-items: center;
@@ -411,6 +428,12 @@ footer#todo-footer {
   }
 
   /* Viewing Tasks */
+  main div#viewing-tasks div.default {
+    font: normal 1.375rem 'Josefin Sans', sans-serif;
+
+    padding: 72px 25px;
+  }
+
   main div#viewing-tasks div.task {
     padding: 18px 25px;
   }
@@ -493,6 +516,12 @@ footer#todo-footer {
   }
 
   /* Viewing Tasks */
+  main div#viewing-tasks div.default {
+    font: normal 1.5625rem 'Josefin Sans', sans-serif;
+
+    padding: 80px 25px;
+  }
+
   main div#viewing-tasks div.task {
     padding: 20px 25px;
   }
