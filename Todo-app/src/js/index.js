@@ -1,6 +1,8 @@
 import { putFocusOn, addClassOfElement } from './modules/util/common.js';
 import { changeInitialTheme, toggleTheme } from './modules/toogle-theme-color.js';
-import { addTodo, toggleItemChecked, countTheLeftItem, deleteElement, deleteAllCompletedTasks, savingTodos, gettingTheTodos, initialTodo, deactivatingAllTheOptions, showAllTasks, showOnlyActiveTasks, showOnlyCompletedTasks, defaultMsgIfIsEmpty, deleteDefaultMsg } from './modules/util/todo/todo.js';
+import { addTodo, toggleItemChecked, countTheLeftItem, deleteElement, deleteAllCompletedTasks, savingTodos, gettingTheTodos, initialTodo, deactivatingAllTheOptions, defaultMsgIfIsEmpty, deleteDefaultMsg, showStateTasks } from './modules/util/todo/todo.js';
+
+// showStateTasks, showOnlyActiveTasks, showOnlyCompletedTasks,
 
 // Conteiners
 const todoCreate = document.body.querySelector('main form#create-todo input#create');
@@ -16,37 +18,42 @@ function initialConfig() {
   activeStateSetted(optionsContiner);
   initialTodo();
   gettingTheTodos(viewingTasks);
-  showTodosOnState(viewingTasks);
+  showStateTasks(viewingTasks);
   defaultMsgIfIsEmpty(viewingTasks);
+  countTheLeftItem(viewingTasks)(itemsLeft);
+}
+
+function loadTasks() {
+  showStateTasks(viewingTasks);
   countTheLeftItem(viewingTasks)(itemsLeft);
 }
 
 function createTodo(target) {
   deleteDefaultMsg(viewingTasks);
   addTodo(viewingTasks)(target);
-  countTheLeftItem(viewingTasks)(itemsLeft);
   savingTodos(viewingTasks);
+  countTheLeftItem(viewingTasks)(itemsLeft);
+  // loadTasks();
 }
 
 function checkTheInput(target) {
   toggleItemChecked(target);
-  countTheLeftItem(viewingTasks)(itemsLeft);
   savingTodos(viewingTasks);
-  // console.log(JSON.parse(localStorage.tasks)[0]);
+  countTheLeftItem(viewingTasks)(itemsLeft);
 }
 
 function deleteElementFromTheConteiner(target) {
-  const task = target.closest('div.task');
-  deleteElement(task);
-  countTheLeftItem(viewingTasks)(itemsLeft);
+  const taskConteiner = target.closest('div.task');
+  deleteElement(taskConteiner);
   savingTodos(viewingTasks);
+  countTheLeftItem(viewingTasks)(itemsLeft);
   defaultMsgIfIsEmpty(viewingTasks);
 }
 
 function clearAllCompletedElement() {
   deleteAllCompletedTasks(viewingTasks);
-  countTheLeftItem(viewingTasks)(itemsLeft);
   savingTodos(viewingTasks);
+  countTheLeftItem(viewingTasks)(itemsLeft);
   defaultMsgIfIsEmpty(viewingTasks);
 }
 
@@ -69,10 +76,12 @@ function activeStateSetted(conteiner) {
   addClassOfElement(option)('active');
 }
 
-function showTodosOnState(conteiner) {
-  if (localStorage.state === 'All') showAllTasks(conteiner);
-  else if (localStorage.state === 'Active') showOnlyActiveTasks(conteiner);
-  else if (localStorage.state === 'Completed') showOnlyCompletedTasks(conteiner);
+function options(target) {
+  changeOption(target);
+  setState(target.id);
+  deleteDefaultMsg(viewingTasks);
+  loadTasks();
+  defaultMsgIfIsEmpty(viewingTasks);
 }
 
 (function () {
@@ -90,25 +99,10 @@ function showTodosOnState(conteiner) {
     else if (target.classList.contains('checkboxInput')) checkTheInput(target);
     else if (target.classList.contains('delete-btn')) deleteElementFromTheConteiner(target);
     else if (target.id === 'clear-completed') clearAllCompletedElement();
-    else if (target.classList.contains('option')) {
-      changeOption(target);
-      setState(target.id);
-      deleteDefaultMsg(viewingTasks);
-      if (target.id === 'All') {
-        showAllTasks(viewingTasks);
-        countTheLeftItem(viewingTasks)(itemsLeft);
-      } else if (target.id === 'Active') {
-        showOnlyActiveTasks(viewingTasks);
-        countTheLeftItem(viewingTasks)(itemsLeft);
-      } else if (target.id === 'Completed') {
-        showOnlyCompletedTasks(viewingTasks);
-        countTheLeftItem(viewingTasks)(itemsLeft);
-      }
-      defaultMsgIfIsEmpty(viewingTasks);
-    }
+    else if (target.classList.contains('option')) options(target);
   });
 }());
 
 // Fazer o bug fix do input que salva o atual estado dos todos
-// Fazer a imagem padrão de quando não tem nenhum todo - Se possivel melhorar
 // Fazer os todos criados ou modificados respeitarem o estado atual
+// Fazer a imagem padrão de quando não tem nenhum todo - Se possivel melhorar
