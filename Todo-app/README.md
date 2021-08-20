@@ -79,10 +79,11 @@ Then crop/optimize/edit your image however you like, add it to your project, and
   - [x] Remove Todo
   - [x] Remove all completed Todo
   - [x] Add dynamic number to items left
+  - [x] Default message if no tasks
   - [x] Save Todo on localStorage
-  - [ ] Get the Todo saved
-  - [ ] Show only active Todo
-  - [ ] Show only checked Todo
+  - [x] Get the Todo saved
+  - [x] Show only active Todo
+  - [x] Show only checked Todo
   - [ ] **Drag and drop to reorder list (Bonus)**
   - [ ] **Loading screen (Bonus)**
 
