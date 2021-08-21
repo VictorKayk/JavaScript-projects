@@ -42,8 +42,7 @@ body {
   grid-template-columns: 25px 1fr 25px;
   grid-template-rows: 45px 62px auto 62px 45px;
 
-  background-repeat: repeat-x;
-  background-attachment: fixed;
+  background: repeat-x fixed;
   
   font: normal 18px 'Josefin Sans', sans-serif;
 }
@@ -55,9 +54,7 @@ body {
   --dark-grayish-blue: hsl(236, 9%, 61%);
   --very-dark-grayish-blue: hsl(235, 19%, 35%);
 
-  background: url('../../assets/img/background/bg-mobile-light.jpg');
-  background-repeat: repeat-x;
-  background-attachment: fixed;
+  background: url('../../assets/img/background/bg-mobile-light.jpg') repeat-x fixed;
   background-color: var(--very-light-gray);
   color: var(--very-dark-grayish-blue);
 }
@@ -71,9 +68,7 @@ body {
   --very-dark-grayish-blue: hsl(233, 14%, 35%);
   --very-dark-grayish-blue: hsl(237, 14%, 26%);
 
-  background: url('../../assets/img/background/bg-mobile-dark.jpg');
-  background-repeat: repeat-x;
-  background-attachment: fixed;
+  background: url('../../assets/img/background/bg-mobile-dark.jpg') repeat-x fixed;
   background-color: var(--very-dark-blue);
   color: var(--light-grayish-blue);
 }
@@ -84,13 +79,11 @@ div.loading {
 }
 
 .light div.loading {
-  background: url('../../assets/img/load/light.gif');
-  background-repeat: no-repeat;
+  background: url('../../assets/img/load/light.gif') no-repeat;
 }
 
 .dark div.loading {
-  background: url('../../assets/img/load/dark.gif');
-  background-repeat: no-repeat;
+  background: url('../../assets/img/load/dark.gif') no-repeat;
 }
 
 /* Todo's style */
@@ -119,13 +112,11 @@ header#todo-header button {
 }
 
 .light header#todo-header button {
-  background: url('../../assets/img/icons/light-mode.svg');
-  background-repeat: no-repeat;
+  background: url('../../assets/img/icons/light-mode.svg') no-repeat;
 }
 
 .dark header#todo-header button {
-  background: url('../../assets/img/icons/dark-mode.svg');
-  background-repeat: no-repeat;
+  background: url('../../assets/img/icons/dark-mode.svg') no-repeat;
 }
 
 /* Main */
@@ -412,16 +403,12 @@ footer#todo-footer {
   }
 
   .light {
-    background: url('../../assets/img/background/bg-desktop-light.jpg');
-    background-repeat: repeat-x;
-    background-attachment: fixed;
+    background: url('../../assets/img/background/bg-desktop-light.jpg') repeat-x fixed;
     background-color: var(--very-light-gray);
   }
   
   .dark {
-    background: url('../../assets/img/background/bg-desktop-dark.jpg');
-    background-repeat: repeat-x;
-    background-attachment: fixed;
+    background: url('../../assets/img/background/bg-desktop-dark.jpg') repeat-x fixed;
     background-color: var(--very-dark-blue)
   }
 
