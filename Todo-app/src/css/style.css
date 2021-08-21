@@ -35,6 +35,9 @@ button.btn-action:hover {
   color: var(--bright-blue);
 }
 
+.hide {
+  display:none;
+}
 
 /* Body's style config */
 body {

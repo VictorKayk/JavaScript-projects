@@ -54,14 +54,12 @@ function checkTodo(task) {
   addClassOfElement(itemText)('checked');
 }
 
-export default function createTodo(conteiner) {
+export default function createTodo(isChecked) {
   const task = createTaskConteiner();
-  return (isChecked) => {
-    if (isChecked) checkTodo(task);
-    return (text) => {
-      const itemText = task.querySelector('.task .item p');
-      itemText.innerText = text;
-      conteiner.appendChild(task);
-    };
+  if (isChecked) checkTodo(task);
+  return (text) => {
+    const itemText = task.querySelector('.task .item p');
+    itemText.innerText = text;
+    return task;
   };
 }

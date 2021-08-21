@@ -32,14 +32,13 @@ function createTodo(target) {
   deleteDefaultMsg(viewingTasks);
   addTodo(viewingTasks)(target);
   savingTodos(viewingTasks);
-  countTheLeftItem(viewingTasks)(itemsLeft);
-  // loadTasks();
+  loadTasks();
 }
 
 function checkTheInput(target) {
   toggleItemChecked(target);
   savingTodos(viewingTasks);
-  countTheLeftItem(viewingTasks)(itemsLeft);
+  loadTasks();
 }
 
 function deleteElementFromTheConteiner(target) {
@@ -103,6 +102,4 @@ function options(target) {
   });
 }());
 
-// Fazer o bug fix do input que salva o atual estado dos todos
-// Fazer os todos criados ou modificados respeitarem o estado atual
 // Fazer a imagem padrão de quando não tem nenhum todo - Se possivel melhorar

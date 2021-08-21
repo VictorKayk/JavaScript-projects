@@ -1,19 +1,26 @@
 import createTodo from './addTodo.js';
 import { putFocusOn, addClassOfElement, removeClassOfElement, putPlaceholderInTarget, getTasksConteiners, removeClassOfMutipleElements, createElement } from '../common.js';
 
+function setNormalSubmitInput(input) {
+  removeClassOfElement(input)('error');
+  putPlaceholderInTarget(input)('Create a new todo...');
+}
+
+function tooLongErrorMsg(input) {
+  addClassOfElement(input)('error');
+  putPlaceholderInTarget(input)('Task too long. (20 characters max)');
+}
+
 export function addTodo(conteiner) {
   return (target) => {
     const input = target.querySelector('input#create');
     const inputValue = input.value.trim();
     if (inputValue) {
       if (inputValue.length <= 20) {
-        createTodo(conteiner)(false)(inputValue);
-        removeClassOfElement(input)('error');
-        putPlaceholderInTarget(input)('Create a new todo...');
-      } else {
-        addClassOfElement(input)('error');
-        putPlaceholderInTarget(input)('Task too long. (20 characters max)');
-      }
+        const todo = createTodo(false)(inputValue);
+        conteiner.appendChild(todo);
+        setNormalSubmitInput(input);
+      } else tooLongErrorMsg(input);
     }
     input.value = '';
     putFocusOn(input);
@@ -30,9 +37,7 @@ export function countTheLeftItem() {
   const tasks = JSON.parse(localStorage.tasks);
   const itemsNotChecked = Object.values(tasks.Active);
   const numberOfItemsNotChecked = itemsNotChecked.length;
-  return (conteinerToPutTheCont) => {
-    conteinerToPutTheCont.innerText = numberOfItemsNotChecked;
-  };
+  return (conteinerToPutTheCont) => conteinerToPutTheCont.innerText = numberOfItemsNotChecked;
 }
 
 export function deleteElement(item) {
@@ -55,10 +60,8 @@ export function initialTodo() {
   localStorage.tasks = localStorage.tasks || JSON.stringify({ Active: {}, Completed: {}, All: {} });
 }
 
-function savingAllTodos(conteiner) {
-  const tasksConteiners = getTasksConteiners(conteiner);
-  const tasksInArray = [...tasksConteiners];
-  const Active = tasksInArray.reduce((acc, item, index) => {
+function getActiveTasks(tasksInArray) {
+  const active = tasksInArray.reduce((acc, item, index) => {
     if (!item.classList.contains('checked')) {
       acc[index] = {
         task: item.innerText,
@@ -67,7 +70,11 @@ function savingAllTodos(conteiner) {
     }
     return acc;
   }, {});
-  const Completed = tasksInArray.reduce((acc, item, index) => {
+  return active;
+}
+
+function getCompletedTasks(tasksInArray) {
+  const completed = tasksInArray.reduce((acc, item, index) => {
     if (item.classList.contains('checked')) {
       acc[index] = {
         task: item.innerText,
@@ -77,27 +84,38 @@ function savingAllTodos(conteiner) {
     return acc;
   }, {});
 
+  return completed;
+}
+
+function getAllStateTasks(tasksInArray) {
+  const Active = getActiveTasks(tasksInArray);
+  const Completed = getCompletedTasks(tasksInArray);
   const All = { ...Active, ...Completed };
-  const tasksInJson = JSON.stringify({
+  return {
     Active,
     Completed,
     All,
-  });
-  localStorage.tasks = tasksInJson;
+  };
 }
 
 export function savingTodos(conteiner) {
-  if (localStorage.state === 'All') savingAllTodos(conteiner);
-  else if (localStorage.state === 'Active') {
-  } else if (localStorage.state === 'Completed') {
-  }
+  const tasksConteiners = getTasksConteiners(conteiner);
+  const tasksInArray = [...tasksConteiners];
+  const tasks = getAllStateTasks(tasksInArray);
+  const tasksInJson = JSON.stringify(tasks);
+  localStorage.tasks = tasksInJson;
 }
 
 export function gettingTheTodos(conteiner) {
   const tasks = JSON.parse(localStorage.tasks);
-  const tasksOfState = tasks[localStorage.state];
+  const tasksOfState = tasks.All;
   const tasksInArray = Object.values(tasksOfState);
-  tasksInArray.forEach(({ task, isChecked }) => createTodo(conteiner)(isChecked)(task));
+  tasksInArray.forEach(({ task, isChecked }) => {
+    const todo = createTodo(isChecked)(task);
+    if (localStorage.state === 'Active' && isChecked) todo.style.display = 'none';
+    else if (localStorage.state === 'Completed' && !isChecked) todo.style.display = 'none';
+    conteiner.appendChild(todo);
+  });
 }
 
 export function deactivatingAllTheOptions(conteiner) {
@@ -121,7 +139,9 @@ function createDefaultMsgConteiner() {
 }
 
 export function defaultMsgIfIsEmpty(conteiner) {
-  if (conteiner.children.length === 0) {
+  const tasks = JSON.parse(localStorage.tasks);
+  const tasksOnState = Object.values(tasks[localStorage.state]);
+  if (tasksOnState.length === 0) {
     const defaultMsg = createDefaultMsgConteiner();
     conteiner.appendChild(defaultMsg);
   }
