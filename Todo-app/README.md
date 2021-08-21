@@ -86,6 +86,7 @@ Then crop/optimize/edit your image however you like, add it to your project, and
   - [x] Show only checked Todo
   - [ ] **Drag and drop to reorder list (Bonus)**
   - [ ] **Loading screen (Bonus)**
+  - [ ] **Multiples Todo list (Bonus)**
 
 ### Built with
 
