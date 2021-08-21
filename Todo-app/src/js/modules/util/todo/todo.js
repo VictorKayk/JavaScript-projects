@@ -112,8 +112,8 @@ export function gettingTheTodos(conteiner) {
   const tasksInArray = Object.values(tasksOfState);
   tasksInArray.forEach(({ task, isChecked }) => {
     const todo = createTodo(isChecked)(task);
-    if (localStorage.state === 'Active' && isChecked) todo.style.display = 'none';
-    else if (localStorage.state === 'Completed' && !isChecked) todo.style.display = 'none';
+    if (localStorage.state === 'Active' && isChecked) addClassOfElement(todo)('hide');
+    else if (localStorage.state === 'Completed' && !isChecked) addClassOfElement(todo)('hide');
     conteiner.appendChild(todo);
   });
 }
@@ -142,7 +142,8 @@ function createDefaultMsgConteiner() {
 export function defaultMsgIfIsEmpty(conteiner) {
   const tasks = JSON.parse(localStorage.tasks);
   const tasksOnState = Object.values(tasks[localStorage.state]);
-  if (tasksOnState.length === 0) {
+  const otherDefaultMsg = conteiner.querySelector('div.default');
+  if (tasksOnState.length === 0 && !otherDefaultMsg) {
     const defaultMsg = createDefaultMsgConteiner();
     conteiner.appendChild(defaultMsg);
   }

@@ -74,16 +74,26 @@ body {
 }
 
 /* Loading styel */
-div.loading {
-
+div#load {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
 
-.light div.loading {
-  background: url('../../assets/img/load/light.gif') no-repeat;
+.light div#load {
+  background: url('../../assets/img/load/light.gif') 50% 50% no-repeat;
+  background-color: var(--very-light-gray);
 }
 
-.dark div.loading {
-  background: url('../../assets/img/load/dark.gif') no-repeat;
+.dark div#load {
+  background: url('../../assets/img/load/dark.gif') 50% 50% no-repeat;
+  background-color: var(--very-dark-desaturated-blue);
+}
+
+div#load.hide {
+  display: none;
 }
 
 /* Todo's style */
@@ -93,12 +103,16 @@ header#todo-header {
   grid-column-end: 3;
   grid-row-start: 2;
   grid-row-end: 3;
-
+  
   display:flex;
   align-items: flex-start;
   justify-content: space-between;
-
+  
   color: white;
+}
+
+header#todo-header.hide {
+  display: none;
 }
 
 header#todo-header h1 {
@@ -125,10 +139,15 @@ main {
   grid-column-end: 3;
   grid-row-start: 3;
   grid-row-end: 4;
-
+  
   display: flex;
   flex-direction: column;
   gap: 16px;
+
+}
+
+main.hide {
+  display: none;
 }
 
 /* Create todo */
@@ -386,11 +405,14 @@ footer#todo-footer {
   display: flex;
   justify-content: center;
   align-items: flex-end;
-
+  
   text-align: center;
   color: var(--dark-grayish-blue);
 }
 
+footer#todo-footer.hide {
+  display: none;
+}
 
 /* Responsividade */
 @media screen and (min-width: 620px) {

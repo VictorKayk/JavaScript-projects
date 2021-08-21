@@ -1,3 +1,4 @@
+import stopLoad from './modules/loading-screen.js';
 import { toggleTheme } from './modules/toogle-theme-color.js';
 import { initialConfig, createTodo, checkTheInput, deleteElementFromTheConteiner, clearAllCompletedElement, options } from './modules/todo-app.js';
 
@@ -6,6 +7,10 @@ const iconThemeChanger = document.body.querySelector('#theme-changer img');
 
 (function () {
   initialConfig();
+
+  window.addEventListener('load', () => {
+    stopLoad();
+  });
 
   window.addEventListener('submit', (e) => {
     e.preventDefault();
