@@ -4,7 +4,7 @@ import { addClassOfElement, removeClassOfElement } from './util/common.js';
 const loadConteiner = document.body.querySelector('div#load');
 const header = document.body.querySelector('header');
 const main = document.body.querySelector('main');
-const footer = document.body.querySelector('footer');
+const footer = document.body.querySelector('footer#todo-footer');
 
 export default function stopLoad() {
   setTimeout(() => {
