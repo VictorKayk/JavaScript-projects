@@ -133,7 +133,8 @@ function createDefaultMsgConteiner() {
   const defaultMsg = createElement('div');
   addClassOfElement(defaultMsg)('default');
   const defaultText = createElement('p');
-  defaultText.innerText = 'It has no todo. Create one.';
+  if (localStorage.state === 'All' || localStorage.state === 'Active') defaultText.innerText = 'It has no todo. Create one.';
+  else if (localStorage.state === 'Completed') defaultText.innerText = 'It has no todo. Complete one.';
   defaultMsg.appendChild(defaultText);
   return defaultMsg;
 }

@@ -2,8 +2,6 @@ import { putFocusOn, addClassOfElement } from './modules/util/common.js';
 import { changeInitialTheme, toggleTheme } from './modules/toogle-theme-color.js';
 import { addTodo, toggleItemChecked, countTheLeftItem, deleteElement, deleteAllCompletedTasks, savingTodos, gettingTheTodos, initialTodo, deactivatingAllTheOptions, defaultMsgIfIsEmpty, deleteDefaultMsg, showStateTasks } from './modules/util/todo/todo.js';
 
-// showStateTasks, showOnlyActiveTasks, showOnlyCompletedTasks,
-
 // Conteiners
 const todoCreate = document.body.querySelector('main form#create-todo input#create');
 const iconThemeChanger = document.body.querySelector('#theme-changer img');
@@ -19,8 +17,8 @@ function initialConfig() {
   initialTodo();
   gettingTheTodos(viewingTasks);
   showStateTasks(viewingTasks);
-  defaultMsgIfIsEmpty(viewingTasks);
   countTheLeftItem(viewingTasks)(itemsLeft);
+  defaultMsgIfIsEmpty(viewingTasks);
 }
 
 function loadTasks() {
@@ -33,12 +31,14 @@ function createTodo(target) {
   addTodo(viewingTasks)(target);
   savingTodos(viewingTasks);
   loadTasks();
+  defaultMsgIfIsEmpty(viewingTasks);
 }
 
 function checkTheInput(target) {
   toggleItemChecked(target);
   savingTodos(viewingTasks);
   loadTasks();
+  defaultMsgIfIsEmpty(viewingTasks);
 }
 
 function deleteElementFromTheConteiner(target) {
@@ -101,5 +101,3 @@ function options(target) {
     else if (target.classList.contains('option')) options(target);
   });
 }());
-
-// Fazer a imagem padrão de quando não tem nenhum todo - Se possivel melhorar

@@ -1,4 +1,4 @@
-import { createElement, addClassOfElement, addAttributeToElement, getTasksConteiners } from '../common.js';
+import { createElement, addClassOfElement, addAttributeToElement } from '../common.js';
 
 function createCheckboxInput() {
   const checkbox = createElement('div');
