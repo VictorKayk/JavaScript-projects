@@ -1,9 +1,3 @@
-function toggleIconTheme(iconThemeTag) {
-  const imgButton = iconThemeTag.getAttribute('src');
-  if (imgButton.includes('dark')) iconThemeTag.setAttribute('src', imgButton.replace('dark', 'light'));
-  else if (imgButton.includes('light')) iconThemeTag.setAttribute('src', imgButton.replace('light', 'dark'));
-}
-
 function removeTheThemeClassOfBody() {
   document.body.classList.remove('light');
   document.body.classList.remove('dark');
@@ -18,20 +12,9 @@ function toggleThemeInBody() {
   putTheThemeClassOnBody();
 }
 
-function initialTheme(iconThemeTag) {
+function initialTheme() {
   localStorage.theme = localStorage.theme || 'light';
-  toggleIconTheme(iconThemeTag);
   toggleThemeInBody();
-}
-
-function isTheCorrectTheme(iconThemeTag) {
-  const imgButton = iconThemeTag.getAttribute('src');
-  if (imgButton.includes('light')) return localStorage.theme === 'light';
-  return localStorage.theme === 'dark';
-}
-
-function toggleIconThemeIfNotCorrect(iconThemeTag) {
-  if (!isTheCorrectTheme(iconThemeTag)) toggleIconTheme(iconThemeTag);
 }
 
 function toggleLocalStorageTheme() {
@@ -44,11 +27,9 @@ function toggleLocalStorageTheme() {
 
 export function changeInitialTheme(iconThemeTag) {
   initialTheme(iconThemeTag);
-  toggleIconThemeIfNotCorrect(iconThemeTag);
 }
 
-export function toggleTheme(iconThemeTag) {
+export function toggleTheme() {
   toggleLocalStorageTheme();
-  toggleIconTheme(iconThemeTag);
   toggleThemeInBody();
 }

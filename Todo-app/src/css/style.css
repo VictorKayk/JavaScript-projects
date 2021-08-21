@@ -35,9 +35,6 @@ button.btn-action:hover {
   color: var(--bright-blue);
 }
 
-.hide {
-  display:none;
-}
 
 /* Body's style config */
 body {
@@ -81,6 +78,21 @@ body {
   color: var(--light-grayish-blue);
 }
 
+/* Loading styel */
+div.loading {
+
+}
+
+.light div.loading {
+  background: url('../../assets/img/load/light.gif');
+  background-repeat: no-repeat;
+}
+
+.dark div.loading {
+  background: url('../../assets/img/load/dark.gif');
+  background-repeat: no-repeat;
+}
+
 /* Todo's style */
 /* Header */
 header#todo-header {
@@ -101,10 +113,20 @@ header#todo-header h1 {
   letter-spacing: 11px;
 }
 
-header#todo-header img {
-  width: 22.5px;
+header#todo-header button {
+  width: 26px;
+  height: 26px;
 }
 
+.light header#todo-header button {
+  background: url('../../assets/img/icons/light-mode.svg');
+  background-repeat: no-repeat;
+}
+
+.dark header#todo-header button {
+  background: url('../../assets/img/icons/dark-mode.svg');
+  background-repeat: no-repeat;
+}
 
 /* Main */
 main {
@@ -219,6 +241,10 @@ main div#viewing-tasks div.task {
 
 .dark main div#viewing-tasks div.task {
   border-color: var(--very-dark-grayish-blue);
+}
+
+main div#viewing-tasks div.task.hide {
+  display: none;
 }
 
 main div#viewing-tasks div.task .item {
