@@ -15,6 +15,7 @@
   "rules": {
     "no-use-before-define": ["error", { "functions": false, "classes": false }],
     "no-console": "off",
+    "import/extensions": ["error", "always", {"ignorePackages": true} ],
     "object-curly-newline": ["error", {
       // "ObjectExpression": "never",
       "ObjectPattern": { "multiline": true },
