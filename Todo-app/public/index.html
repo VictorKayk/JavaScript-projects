@@ -29,7 +29,6 @@
   </header>
 
   <main class="hide">
-
     <header>
       <form id="create-todo">
         <input type="text" name="todo-create" id="create" placeholder="Create a new todo...">
@@ -52,7 +51,6 @@
         <li><button id="Completed" class="btn btn-action option">Completed</button></li>
       </ul>
     </footer>
-    
   </main>
 
   <footer id="todo-footer" class="hide">
@@ -60,6 +58,15 @@
   </footer>
 
   <!-- Drag and drop to reorder list -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.14.0/Sortable.min.js" integrity="sha512-zYXldzJsDrNKV+odAwFYiDXV2Cy37cwizT+NkuiPGsa9X1dOz04eHvUWVuxaJ299GvcJT31ug2zO4itXBjFx4w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <script>
+    const area = document.body.querySelector('main section div#viewing-tasks');
+    new Sortable(area, {
+    animation: 150,
+  });
+  </script>
 
   <script type="module" src="../src/js/index.js"></script>
 

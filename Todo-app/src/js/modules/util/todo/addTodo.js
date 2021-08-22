@@ -44,6 +44,7 @@ function createTaskConteiner() {
   task.appendChild(item);
   task.appendChild(deleteButton);
   addClassOfElement(task)('task');
+  addAttributeToElement(task)('draggable')(true);
   return task;
 }
 
