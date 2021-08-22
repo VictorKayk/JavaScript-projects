@@ -130,7 +130,7 @@ export function showStateTasks(conteiner) {
 }
 
 function createDefaultMsgConteiner() {
-  const defaultMsg = createElement('div');
+  const defaultMsg = createElement('li');
   addClassOfElement(defaultMsg)('default');
   const defaultText = createElement('p');
   if (localStorage.state === 'All' || localStorage.state === 'Active') defaultText.innerText = 'It has no todo. Create one.';

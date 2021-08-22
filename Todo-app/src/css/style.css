@@ -221,7 +221,7 @@ main ul#viewing-tasks {
   background-color: var(--very-dark-desaturated-blue);
 }
 
-main ul#viewing-tasks div.default {
+main ul#viewing-tasks .default {
   font: normal 1.25rem 'Josefin Sans', sans-serif;
   color: var(--dark-grayish-blue);
   text-align: center;
@@ -230,11 +230,11 @@ main ul#viewing-tasks div.default {
   border-bottom: 0.2px solid;
 }
 
-.light main ul#viewing-tasks div.default {
+.light main ul#viewing-tasks .default {
   border-color: var(--light-grayish-blue);
 }
 
-.dark main ul#viewing-tasks div.default {
+.dark main ul#viewing-tasks .default {
   border-color: var(--very-dark-grayish-blue);
 }
 
@@ -488,7 +488,7 @@ footer#todo-footer.hide {
   }
 
   /* Viewing Tasks */
-  main ul#viewing-tasks div.default {
+  main ul#viewing-tasks .default {
     font: normal 1.375rem 'Josefin Sans', sans-serif;
 
     padding: 72px 25px;
@@ -576,7 +576,7 @@ footer#todo-footer.hide {
   }
 
   /* Viewing Tasks */
-  main ul#viewing-tasks div.default {
+  main ul#viewing-tasks .default {
     font: normal 1.4375rem 'Josefin Sans', sans-serif;
 
     padding: 80px 25px;
