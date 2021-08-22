@@ -33,11 +33,11 @@ export function toggleItemChecked(target) {
   itemText.classList.toggle('checked');
 }
 
-export function countTheLeftItem() {
+export function countTheLeftItem(conteinerToPutTheCont) {
   const tasks = JSON.parse(localStorage.tasks);
   const itemsNotChecked = Object.values(tasks.Active);
   const numberOfItemsNotChecked = itemsNotChecked.length;
-  return (conteinerToPutTheCont) => conteinerToPutTheCont.innerText = numberOfItemsNotChecked;
+  conteinerToPutTheCont.innerText = numberOfItemsNotChecked;
 }
 
 export function deleteElement(item) {

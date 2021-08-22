@@ -7,9 +7,9 @@
   <title>Todo app</title>
 
   <!-- icons -->
-  <link rel="apple-touch-icon" sizes="180x180" href="../assets/img/icons/favicon/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="../assets/img/icons/favicon/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="../assets/img/icons/favicon/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../../assets/img/icons/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../../assets/img/icons/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../../assets/img/icons/favicon/favicon-16x16.png">
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -17,9 +17,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap" rel="stylesheet">
 
   <!-- Styles -->
-  <link rel="stylesheet" href="../src/css/style.css">
-  <link rel="stylesheet" href="../src/css/todo-list/style.css">
-
+  <link rel="stylesheet" href="../../src/css/style.css">
 </head>
 <body>
 
@@ -33,7 +31,7 @@
   <main class="hide">
     <header>
       <form id="create-todo">
-        <input type="text" name="todo-create" id="create" placeholder="Create a new todo list...">
+        <input type="text" name="todo-create" id="create" placeholder="Create a new todo...">
         <button type="submit"  id="save" class="btn">Save</button>
       </form>
     </header>
@@ -41,17 +39,25 @@
     <section>
       <ul id="viewing-tasks"></ul> 
       <footer id="tasks-footer">
-        <p><strong>?</strong> list count</p>
-        <button id="clear-all" class="btn btn-action">Clear all</button>
+        <p><strong>?</strong> items left</p>
+        <button id="clear-completed" class="btn btn-action">Clear Completed</button>
       </footer>
     </section>
+
+    <footer id="options">
+      <ul>
+        <li><button id="All" class="btn btn-action option">All</button></li>
+        <li><button id="Active" class="btn btn-action option">Active</button></li>
+        <li><button id="Completed" class="btn btn-action option">Completed</button></li>
+      </ul>
+    </footer>
   </main>
 
   <footer id="todo-footer" class="hide">
     <p>Drag and drop to reorder list</p>
   </footer>
 
-  <script type="module" src="../src/js/index.js"></script>
+  <script type="module" src="../../src/js/todo-list/index.js"></script>
 
 </body>
 </html>
