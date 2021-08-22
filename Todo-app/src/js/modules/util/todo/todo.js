@@ -28,7 +28,7 @@ export function addTodo(conteiner) {
 }
 
 export function toggleItemChecked(target) {
-  const item = target.closest('div.item');
+  const item = target.closest('.item');
   const itemText = item.querySelector('p');
   itemText.classList.toggle('checked');
 }
@@ -46,7 +46,7 @@ export function deleteElement(item) {
 
 function deleteTasks(tasksConteiner) {
   return tasksConteiner.forEach((tasks) => {
-    const task = tasks.closest('div.task');
+    const task = tasks.closest('.task');
     deleteElement(task);
   });
 }
@@ -142,7 +142,7 @@ function createDefaultMsgConteiner() {
 export function defaultMsgIfIsEmpty(conteiner) {
   const tasks = JSON.parse(localStorage.tasks);
   const tasksOnState = Object.values(tasks[localStorage.state]);
-  const otherDefaultMsg = conteiner.querySelector('div.default');
+  const otherDefaultMsg = conteiner.querySelector('.default');
   if (tasksOnState.length === 0 && !otherDefaultMsg) {
     const defaultMsg = createDefaultMsgConteiner();
     conteiner.appendChild(defaultMsg);
@@ -150,6 +150,6 @@ export function defaultMsgIfIsEmpty(conteiner) {
 }
 
 export function deleteDefaultMsg(conteiner) {
-  const defaultMsg = conteiner.querySelector('div.default');
+  const defaultMsg = conteiner.querySelector('.default');
   if (defaultMsg) deleteElement(defaultMsg);
 }

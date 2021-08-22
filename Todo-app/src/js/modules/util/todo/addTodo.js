@@ -38,7 +38,7 @@ function createDeleteButtonConteiner() {
 }
 
 function createTaskConteiner() {
-  const task = createElement('div');
+  const task = createElement('li');
   const item = createItemConteiner();
   const deleteButton = createDeleteButtonConteiner();
   task.appendChild(item);

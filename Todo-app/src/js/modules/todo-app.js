@@ -5,7 +5,7 @@ import { addTodo, toggleItemChecked, countTheLeftItem, deleteElement, deleteAllC
 // Conteiners
 const iconThemeChanger = document.body.querySelector('#theme-changer img');
 const todoCreate = document.body.querySelector('main form#create-todo input#create');
-const viewingTasks = document.body.querySelector('main section div#viewing-tasks');
+const viewingTasks = document.body.querySelector('main section ul#viewing-tasks');
 const itemsLeft = document.body.querySelector('main section footer p strong');
 const optionsContiner = document.body.querySelector('main footer#options');
 
@@ -42,7 +42,7 @@ export function checkTheInput(target) {
 }
 
 export function deleteElementFromTheConteiner(target) {
-  const taskConteiner = target.closest('div.task');
+  const taskConteiner = target.closest('.task');
   deleteElement(taskConteiner);
   savingTodos(viewingTasks);
   countTheLeftItem(viewingTasks)(itemsLeft);

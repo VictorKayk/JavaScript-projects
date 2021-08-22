@@ -245,6 +245,8 @@ main ul#viewing-tasks li.task {
   
   padding: 16px 20px;
   border-bottom: 0.2px solid;
+
+  cursor: move;
 }
 
 .light main ul#viewing-tasks li.task {
