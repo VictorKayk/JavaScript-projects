@@ -11,6 +11,42 @@ function tooLongErrorMsg(input) {
   putPlaceholderInTarget(input)('Task too long. (20 characters max)');
 }
 
+export function getIndexList() {
+  const url = new URLSearchParams(window.location.search);
+  const indexList = url.get('list');
+  return indexList;
+}
+
+export function getList() {
+  const indexList = getIndexList();
+  const tasks = JSON.parse(localStorage.lists);
+  return Object.values(tasks)[indexList];
+}
+
+export function getTasks() {
+  const list = getList();
+  const { tasks } = list;
+  return tasks;
+}
+
+export function getState() {
+  const list = getList();
+  const { state } = list;
+  return state;
+}
+
+function getListName() {
+  const list = getList();
+  const { listName } = list;
+  return listName;
+}
+
+export function putTitlesOnPage(conteiner) {
+  const title = getListName();
+  document.title = title;
+  conteiner.innerText = title;
+}
+
 export function addTodo(conteiner) {
   return (target) => {
     const input = target.querySelector('input#create');
@@ -34,7 +70,7 @@ export function toggleItemChecked(target) {
 }
 
 export function countTheLeftItem(conteinerToPutTheCont) {
-  const tasks = JSON.parse(localStorage.tasks);
+  const tasks = getTasks();
   const itemsNotChecked = Object.values(tasks.Active);
   const numberOfItemsNotChecked = itemsNotChecked.length;
   conteinerToPutTheCont.innerText = numberOfItemsNotChecked;
@@ -57,7 +93,7 @@ export function deleteAllCompletedTasks(conteinerToContTask) {
 }
 
 export function initialTodo() {
-  localStorage.tasks = localStorage.tasks || JSON.stringify({ Active: {}, Completed: {}, All: {} });
+  localStorage.lists = localStorage.lists || JSON.stringify({ });
 }
 
 function getActiveTasks(tasksInArray) {
@@ -99,21 +135,25 @@ function getAllStateTasks(tasksInArray) {
 }
 
 export function savingTodos(conteiner) {
+  const index = getIndexList();
   const tasksConteiners = getTasksConteiners(conteiner);
   const tasksInArray = [...tasksConteiners];
   const tasks = getAllStateTasks(tasksInArray);
-  const tasksInJson = JSON.stringify(tasks);
-  localStorage.tasks = tasksInJson;
+  const list = JSON.parse(localStorage.lists);
+  list[index].tasks = tasks;
+  const listInJson = JSON.stringify(list);
+  localStorage.lists = listInJson;
 }
 
 export function gettingTheTodos(conteiner) {
-  const tasks = JSON.parse(localStorage.tasks);
-  const tasksOfState = tasks.All;
-  const tasksInArray = Object.values(tasksOfState);
+  const tasks = getTasks();
+  const { All } = tasks;
+  const state = getState();
+  const tasksInArray = Object.values(All);
   tasksInArray.forEach(({ task, isChecked }) => {
     const todo = createTodo(isChecked)(task);
-    if (localStorage.state === 'Active' && isChecked) addClassOfElement(todo)('hide');
-    else if (localStorage.state === 'Completed' && !isChecked) addClassOfElement(todo)('hide');
+    if (state === 'Active' && isChecked) addClassOfElement(todo)('hide');
+    else if (state === 'Completed' && !isChecked) addClassOfElement(todo)('hide');
     conteiner.appendChild(todo);
   });
 }
@@ -133,15 +173,17 @@ function createDefaultMsgConteiner() {
   const defaultMsg = createElement('li');
   addClassOfElement(defaultMsg)('default');
   const defaultText = createElement('p');
-  if (localStorage.state === 'All' || localStorage.state === 'Active') defaultText.innerText = 'It has no todo. Create one.';
-  else if (localStorage.state === 'Completed') defaultText.innerText = 'It has no todo. Complete one.';
+  const state = getState();
+  if (state === 'All' || state === 'Active') defaultText.innerText = 'It has no todo. Create one.';
+  else if (state === 'Completed') defaultText.innerText = 'It has no todo. Complete one.';
   defaultMsg.appendChild(defaultText);
   return defaultMsg;
 }
 
 export function defaultMsgIfIsEmpty(conteiner) {
-  const tasks = JSON.parse(localStorage.tasks);
-  const tasksOnState = Object.values(tasks[localStorage.state]);
+  const tasks = getTasks();
+  const state = getState();
+  const tasksOnState = Object.values(tasks[state]);
   const otherDefaultMsg = conteiner.querySelector('.default');
   if (tasksOnState.length === 0 && !otherDefaultMsg) {
     const defaultMsg = createDefaultMsgConteiner();

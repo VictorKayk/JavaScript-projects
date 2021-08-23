@@ -30,7 +30,7 @@ function createItemConteiner() {
 
 function createDeleteButtonConteiner() {
   const imgDeleteButton = createElement('img');
-  addAttributeToElement(imgDeleteButton)('src')('../assets/img/icons/icon-cross.svg');
+  addAttributeToElement(imgDeleteButton)('src')('../../assets/img/icons/icon-cross.svg');
   addAttributeToElement(imgDeleteButton)('alt')('Delete Button');
   addClassOfElement(imgDeleteButton)('btn');
   addClassOfElement(imgDeleteButton)('delete-btn');

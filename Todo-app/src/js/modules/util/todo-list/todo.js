@@ -8,7 +8,7 @@ function setNormalSubmitInput(input) {
 
 function tooLongErrorMsg(input) {
   addClassOfElement(input)('error');
-  putPlaceholderInTarget(input)('Task too long. (20 characters max)');
+  putPlaceholderInTarget(input)('Task too long. (15 characters max)');
 }
 
 export function addTodo(conteiner) {
@@ -16,7 +16,7 @@ export function addTodo(conteiner) {
     const input = target.querySelector('input#create');
     const inputValue = input.value.trim();
     if (inputValue) {
-      if (inputValue.length <= 20) {
+      if (inputValue.length <= 15) {
         const todo = createTodo(inputValue);
         conteiner.appendChild(todo);
         setNormalSubmitInput(input);
@@ -32,10 +32,12 @@ export function deleteElement(item) {
 }
 
 export function initialTodo() {
-  localStorage.tasks = localStorage.tasks || JSON.stringify({ });
+  localStorage.lists = localStorage.lists || JSON.stringify({ });
 }
 
-function putLinkOnTasks(tasks) {
+function putLinkOnTasks(conteiner) {
+  const tasksConteiners = getTasksConteiners(conteiner);
+  const tasks = [...tasksConteiners];
   tasks.forEach((value, index) => {
     const linkConteiner = value.closest('a');
     addAttributeToElement(linkConteiner)('href')(`todo-list/?list=${index}`);
@@ -45,23 +47,24 @@ function putLinkOnTasks(tasks) {
 export function savingTodos(conteiner) {
   const tasksConteiners = getTasksConteiners(conteiner);
   const tasksInArray = [...tasksConteiners];
-  putLinkOnTasks(tasksInArray);
+  putLinkOnTasks(conteiner);
   const tasksInObject = tasksInArray
     .reduce((acc, { innerText }, index) => {
-      acc[index] = { listName: innerText, All: {}, Active: {}, Completed: {}, state: 'All' };
+      acc[index] = acc[index] || { listName: innerText, state: 'All', tasks: { All: {}, Active: {}, Completed: {} } };
       return acc;
     }, {});
   const tasksInJson = JSON.stringify(tasksInObject);
-  localStorage.tasks = tasksInJson;
+  localStorage.lists = tasksInJson;
 }
 
 export function gettingTheTodos(conteiner) {
-  const tasks = JSON.parse(localStorage.tasks);
+  const tasks = JSON.parse(localStorage.lists);
   const tasksInArray = Object.values(tasks);
   tasksInArray.forEach(({ listName }) => {
     const todo = createTodo(listName);
     conteiner.appendChild(todo);
   });
+  putLinkOnTasks(conteiner);
 }
 
 function createDefaultMsgConteiner() {
@@ -74,7 +77,7 @@ function createDefaultMsgConteiner() {
 }
 
 export function defaultMsgIfIsEmpty(conteiner) {
-  const tasks = JSON.parse(localStorage.tasks);
+  const tasks = JSON.parse(localStorage.lists);
   const tasksKey = Object.keys(tasks);
   const otherDefaultMsg = conteiner.querySelector('.default');
   if (tasksKey.length === 0 && !otherDefaultMsg) {
@@ -89,7 +92,7 @@ export function deleteDefaultMsg(conteiner) {
 }
 
 export function countTheLeftItem(conteinerToPutTheCont) {
-  const list = JSON.parse(localStorage.tasks);
+  const list = JSON.parse(localStorage.lists);
   const listInArray = Object.keys(list);
   const listCount = listInArray.length;
   conteinerToPutTheCont.innerText = listCount;
