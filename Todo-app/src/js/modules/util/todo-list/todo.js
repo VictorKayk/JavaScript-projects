@@ -37,19 +37,13 @@ export function initialTodo() {
 
 function putLinkOnTasks(conteiner) {
   const tasksConteiners = getTasksConteiners(conteiner);
-<<<<<<< HEAD
   const tasksInArray = [...tasksConteiners];
   tasksInArray.forEach((value) => {
-=======
-  const tasks = [...tasksConteiners];
-  tasks.forEach((value) => {
->>>>>>> 15f1f34a0b7cd3e37d543034da46766526344123
     const linkConteiner = value.closest('a');
     addAttributeToElement(linkConteiner)('href')(`todo-list/?list=${value.id}`);
   });
 }
 
-<<<<<<< HEAD
 // const tasksInObject = tasksInArray
 //     .reduce((acc, { innerText }, index) => {
 //       acc[index] = acc[index] || { listName: innerText, state: 'All', tasks: { All: {}, Active: {}, Completed: {} }, pos: index };
@@ -86,31 +80,13 @@ export function savingTodos(conteiner) {
       console.log(lists[index].pos);
     });
   localStorage.lists = JSON.stringify(lists);
-=======
-export function savingTodos(conteiner) {
-  const tasksConteiners = getTasksConteiners(conteiner);
-  const tasksInArray = [...tasksConteiners];
-  putLinkOnTasks(conteiner);
-  const tasksInObject = tasksInArray
-    .reduce((acc, { id, innerText }, index) => {
-      acc[index] = acc[index] || { listName: innerText, state: 'All', tasks: { All: {}, Active: {}, Completed: {} } };
-      console.log(acc[index] || 'oi');
-      return acc;
-    }, {});
-  const tasksInJson = JSON.stringify(tasksInObject);
-  localStorage.lists = tasksInJson;
->>>>>>> 15f1f34a0b7cd3e37d543034da46766526344123
 }
 
 export function gettingTheTodos(conteiner) {
   const tasks = JSON.parse(localStorage.lists);
   const tasksInArray = Object.values(tasks);
-<<<<<<< HEAD
   const tasksInOrder = tasksInArray.sort((a, b) => a.pos - b.pos);
   tasksInOrder.forEach(({ listName }) => {
-=======
-  tasksInArray.forEach(({ listName }) => {
->>>>>>> 15f1f34a0b7cd3e37d543034da46766526344123
     const todo = createTodo(listName);
     conteiner.appendChild(todo);
   });
@@ -127,17 +103,10 @@ function createDefaultMsgConteiner() {
 }
 
 export function defaultMsgIfIsEmpty(conteiner) {
-<<<<<<< HEAD
   const lists = JSON.parse(localStorage.lists);
   const listsKey = Object.keys(lists);
   const otherDefaultMsg = conteiner.querySelector('.default');
   if (listsKey.length === 0 && !otherDefaultMsg) {
-=======
-  const tasks = JSON.parse(localStorage.lists);
-  const tasksKey = Object.keys(tasks);
-  const otherDefaultMsg = conteiner.querySelector('.default');
-  if (tasksKey.length === 0 && !otherDefaultMsg) {
->>>>>>> 15f1f34a0b7cd3e37d543034da46766526344123
     const defaultMsg = createDefaultMsgConteiner();
     conteiner.appendChild(defaultMsg);
   }
