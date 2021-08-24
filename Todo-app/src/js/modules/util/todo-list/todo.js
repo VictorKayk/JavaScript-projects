@@ -38,9 +38,9 @@ export function initialTodo() {
 function putLinkOnTasks(conteiner) {
   const tasksConteiners = getTasksConteiners(conteiner);
   const tasks = [...tasksConteiners];
-  tasks.forEach((value, index) => {
+  tasks.forEach((value) => {
     const linkConteiner = value.closest('a');
-    addAttributeToElement(linkConteiner)('href')(`todo-list/?list=${index}`);
+    addAttributeToElement(linkConteiner)('href')(`todo-list/?list=${value.id}`);
   });
 }
 
@@ -49,8 +49,9 @@ export function savingTodos(conteiner) {
   const tasksInArray = [...tasksConteiners];
   putLinkOnTasks(conteiner);
   const tasksInObject = tasksInArray
-    .reduce((acc, { innerText }, index) => {
+    .reduce((acc, { id, innerText }, index) => {
       acc[index] = acc[index] || { listName: innerText, state: 'All', tasks: { All: {}, Active: {}, Completed: {} } };
+      console.log(acc[index] || 'oi');
       return acc;
     }, {});
   const tasksInJson = JSON.stringify(tasksInObject);

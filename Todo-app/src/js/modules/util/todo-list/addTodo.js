@@ -2,6 +2,7 @@ import { createElement, addClassOfElement, addAttributeToElement } from '../comm
 
 function createItemTextConteiner() {
   const itemText = createElement('p');
+  itemText.id = document.body.querySelectorAll('.task .item p').length;
   return itemText;
 }
 
