@@ -25,17 +25,28 @@ export function createTodo(target) {
   defaultMsgIfIsEmpty(viewingTasks);
 }
 
+function deleteAllElementsOnScreen() {
+  const tasks = viewingTasks.querySelectorAll('li');
+  tasks.forEach((value) => deleteElement(value));
+}
+
 export function deleteElementFromTheConteiner(target) {
-  const taskConteiner = target.closest('.task');
-  deleteElement(taskConteiner);
-  savingTodos(viewingTasks);
+  const taskConteiner = target.closest('li');
+  const tasksId = taskConteiner.querySelector('p').id;
+  const list = JSON.parse(localStorage.lists);
+  const listInArray = Object.values(list);
+  const objectsNotDeleted = listInArray.filter((value, index) => index !== +tasksId);
+  localStorage.lists = JSON.stringify(objectsNotDeleted);
+  deleteAllElementsOnScreen();
+  gettingTheTodos(viewingTasks);
+  // savingTodos(viewingTasks);
   countTheLeftItem(listCount);
   defaultMsgIfIsEmpty(viewingTasks);
 }
 
 export function deleteAllElementFromTheConteiner() {
-  const tasks = viewingTasks.querySelectorAll('li');
-  tasks.forEach((value) => deleteElement(value));
+  deleteAllElementsOnScreen();
+  localStorage.lists = JSON.stringify({ });
   savingTodos(viewingTasks);
   countTheLeftItem(listCount);
   defaultMsgIfIsEmpty(viewingTasks);

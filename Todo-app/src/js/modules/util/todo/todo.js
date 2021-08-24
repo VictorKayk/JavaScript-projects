@@ -20,7 +20,11 @@ export function getIndexList() {
 export function getList() {
   const indexList = getIndexList();
   const tasks = JSON.parse(localStorage.lists);
-  return Object.values(tasks)[indexList];
+  const list = Object.values(tasks).reduce((acc, item) => {
+    if (indexList === item.id) return item;
+    return acc;
+  }, {});
+  return list;
 }
 
 export function getTasks() {

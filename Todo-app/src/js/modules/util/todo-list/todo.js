@@ -40,6 +40,7 @@ function putLinkOnTasks(conteiner) {
   const tasksInArray = [...tasksConteiners];
   tasksInArray.forEach((value) => {
     const linkConteiner = value.closest('a');
+    // console.log(value.id);
     addAttributeToElement(linkConteiner)('href')(`todo-list/?list=${value.id}`);
   });
 }
@@ -58,7 +59,7 @@ function getPosition(id) {
     if (id === item.id) return index;
     return acc;
   }, '');
-  console.log(position);
+  // console.log(tasksInArray, id, position);
   return position;
 }
 
@@ -74,10 +75,10 @@ export function savingTodos(conteiner) {
         listName: innerText,
         state: 'All',
         tasks: { All: {}, Active: {}, Completed: {} },
+        pos: index,
       };
-      console.log(lists[index].pos);
-      lists[index].pos = getPosition(id);
-      console.log(lists[index].pos);
+      // lists[index].pos = getPosition(lists[index].id);
+      // console.log(lists[index], lists[index].pos, getPosition(lists[index].id));
     });
   localStorage.lists = JSON.stringify(lists);
 }
@@ -107,6 +108,7 @@ export function defaultMsgIfIsEmpty(conteiner) {
   const listsKey = Object.keys(lists);
   const otherDefaultMsg = conteiner.querySelector('.default');
   if (listsKey.length === 0 && !otherDefaultMsg) {
+    localStorage.lists = JSON.stringify({ });
     const defaultMsg = createDefaultMsgConteiner();
     conteiner.appendChild(defaultMsg);
   }
