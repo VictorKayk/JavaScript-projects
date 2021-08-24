@@ -1,0 +1,42 @@
+/* Header */
+header#todo-header h1 {
+  letter-spacing: 11px;
+}
+
+/* Viewing tasks */
+main section ul#viewing-tasks li.task a {
+  text-decoration: none;
+}
+
+main section ul#viewing-tasks li.task a p {
+  transition: all 0.3s;
+}
+
+main section ul#viewing-tasks li.task a p:hover {
+  color: var(--bright-blue);
+}
+
+.light main section ul#viewing-tasks li.task a {  
+  color: var(--very-dark-grayish-blue);
+}
+
+.dark main section ul#viewing-tasks li.task a {
+  color: var(--light-grayish-blue);
+}
+
+@media screen and (min-width: 620px) {
+  main section footer#tasks-footer button {
+    font-size: 1.125rem;
+  }
+
+  header#todo-header h1 {
+    font-size: 36px;
+    letter-spacing: 15px;
+  }
+}
+
+@media screen and (min-width: 950px) {
+  header#todo-header h1 {
+    letter-spacing: 16px;
+  }
+}
