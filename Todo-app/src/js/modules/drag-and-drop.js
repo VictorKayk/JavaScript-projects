@@ -1,4 +1,3 @@
-import { savingTodos } from './util/todo/todo.js';
 import { addClassOfElement, removeClassOfElement } from './util/common.js';
 
 // Conteiners
@@ -24,10 +23,7 @@ export default function dragAndDrop() {
 
   window.addEventListener('dragend', (e) => {
     const { target } = e;
-    if (target.classList.contains('task')) {
-      removeClassOfElement(target)('ghost');
-      savingTodos(viewingTasks);
-    }
+    if (target.classList.contains('task')) removeClassOfElement(target)('ghost');
   });
 
   viewingTasks.addEventListener('dragenter', (e) => {
