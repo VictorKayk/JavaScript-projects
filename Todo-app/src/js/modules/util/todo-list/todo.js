@@ -119,9 +119,20 @@ export function deleteDefaultMsg(conteiner) {
   if (defaultMsg) deleteElement(defaultMsg);
 }
 
-export function countTheLeftItem(conteinerToPutTheCont) {
+export function getTaskId(target) {
+  const taskConteiner = target.closest('li');
+  const taskId = taskConteiner.querySelector('p').id;
+  return taskId;
+}
+
+export function getListsInArray() {
   const list = JSON.parse(localStorage.lists);
-  const listInArray = Object.keys(list);
+  const listInArray = Object.values(list);
+  return listInArray;
+}
+
+export function countTheLeftItem(conteinerToPutTheCont) {
+  const listInArray = getListsInArray();
   const listCount = listInArray.length;
   conteinerToPutTheCont.innerText = listCount;
 }

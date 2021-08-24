@@ -1,6 +1,6 @@
 import { putFocusOn } from './util/common.js';
 import { changeInitialTheme } from './toogle-theme-color.js';
-import { addTodo, deleteElement, savingTodos, gettingTheTodos, initialTodo, defaultMsgIfIsEmpty, deleteDefaultMsg, countTheLeftItem } from './util/todo-list/todo.js';
+import { addTodo, deleteElement, savingTodos, gettingTheTodos, initialTodo, defaultMsgIfIsEmpty, deleteDefaultMsg, countTheLeftItem, getTaskId, getListsInArray } from './util/todo-list/todo.js';
 
 // Conteiners
 const iconThemeChanger = document.body.querySelector('#theme-changer img');
@@ -31,15 +31,16 @@ function deleteAllElementsOnScreen() {
 }
 
 export function deleteElementFromTheConteiner(target) {
-  const taskConteiner = target.closest('li');
-  const tasksId = taskConteiner.querySelector('p').id;
-  const list = JSON.parse(localStorage.lists);
-  const listInArray = Object.values(list);
-  const objectsNotDeleted = listInArray.filter((value, index) => index !== +tasksId);
-  localStorage.lists = JSON.stringify(objectsNotDeleted);
+  const taskId = getTaskId(target);
+  const list = getListsInArray();
+  const objectsNotDeleted = list.filter((_, index) => index !== +taskId);
+  const newList = objectsNotDeleted.reduce((acc, item, index) => {
+    acc[index] = item;
+    return acc;
+  }, {});
+  localStorage.lists = JSON.stringify(newList);
   deleteAllElementsOnScreen();
   gettingTheTodos(viewingTasks);
-  // savingTodos(viewingTasks);
   countTheLeftItem(listCount);
   defaultMsgIfIsEmpty(viewingTasks);
 }
