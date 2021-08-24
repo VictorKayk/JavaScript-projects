@@ -37,31 +37,56 @@ export function initialTodo() {
 
 function putLinkOnTasks(conteiner) {
   const tasksConteiners = getTasksConteiners(conteiner);
-  const tasks = [...tasksConteiners];
-  tasks.forEach((value) => {
+  const tasksInArray = [...tasksConteiners];
+  tasksInArray.forEach((value) => {
     const linkConteiner = value.closest('a');
     addAttributeToElement(linkConteiner)('href')(`todo-list/?list=${value.id}`);
   });
 }
 
+// const tasksInObject = tasksInArray
+//     .reduce((acc, { innerText }, index) => {
+//       acc[index] = acc[index] || { listName: innerText, state: 'All', tasks: { All: {}, Active: {}, Completed: {} }, pos: index };
+//       return acc;
+//     }, {});
+// const tasksInJson = JSON.stringify(tasksInObject);
+
+function getPosition(id) {
+  const tasksConteiners = document.querySelectorAll('li p');
+  const tasksInArray = [...tasksConteiners];
+  const position = tasksInArray.reduce((acc, item, index) => {
+    if (id === item.id) return index;
+    return acc;
+  }, '');
+  console.log(position);
+  return position;
+}
+
 export function savingTodos(conteiner) {
   const tasksConteiners = getTasksConteiners(conteiner);
   const tasksInArray = [...tasksConteiners];
+  const lists = JSON.parse(localStorage.lists);
   putLinkOnTasks(conteiner);
-  const tasksInObject = tasksInArray
-    .reduce((acc, { id, innerText }, index) => {
-      acc[index] = acc[index] || { listName: innerText, state: 'All', tasks: { All: {}, Active: {}, Completed: {} } };
-      console.log(acc[index] || 'oi');
-      return acc;
-    }, {});
-  const tasksInJson = JSON.stringify(tasksInObject);
-  localStorage.lists = tasksInJson;
+  tasksInArray
+    .forEach(({ id, innerText }, index) => {
+      lists[index] = lists[index] || {
+        id,
+        listName: innerText,
+        state: 'All',
+        tasks: { All: {}, Active: {}, Completed: {} },
+      };
+      console.log(lists[index].pos);
+      lists[index].pos = getPosition(id);
+      console.log(lists[index].pos);
+    });
+  localStorage.lists = JSON.stringify(lists);
 }
 
 export function gettingTheTodos(conteiner) {
   const tasks = JSON.parse(localStorage.lists);
   const tasksInArray = Object.values(tasks);
-  tasksInArray.forEach(({ listName }) => {
+  const tasksInOrder = tasksInArray.sort((a, b) => a.pos - b.pos);
+  tasksInOrder.forEach(({ listName }) => {
     const todo = createTodo(listName);
     conteiner.appendChild(todo);
   });
@@ -78,10 +103,10 @@ function createDefaultMsgConteiner() {
 }
 
 export function defaultMsgIfIsEmpty(conteiner) {
-  const tasks = JSON.parse(localStorage.lists);
-  const tasksKey = Object.keys(tasks);
+  const lists = JSON.parse(localStorage.lists);
+  const listsKey = Object.keys(lists);
   const otherDefaultMsg = conteiner.querySelector('.default');
-  if (tasksKey.length === 0 && !otherDefaultMsg) {
+  if (listsKey.length === 0 && !otherDefaultMsg) {
     const defaultMsg = createDefaultMsgConteiner();
     conteiner.appendChild(defaultMsg);
   }
