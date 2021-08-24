@@ -15,8 +15,8 @@ const viewingTasks = document.body.querySelector('main section ul#viewing-tasks'
   dragAndDrop();
 
   window.addEventListener('dragend', () => {
-    // console.log('oi');
     savingTodos(viewingTasks);
+    // savingTheTodoPositions(viewingTasks);
   });
 
   window.addEventListener('submit', (e) => {
