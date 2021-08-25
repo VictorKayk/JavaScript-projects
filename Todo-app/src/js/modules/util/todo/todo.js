@@ -21,7 +21,7 @@ export function getList() {
   const indexList = getIndexList();
   const tasks = JSON.parse(localStorage.lists);
   const list = Object.values(tasks).reduce((acc, item) => {
-    if (Number(indexList) === item.pos) return item;
+    if (Number(indexList) === Number(item.id)) return item;
     return acc;
   }, {});
   return list;
@@ -148,6 +148,7 @@ export function savingTodos(conteiner) {
   list[index].tasks = tasks;
   const listInJson = JSON.stringify(list);
   localStorage.lists = listInJson;
+  // console.log(localStorage.lists);
 }
 
 export function gettingTheTodos(conteiner) {
