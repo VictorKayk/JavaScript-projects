@@ -1,7 +1,7 @@
 import stopLoad from '../modules/loading-screen.js';
 import dragAndDrop from '../modules/drag-and-drop.js';
 import { toggleTheme } from '../modules/toogle-theme-color.js';
-import { initialConfig, createTodo, checkTheInput, deleteElementFromTheConteiner, clearAllCompletedElement, options } from '../modules/todo-app.js';
+import { initialConfig, createTheTodo, checkTheInput, deleteElementFromTheConteiner, clearAllCompletedElement, options } from '../modules/todo-app.js';
 import { savingTodos } from '../modules/util/todo/todo.js';
 
 // Conteiners
@@ -9,7 +9,7 @@ const iconThemeChanger = document.body.querySelector('#theme-changer img');
 const viewingTasks = document.body.querySelector('main section ul#viewing-tasks');
 
 (function () {
-  window.addEventListener('load', () => stopLoad());
+  window.addEventListener('load', stopLoad);
 
   initialConfig();
   dragAndDrop();
@@ -19,7 +19,7 @@ const viewingTasks = document.body.querySelector('main section ul#viewing-tasks'
   window.addEventListener('submit', (e) => {
     e.preventDefault();
     const { target } = e;
-    if (target.id === 'create-todo') createTodo(target);
+    if (target.id === 'create-todo') createTheTodo(target);
   });
 
   window.addEventListener('click', (e) => {

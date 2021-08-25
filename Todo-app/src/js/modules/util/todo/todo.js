@@ -21,7 +21,7 @@ export function getList() {
   const indexList = getIndexList();
   const tasks = JSON.parse(localStorage.lists);
   const list = Object.values(tasks).reduce((acc, item) => {
-    if (indexList === item.id) return item;
+    if (Number(indexList) === item.pos) return item;
     return acc;
   }, {});
   return list;
@@ -71,6 +71,7 @@ export function toggleItemChecked(target) {
   const item = target.closest('.item');
   const itemText = item.querySelector('p');
   itemText.classList.toggle('checked');
+  return itemText;
 }
 
 export function countTheLeftItem(conteinerToPutTheCont) {

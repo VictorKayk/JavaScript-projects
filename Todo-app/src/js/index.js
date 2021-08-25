@@ -9,7 +9,7 @@ const iconThemeChanger = document.body.querySelector('#theme-changer img');
 const viewingTasks = document.body.querySelector('main section ul#viewing-tasks');
 
 (function () {
-  window.addEventListener('load', () => stopLoad());
+  window.addEventListener('load', stopLoad);
 
   initialConfig();
   dragAndDrop();

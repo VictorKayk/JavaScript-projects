@@ -40,7 +40,7 @@ function putLinkOnTasks(conteiner) {
   const tasksInArray = [...tasksConteiners];
   tasksInArray.forEach((value) => {
     const linkConteiner = value.closest('a');
-    // console.log(value.id);
+    console.log(value);
     addAttributeToElement(linkConteiner)('href')(`todo-list/?list=${value.id}`);
   });
 }

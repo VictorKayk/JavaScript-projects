@@ -30,6 +30,8 @@ function deleteAllElementsOnScreen() {
   tasks.forEach((value) => deleteElement(value));
 }
 
+// function get
+
 export function deleteElementFromTheConteiner(target) {
   const taskId = getTaskId(target);
   const list = getListsInArray();

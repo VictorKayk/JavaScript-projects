@@ -1,6 +1,7 @@
 import { putFocusOn, addClassOfElement } from './util/common.js';
 import { changeInitialTheme } from './toogle-theme-color.js';
 import { addTodo, toggleItemChecked, countTheLeftItem, deleteElement, deleteAllCompletedTasks, savingTodos, gettingTheTodos, initialTodo, deactivatingAllTheOptions, defaultMsgIfIsEmpty, deleteDefaultMsg, showStateTasks, getIndexList, putTitlesOnPage } from './util/todo/todo.js';
+import createTodo from './util/todo/addTodo.js';
 
 // Conteiners
 const headerTitle = document.body.querySelector('#todo-header h1');
@@ -27,7 +28,7 @@ function loadTasks() {
   countTheLeftItem(itemsLeft);
 }
 
-export function createTodo(target) {
+export function createTheTodo(target) {
   deleteDefaultMsg(viewingTasks);
   addTodo(viewingTasks)(target);
   savingTodos(viewingTasks);
@@ -35,8 +36,17 @@ export function createTodo(target) {
   defaultMsgIfIsEmpty(viewingTasks);
 }
 
+function createNewTodoInCorrectPosition(itemChecked) {
+  const isChecked = itemChecked.classList.contains('checked');
+  const todo = createTodo(isChecked)(itemChecked.innerText);
+  if (isChecked) viewingTasks.appendChild(todo);
+  else viewingTasks.insertAdjacentElement('afterBegin', todo);
+}
+
 export function checkTheInput(target) {
-  toggleItemChecked(target);
+  const itemChecked = toggleItemChecked(target);
+  target.closest('.task').remove();
+  createNewTodoInCorrectPosition(itemChecked);
   savingTodos(viewingTasks);
   loadTasks();
   defaultMsgIfIsEmpty(viewingTasks);
