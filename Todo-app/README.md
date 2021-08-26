@@ -3,7 +3,6 @@
 # Frontend Mentor - Todo app solution
 
 This is a solution to the [Todo app challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/todo-app-Su1_KokOW), coded by [Victor Kayk](https://github.com/VictorKayk). You can access the resolution on: [The project on GitHub pages.](https://victorkayk.github.io/Projetos-JavaScript/Todo-app/public/) <br>
-Frontend Mentor challenges help you improve your coding skills by building realistic projects. 
 
 ## Table of contents
 
@@ -36,7 +35,9 @@ Users should be able to:
 - Filter by all/active/complete todos
 - Clear all completed todos
 - Toggle light and dark mode
+- **Bonus**: Loading screen
 - **Bonus**: Drag and drop to reorder items on the list
+- **Bonus**: Multiples Todo list
 
 ### Screenshot
 
@@ -91,42 +92,18 @@ Users should be able to:
 
 ### What I learned
 
-Use this section to recap over some of your major learnings while working through this project. Writing these out and providing code samples of areas you want to highlight is a great way to reinforce your own knowledge.
-
-<!-- Falar que esse foi o primeiro projeto usando o comitizen -->
-
-To see how you can add code snippets, see below:
-
-```html
-<h1>Some HTML code I'm proud of</h1>
-```
-```css
-.proud-of-this-css {
-  color: papayawhip;
-}
-```
-```js
-const proudOfThisFunc = () => {
-  console.log('🎉')
-}
-```
-
-If you want more help with writing markdown, we'd recommend checking out [The Markdown Guide](https://www.markdownguide.org/) to learn more.
-
-**Note: Delete this note and the content within this section and replace with your own learnings.**
+- Comitizen pattern
+- Theme switch feature
+- Loading screen
+- Drag and drop
 
 ### Continued development
 
-Use this section to outline areas that you want to continue focusing on in future projects. These could be concepts you're still not completely comfortable with or techniques you found useful that you want to refine and perfect.
-
-**Note: Delete this note and the content within this section and replace with your own plans for continued development.**
+I intend to buid at least one more front-end application in this period to consolidete my knowledge. If you would like to follow my development in this wonderful area, feel free to follow my profile on GitHub 😉.
 
 ### Useful resources
 
-- [Example resource 1](https://www.example.com) - This helped me for XYZ reason. I really liked this pattern and will use it going forward.
-- [Example resource 2](https://www.example.com) - This is an amazing article which helped me finally understand XYZ. I'd recommend it to anyone still learning this concept.
-
-**Note: Delete this note and replace the list above with resources that helped you during the challenge. These could come in handy for anyone viewing your solution or for yourself when you look back on this project in the future.**
+- [Comitizen](https://github.com/commitizen/cz-cli) - This helped me in the standardize project commits.
 
 ## Author
 
@@ -135,4 +112,5 @@ Use this section to outline areas that you want to continue focusing on in futur
 
 ## Acknowledgments
 
-Special thanks to Frontend Mentor for the project ideia :D
+Special thanks to Frontend Mentor for the project ideia :D. <br>
+And sure a special thanks for you <3.
