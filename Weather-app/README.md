@@ -15,6 +15,10 @@
     <a href="https://devchallenges.io/challenges/mM1UIenRhK808W8qmLWv">
       Challenge
     </a>
+    <span> | </span>
+    <a href="https://trello.com/b/m5R41nxO/weather-app">
+      Trello
+    </a>
   </h3>
 </div>
 
