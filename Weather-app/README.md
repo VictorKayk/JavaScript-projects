@@ -8,7 +8,7 @@
 
 <div align="center">
   <h3>
-    <a href="https://https://victorkayk.github.io/Projetos-JavaScript/Weather-app/public/">
+    <a href="https://victorkayk.github.io/Projetos-JavaScript/Weather-app/public/">
       Solution
     </a>
     <span> | </span>
