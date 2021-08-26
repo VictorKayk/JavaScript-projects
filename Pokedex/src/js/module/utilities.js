@@ -37,7 +37,7 @@ function getPokemonLinkConteiner(linkToPokePage) {
 }
 
 function createPokemonLinkPage(id) {
-  const link = `\\src\\html\\pokemon.html?id=${id}`;
+  const link = `pokemon\\?id=${id}`;
   const linkConteiner = getPokemonLinkConteiner(link);
   return linkConteiner;
 }
