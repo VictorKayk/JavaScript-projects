@@ -1,0 +1,131 @@
+/* Colors variables */
+:root {
+  --main-text-color: #E7E7EB;
+  --main-background-color: #100E1D;
+  --alternative-background-color: #1E213A;
+}
+
+/* Util */
+span.icons {
+  color: var(--main-text-color);
+}
+
+h2, h3, p {
+  margin: 0;
+}
+
+/* Body Style */
+body {
+  background: var(--main-background-color);
+  color: var(--main-text-color);
+  font-family: 'Raleway', sans-serif;
+}
+
+/* Main */
+/* Today's Weather */
+main section#todays-weather {
+  background: var(--alternative-background-color);
+  position: relative;
+  z-index: 1;
+}
+
+/* Cloud background */
+main section#todays-weather::before {
+  content: '';
+  display: block;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  position:absolute;
+  background: url('../../assets/img/background/Cloud-background.png') 50% 40% no-repeat;
+  z-index: -1;
+  opacity: 0.1;
+}
+
+/* Today's header */
+main section#todays-weather > header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 18px 12px 0 12px;
+}
+
+/* Header buttons */
+main section#todays-weather > header button {
+  background: #6E707A;
+  color: var(--main-text-color);
+  outline: none;
+  border: none;
+  border-radius: 2px;
+
+  box-shadow: 1.5px 1.5px 3px var(--main-background-color);
+}
+
+main section#todays-weather > header button.seach {
+  height: 40px;
+  padding: 10px 18px;
+}
+
+main section#todays-weather > header button.my_location {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+/* Current information */
+main section#todays-weather > div#current {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  padding: 120px 0 100px 0;
+
+  text-align: center;
+}
+
+main section#todays-weather > div#current img {
+  width: 150px;
+}
+
+main section#todays-weather > div#current #current-temperature {
+  color: #A09FB1;
+  margin-top: 40px;
+}
+
+main section#todays-weather > div#current #current-temperature h2 {
+  font: 500 48px 'Raleway', sans-serif;
+}
+
+main section#todays-weather > div#current #current-temperature h3 {
+  font: 500 36px 'Raleway', sans-serif;
+  margin-top: 23px;
+}
+
+main section#todays-weather > div#current #current-temperature h2 > span.temperature {
+  font-size: 144px;
+  color: var(--main-text-color);
+}
+
+main section#todays-weather > div#current #current-infos {
+  display: flex;
+  flex-direction: column;
+  gap: 33px;
+
+  font: 500 18px 'Raleway', sans-serif;
+  color: #88869D;
+  margin-top: 48px;
+}
+
+main section#todays-weather > div#current #current-infos div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3px;
+}
+
+main section#todays-weather > div#current #current-infos div > span.icons {
+  color: #88869D;
+}
