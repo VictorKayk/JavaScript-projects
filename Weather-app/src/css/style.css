@@ -10,6 +10,12 @@ span.icons {
   color: var(--main-text-color);
 }
 
+button.button {
+  outline: none;
+  border: none;
+  background-color: transparent;
+}
+
 h2, h3, p {
   margin: 0;
 }
@@ -43,6 +49,29 @@ main section#todays-weather::before {
   opacity: 0.1;
 }
 
+/* Weather search */
+main section#todays-weather div#weather-nav {
+  background: var(--alternative-background-color);
+  overflow: hidden;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+
+  display: none;
+  visibility: hidden;
+  opacity: 0;
+}
+
+main section#todays-weather div#weather-nav.show {
+  display: block;
+  visibility: visible;
+  opacity: 1;
+}
+
+main section#todays-weather div#weather-nav > button {
+  color: #E7E7EB;
+}
+
 /* Today's header */
 main section#todays-weather > header {
   display: flex;
@@ -56,8 +85,6 @@ main section#todays-weather > header {
 main section#todays-weather > header button {
   background: #6E707A;
   color: var(--main-text-color);
-  outline: none;
-  border: none;
   border-radius: 2px;
 
   box-shadow: 1.5px 1.5px 3px var(--main-background-color);
