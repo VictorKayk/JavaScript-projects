@@ -26,9 +26,9 @@
 </head>
 <body>
   <main>
-    <section id="todays-weather">
 
-      <div id="weather-nav" class="show">
+    <section id="todays-weather">
+      <div id="weather-nav">
         <button class="material-icons button">close</button>
         <form action="">
           <div>
@@ -65,94 +65,99 @@
           </div>
         </div>
       </div>
-
     </section>
 
-    <section id="weather-forecast-5days">
-      <div>
-        <p class="day">Tomorow</p>
-        <img src="../assets/img/icons/LightCloud.png" alt="Weather img">
-        <div class="max-and-min-temp">
-          <p class="max-temp">15°c</p>
-          <p class="min-temp">12°c</pc>
-        </div>
+    <section>
+      <div id="convert-temperature">
+        <button id="celcius" class="button">°C</button>
+        <button id="fahr" class="button show">°F</button>
       </div>
-
-      <div>
-        <p class="day">Tomorow</p>
-        <img src="../assets/img/icons/LightCloud.png" alt="Weather img">
-        <div class="max-and-min-temp">
-          <p class="max-temp">15°c</p>
-          <p class="min-temp">12°c</pc>
-        </div>
-      </div>
-
-      <div>
-        <p class="day">Tomorow</p>
-        <img src="../assets/img/icons/LightCloud.png" alt="Weather img">
-        <div class="max-and-min-temp">
-          <p class="max-temp">15°c</p>
-          <p class="min-temp">12°c</pc>
-        </div>
-      </div>
-
-      <div>
-        <p class="day">Tomorow</p>
-        <img src="../assets/img/icons/LightCloud.png" alt="Weather img">
-        <div class="max-and-min-temp">
-          <p class="max-temp">15°c</p>
-          <p class="min-temp">12°c</pc>
-        </div>
-      </div>
-
-      <div>
-        <p class="day">Tomorow</p>
-        <img src="../assets/img/icons/LightCloud.png" alt="Weather img">
-        <div class="max-and-min-temp">
-          <p class="max-temp">15°c</p>
-          <p class="min-temp">12°c</pc>
-        </div>
-      </div>
-    </section>
-    
-    <section id="hightlights">
-      <h2 id="title">Toda's Hightlights</h2>
-      <div class="hightlights-conteiner">
-        <h3 class="title-highlight">Wind status</h3>
-        <p class="data-hightlights">7 <span>mph</span></p>
-        <div class="wind-position">
-          <span id="position" class="icons material-icons">navigation</span>
-          <p>WSW</p>
-        </div>
-      </div>
-      <div class="hightlights-conteiner">
-        <h3 class="title-highlight">Humidity</h3>
-        <p class="data-hightlights">84<span>%</span></p>
-        <div class="progress-bar">
-          <div class="percent">
-            <p>0</p>
-            <p>50</p>
-            <p>100</p>
+      
+      <div id="weather-forecast-5days">
+        <div>
+          <p class="day">Tomorow</p>
+          <img src="../assets/img/icons/LightCloud.png" alt="Weather img">
+          <div class="max-and-min-temp">
+            <p class="max-temp">15°c</p>
+            <p class="min-temp">12°c</pc>
           </div>
-          <progress id="progress" max="100" value="50"></progress>
-          <div class="percentage">
-            <p>%</p>
+        </div>
+        <div>
+          <p class="day">Tomorow</p>
+          <img src="../assets/img/icons/LightCloud.png" alt="Weather img">
+          <div class="max-and-min-temp">
+            <p class="max-temp">15°c</p>
+            <p class="min-temp">12°c</pc>
+          </div>
+        </div>
+        <div>
+          <p class="day">Tomorow</p>
+          <img src="../assets/img/icons/LightCloud.png" alt="Weather img">
+          <div class="max-and-min-temp">
+            <p class="max-temp">15°c</p>
+            <p class="min-temp">12°c</pc>
+          </div>
+        </div>
+        <div>
+          <p class="day">Tomorow</p>
+          <img src="../assets/img/icons/LightCloud.png" alt="Weather img">
+          <div class="max-and-min-temp">
+            <p class="max-temp">15°c</p>
+            <p class="min-temp">12°c</pc>
+          </div>
+        </div>
+        <div>
+          <p class="day">Tomorow</p>
+          <img src="../assets/img/icons/LightCloud.png" alt="Weather img">
+          <div class="max-and-min-temp">
+            <p class="max-temp">15°c</p>
+            <p class="min-temp">12°c</pc>
           </div>
         </div>
       </div>
-      <div class="hightlights-conteiner">
-        <h3 class="title-highlight">Visibility</h3>
-        <p class="data-hightlights simple-hightlights">6,4 <span>miles</span></p>
+      
+      <div id="hightlights">
+        <h2 id="title">Toda's Hightlights</h2>
+        <div>
+          <div class="hightlights-conteiner">
+            <h3 class="title-highlight">Wind status</h3>
+            <p class="data-hightlights">7 <span>mph</span></p>
+            <div class="wind-position">
+              <span id="position" class="icons material-icons">navigation</span>
+              <p>WSW</p>
+            </div>
+          </div>
+          <div class="hightlights-conteiner">
+            <h3 class="title-highlight">Humidity</h3>
+            <p class="data-hightlights">84<span>%</span></p>
+            <div class="progress-bar">
+              <div class="percent">
+                <p>0</p>
+                <p>50</p>
+                <p>100</p>
+              </div>
+              <progress id="progress" max="100" value="50"></progress>
+              <div class="percentage">
+                <p>%</p>
+              </div>
+            </div>
+          </div>
+          <div class="hightlights-conteiner">
+            <h3 class="title-highlight">Visibility</h3>
+            <p class="data-hightlights simple-hightlights">6,4 <span>miles</span></p>
+          </div>
+          <div class="hightlights-conteiner">
+            <h3 class="title-highlight">Air pressure</h3>
+            <p class="data-hightlights simple-hightlights">998 <span>mb</span></p>
+          </div>
+        </div>
       </div>
-      <div class="hightlights-conteiner">
-        <h3 class="title-highlight">Air pressure</h3>
-        <p class="data-hightlights simple-hightlights">998 <span>mb</span></p>
-      </div>
+
+      <footer id="footer">
+        <p>Create by <a href="https://github.com/VictorKayk" target="_blanck">@VictorKayk</a> - devChallenges.io</p>
+      </footer>
     </section>
   </main>
 
-  <footer id="footer">
-    <p>Create by <a href="https://github.com/VictorKayk" target="_blanck">@VictorKayk</a> - devChallenges.io</p>
-  </footer>
 </body>
 </html>

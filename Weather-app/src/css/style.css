@@ -14,10 +14,20 @@ button.button {
   outline: none;
   border: none;
   background-color: transparent;
+  cursor: pointer;
 }
 
 h2, h3, p {
   margin: 0;
+}
+
+/* HTML config */
+html {
+  scroll-behavior: smooth;
+}
+
+:target {
+  scroll-margin-top: .8em;
 }
 
 /* Body Style */
@@ -72,7 +82,7 @@ main section#todays-weather div#weather-nav.show {
 }
 
 main section#todays-weather div#weather-nav > button {
-  color: #E7E7EB;
+  color: var(--main-text-color);
   align-self: flex-end;
   padding: 18px 12px;
 
@@ -97,7 +107,7 @@ main section#todays-weather div#weather-nav > form > div {
   align-items: center;
   gap: 3px;
   
-  border: solid 1px #E7E7EB;
+  border: solid 1px var(--main-text-color);
   border-radius: 2px;
 
   box-shadow: 1px 1px 3px var(--main-background-color);
@@ -123,7 +133,7 @@ main section#todays-weather div#weather-nav > form > div > input::placeholder {
 
 main section#todays-weather div#weather-nav > form > button {
   background-color: #3C47E9;
-  color: #E7E7EB;
+  color: var(--main-text-color);
   font-weight: 600;
 
   border-radius: 2px;
@@ -159,6 +169,8 @@ main section#todays-weather div#weather-nav > ul li {
 
   padding: 22px 12px;
   margin: 0 12px;
+
+  cursor: pointer;
 }
 
 main section#todays-weather div#weather-nav > ul li:hover {
@@ -267,6 +279,64 @@ main section#todays-weather > div#current #current-infos div > span.icons {
   color: #88869D;
 }
 
+/* Convert temperature */
+#convert-temperature {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+
+  margin: 42px 54px 0px;
+}
+
+#convert-temperature button {
+  display: none;
+  visibility: hidden;
+  opacity: 0;
+}
+
+#convert-temperature button.show {
+  display: block;
+  visibility: visible;
+  opacity: 1;
+}
+
+#convert-temperature button#celcius {
+  font-size: 18px;
+  font-weight: 700;
+  text-align: center;
+  color: #110E3C;
+  
+  border-radius: 50%;
+  background: var(--main-text-color);
+  padding: 8px 9px;
+
+  transition: all 0.3s;
+}
+
+#convert-temperature button#celcius:hover {
+  color: var(--main-text-color);
+  background: #585676;
+}
+
+#convert-temperature button#fahr {
+  font-size: 18px;
+  font-weight: 700;
+  text-align: center;
+  color: var(--main-text-color);
+  
+  border-radius: 50px;
+  background: #585676;
+  background: #585676;
+  padding: 8px 10px;
+  
+  transition: all 0.3s;
+}
+
+#convert-temperature button#fahr:hover {
+  color: #110E3C;
+  background: var(--main-text-color);
+}
+
 /* Weather forecast for next 5 days */
 #weather-forecast-5days {
   display: flex;
@@ -317,11 +387,17 @@ main section#todays-weather > div#current #current-infos div > span.icons {
 
 /* Today's Hightlights */
 #hightlights {
+  padding: 0 24px 96px 24px;
+}
+
+#hightlights > div {
   display: flex;
   flex-direction: column;
   gap: 32px;
-  
-  padding: 0 24px 96px 24px;
+}
+
+#hightlights #title {
+  margin-bottom: 32px;
 }
 
 #hightlights .hightlights-conteiner {
@@ -490,6 +566,11 @@ footer#footer p a:hover {
     width: 180px;
   }
 
+  /* Convert temperature */
+  #convert-temperature {
+    margin: 42px 80px 0px;
+  }
+
   /* Weather forecast for next 5 days */
   #weather-forecast-5days {
     gap: 40px 32px;
@@ -556,5 +637,164 @@ footer#footer p a:hover {
   /* Page footer */
   footer#footer {
     font: 500 16px 'Montserrat', sans-serif;
+  }
+}
+
+/* Desktop */
+@media screen and (min-width: 1000px) {
+  /* Main */
+  main {
+    display: flex;
+  }
+  /* Weather search */
+  main section#todays-weather div#weather-nav {
+    position: absolute;
+  }
+
+  main section#todays-weather div#weather-nav > form {
+    width: 80%;
+    padding: 0px 12px;
+    gap: 12px;
+  }
+  
+  main section#todays-weather div#weather-nav > form > div {
+    width: 40%;
+  }
+  
+  main section#todays-weather div#weather-nav > form > div > input {
+    width: 95%;
+  }
+  
+  main section#todays-weather div#weather-nav > form > button {
+    margin-right: 0;
+  }
+  
+  /* Today's header */
+  main section#todays-weather > header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  
+    padding: 18px 12px 0 12px;
+  }
+  
+  /* Today's Weather */
+  main section#todays-weather {
+    min-width: 420px;
+  }
+
+  main section#todays-weather > header {
+    padding: 32px 36px 0 36px;
+  }
+  main section#todays-weather > header button.seach {
+    height: 40px;
+    padding: 10px 18px;
+  }
+  main section#todays-weather > header button.my_location {
+    width: 40px;
+    height: 40px;
+  }
+  main section#todays-weather > div#current img {
+    width: 200px;
+  }
+
+  /* Current information */
+  main section#todays-weather > div#current {
+    padding: 100px 0;
+  }
+
+  main section#todays-weather > div#current #current-temperature {
+    margin-top: 87px;
+  }
+
+  main section#todays-weather > div#current #current-temperature h3 {
+    margin-top: 32px;
+  }
+
+  main section#todays-weather > div#current #current-infos {
+    margin-top: 87px;
+  }
+
+  /* Convert temperature */
+  #convert-temperature {
+    margin: 42px 90px 0px;
+  }
+
+  /* Weather forecast for next 5 days */
+  #weather-forecast-5days {
+    display:flex;
+    gap: 26px;
+
+    padding: 66px 80px 72px 80px;
+  }
+  
+  #weather-forecast-5days div {
+    padding: 18px 0;
+  
+    min-width: 120px;
+  }
+
+  #weather-forecast-5days div p.day {
+    font-size: 18px;
+  
+    margin-bottom: 10px;
+  }
+
+  #weather-forecast-5days div img {
+    width: 70px;
+  }
+
+  #weather-forecast-5days div div.max-and-min-temp {
+    font-size: 16px;
+  }
+
+  /* Today's Hightlights */
+  #hightlights {
+    padding: 0 80px 96px 80px;
+  }
+
+  #hightlights > div {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 48px;
+  }
+
+  #hightlights .hightlights-conteiner {
+    width: 40%;
+    padding: 22px 0px 38px 0px;
+  }
+
+  #hightlights .hightlights-conteiner .title-highlight {
+    font-size: 1rem;
+  }
+
+  #hightlights .hightlights-conteiner .wind-position #position {
+    font-size: 1rem;
+  }
+  
+  #hightlights .hightlights-conteiner .wind-position p {
+    font-size: 14px;
+  }
+  
+  #hightlights .hightlights-conteiner .progress-bar .percent {
+    font-size: 12px;
+  
+    margin-top: 12px;
+  }
+  
+  #hightlights .hightlights-conteiner .progress-bar #progress {
+    height: 10px;
+    width: 160px;
+  }
+  
+  #hightlights .hightlights-conteiner .progress-bar .percentage {
+    font-size: 12px;
+  }
+  
+  /* Page footer */
+  footer#footer {
+    font: 500 14px 'Montserrat', sans-serif;
   }
 }
