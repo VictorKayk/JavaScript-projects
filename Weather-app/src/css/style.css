@@ -51,14 +51,14 @@ main section#todays-weather::before {
 
 /* Weather search */
 main section#todays-weather div#weather-nav {
-  background: var(--alternative-background-color);
-  position: fixed;
-  width: 100%;
-  height: 100%;
-
   display: none;
   visibility: hidden;
   opacity: 0;
+  position: fixed;
+  
+  width: 100%;
+  height: 100%;
+  background: var(--alternative-background-color);
 }
 
 main section#todays-weather div#weather-nav.show {
@@ -104,6 +104,7 @@ main section#todays-weather div#weather-nav > form > div {
 
   padding: 0 15px;
   height: 48px;
+  width: 55%;
 }
 
 main section#todays-weather div#weather-nav > form > div > input {
@@ -266,7 +267,7 @@ main section#todays-weather > div#current #current-infos div > span.icons {
   color: #88869D;
 }
 
-/* weather forecast for next 5 days */
+/* Weather forecast for next 5 days */
 #weather-forecast-5days {
   display: flex;
   flex-wrap: wrap;
@@ -357,7 +358,7 @@ main section#todays-weather > div#current #current-infos div > span.icons {
 #hightlights .hightlights-conteiner .wind-position {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 12px;
 
   margin-top: 32px;
 }
@@ -365,8 +366,8 @@ main section#todays-weather > div#current #current-infos div > span.icons {
 #hightlights .hightlights-conteiner .wind-position #position {
   background: #A09FB1;
   border-radius: 50%;
-  
-  padding: 2.5px;
+  font-size: 1rem;
+  padding: 5px;
 }
 
 #hightlights .hightlights-conteiner .wind-position p {
@@ -425,4 +426,135 @@ footer#footer p a:active, footer#footer p a:checked, footer#footer p a:visited {
 
 footer#footer p a:hover {
   color: #3C47E9;
+}
+
+
+
+/* Responsiveness */
+/* Tablet */
+@media screen and (min-width: 700px) {
+  /* Main */
+  /* Weather search */
+  main section#todays-weather div#weather-nav > button {
+    padding: 24px 20px;
+  }
+  
+  main section#todays-weather div#weather-nav > form {
+    padding: 0px 20px;  
+  }
+  
+  main section#todays-weather div#weather-nav > form > div {
+    height: 50px;
+    min-width: 75%;
+  }
+
+  main section#todays-weather div#weather-nav > form > div > input {
+    font: 600 1.2em;
+  }
+  
+  main section#todays-weather div#weather-nav > form > div > input::placeholder {
+    font: 600 1.2em;
+  }
+  
+  main section#todays-weather div#weather-nav > form > button {
+    margin-right: 40px;  
+    padding: 14px 19px;
+    height: 50px;
+  }
+
+  main section#todays-weather div#weather-nav > ul {
+    gap: 15px;
+    margin-top: 42px;
+  }
+  
+  main section#todays-weather div#weather-nav > ul li {
+    margin: 0 20px;
+
+    font-size: 1.2rem;
+  }
+
+  /* Today's Weather */
+  main section#todays-weather > header {
+    padding: 32px 24px 0 24px;
+  }
+  main section#todays-weather > header button.seach {
+    height: 45px;
+    padding: 12px 20px;
+    font-size: 18px;
+  }
+  main section#todays-weather > header button.my_location {
+    width: 45px;
+    height: 45px;
+  }
+  main section#todays-weather > div#current img {
+    width: 180px;
+  }
+
+  /* Weather forecast for next 5 days */
+  #weather-forecast-5days {
+    gap: 40px 32px;
+
+    padding: 80px 54px;
+  }
+  
+  #weather-forecast-5days div {
+    padding: 32px 0;
+  
+    min-width: 240px;
+  }
+
+  #weather-forecast-5days div p.day {
+    font-size: 20px;
+  
+    margin-bottom: 12px;
+  }
+
+  #weather-forecast-5days div img {
+    width: 100px;
+  }
+
+  #weather-forecast-5days div div.max-and-min-temp {
+    font-size: 18px;
+  }
+
+  /* Today's Hightlights */
+  #hightlights {
+    padding: 0 48px 96px 48px;
+  }
+
+  #hightlights .hightlights-conteiner {
+    padding: 32px 0 38px 0;
+  }
+
+  #hightlights .hightlights-conteiner .title-highlight {
+    font-size: 18px;
+  }
+
+  #hightlights .hightlights-conteiner .wind-position #position {
+    font-size: 1.2rem;
+  }
+  
+  #hightlights .hightlights-conteiner .wind-position p {
+    font-size: 1rem;
+  }
+  
+  #hightlights .hightlights-conteiner .progress-bar .percent {
+    font-size: 14px;
+  
+    margin-top: 20px;
+  }
+  
+  #hightlights .hightlights-conteiner .progress-bar #progress {
+    height: 16px;
+    width: 320px;
+  }
+  
+  #hightlights .hightlights-conteiner .progress-bar .percentage {
+    font-size: 14px;
+  }
+  
+  /* Page footer */
+  footer#footer {
+    font: 500 16px 'Montserrat', sans-serif;
+  }
 }
