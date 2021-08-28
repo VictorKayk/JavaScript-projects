@@ -400,3 +400,29 @@ main section#todays-weather > div#current #current-infos div > span.icons {
   font-size: 12px;
   font-weight: 700;
 }
+
+/* Page footer */
+footer#footer {
+  display:flex;
+  justify-content: center;
+  
+  margin-bottom: 24px;
+
+  font: 500 14px 'Montserrat', sans-serif;
+  color: #A09FB1;
+}
+
+footer#footer p a {
+  font-weight: 700;
+  color: #A09FB1;
+  
+  transition: all 0.2s;
+}
+
+footer#footer p a:active, footer#footer p a:checked, footer#footer p a:visited {
+  color: #A09FB1;
+}
+
+footer#footer p a:hover {
+  color: #3C47E9;
+}
