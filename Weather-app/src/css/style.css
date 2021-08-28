@@ -313,3 +313,90 @@ main section#todays-weather > div#current #current-infos div > span.icons {
 #weather-forecast-5days div div.max-and-min-temp p.min-temp {
   color: #A09FB1;
 }
+
+/* Today's Hightlights */
+#hightlights {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  
+  padding: 0 24px 96px 24px;
+}
+
+#hightlights .hightlights-conteiner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  background-color: var(--alternative-background-color);
+  
+  border-radius: 2px;
+  padding: 22px 0 28px 0;
+}
+
+#hightlights .hightlights-conteiner .title-highlight {
+  font-size: 1rem;
+  font-weight: 500;
+  margin-bottom: 6px;
+}
+
+#hightlights .hightlights-conteiner .data-hightlights {
+  font-size: 4rem;
+  font-weight: 700;
+}
+
+#hightlights .hightlights-conteiner .data-hightlights.simple-hightlights {
+  margin-bottom: 10px;
+}
+
+#hightlights .hightlights-conteiner .data-hightlights span {
+  font-size: 2rem;
+  font-weight: 500;
+}
+
+#hightlights .hightlights-conteiner .wind-position {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  margin-top: 32px;
+}
+
+#hightlights .hightlights-conteiner .wind-position #position {
+  background: #A09FB1;
+  border-radius: 50%;
+  
+  padding: 2.5px;
+}
+
+#hightlights .hightlights-conteiner .wind-position p {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+#hightlights .hightlights-conteiner .progress-bar .percent {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  color: #A09FB1;
+  font-size: 12px;
+  font-weight: 700;
+
+  margin-top: 12px;
+}
+
+#hightlights .hightlights-conteiner .progress-bar #progress {
+  height: 10px;
+  width: 230px;
+}
+
+#hightlights .hightlights-conteiner .progress-bar .percentage {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+
+  color: #A09FB1;
+  font-size: 12px;
+  font-weight: 700;
+}

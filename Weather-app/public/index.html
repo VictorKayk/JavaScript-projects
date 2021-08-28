@@ -24,9 +24,7 @@
   <link rel="stylesheet" href="../src/css/style.css">
 </head>
 <body>
-  <!-- <span class="icons material-icons">navigation</span>  -->
   <main>
-
     <section id="todays-weather">
 
       <div id="weather-nav">
@@ -115,11 +113,41 @@
         </div>
       </div>
     </section>
-    <!-- 
-
-    <section>
-
-    </section> -->
+    
+    <section id="hightlights">
+      <h2 id="title">Toda's Hightlights</h2>
+      <div class="hightlights-conteiner">
+        <h3 class="title-highlight">Wind status</h3>
+        <p class="data-hightlights">7 <span>mph</span></p>
+        <div class="wind-position">
+          <span id="position" class="icons material-icons">navigation</span>
+          <p>WSW</p>
+        </div>
+      </div>
+      <div class="hightlights-conteiner">
+        <h3 class="title-highlight">Humidity</h3>
+        <p class="data-hightlights">84<span>%</span></p>
+        <div class="progress-bar">
+          <div class="percent">
+            <p>0</p>
+            <p>50</p>
+            <p>100</p>
+          </div>
+          <progress id="progress" max="100" value="50"></progress>
+          <div class="percentage">
+            <p>%</p>
+          </div>
+        </div>
+      </div>
+      <div class="hightlights-conteiner">
+        <h3 class="title-highlight">Visibility</h3>
+        <p class="data-hightlights simple-hightlights">6,4 <span>miles</span></p>
+      </div>
+      <div class="hightlights-conteiner">
+        <h3 class="title-highlight">Air pressure</h3>
+        <p class="data-hightlights simple-hightlights">998 <span>mb</span></p>
+      </div>
+    </section>
 
   </main>
 </body>
