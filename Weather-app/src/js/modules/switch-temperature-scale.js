@@ -1,8 +1,8 @@
 // Conteiner
-const convertButton = document.body.querySelectorAll('#convert-temperature button');
+const convertButtons = document.body.querySelectorAll('#convert-temperature button');
 
 export function switchTemperatureScale() {
-  convertButton.forEach((el) => {
+  convertButtons.forEach((el) => {
     el.classList.toggle('show');
     if (el.classList.contains('show')) localStorage.temperatureScale = el.id;
   });
@@ -14,7 +14,7 @@ function defineTemperatureScale() {
 
 export function getTemperatureScale() {
   defineTemperatureScale();
-  convertButton.forEach((el) => {
+  convertButtons.forEach((el) => {
     el.classList.remove('show');
     if (localStorage.temperatureScale === el.id) el.classList.add('show');
   });

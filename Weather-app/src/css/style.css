@@ -200,18 +200,18 @@ main section#todays-weather > header button {
   box-shadow: 1.5px 1.5px 3px var(--main-background-color);
 }
 
-main section#todays-weather > header button.seach {
+main section#todays-weather > header button#search {
   height: 40px;
   padding: 10px 18px;
   
   transition: all 0.2s;
 }
 
-main section#todays-weather > header button.seach:hover {
+main section#todays-weather > header button#search:hover {
   background-color: #3C47E9;
 }
 
-main section#todays-weather > header button.my_location {
+main section#todays-weather > header button#my_location {
   width: 40px;
   height: 40px;
   border-radius: 50%;
@@ -219,7 +219,7 @@ main section#todays-weather > header button.my_location {
   transition: all 0.2s;
 }
 
-main section#todays-weather > header button.my_location:hover {
+main section#todays-weather > header button#my_location:hover {
   background-color: #3C47E9;
 }
 
@@ -553,12 +553,12 @@ footer#footer p a:hover {
   main section#todays-weather > header {
     padding: 32px 24px 0 24px;
   }
-  main section#todays-weather > header button.seach {
+  main section#todays-weather > header button#search {
     height: 45px;
     padding: 12px 20px;
     font-size: 18px;
   }
-  main section#todays-weather > header button.my_location {
+  main section#todays-weather > header button#my_location {
     width: 45px;
     height: 45px;
   }
@@ -686,11 +686,11 @@ footer#footer p a:hover {
   main section#todays-weather > header {
     padding: 32px 36px 0 36px;
   }
-  main section#todays-weather > header button.seach {
+  main section#todays-weather > header button#search {
     height: 40px;
     padding: 10px 18px;
   }
-  main section#todays-weather > header button.my_location {
+  main section#todays-weather > header button#my_location {
     width: 40px;
     height: 40px;
   }
