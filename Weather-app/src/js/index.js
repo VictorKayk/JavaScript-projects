@@ -23,8 +23,14 @@ const cityConteiner = document.body.querySelector('#city');
     return data.then((e) => e.json());
   }
 
+  function getAmericaDateFormat(date) {
+    const newDate = date.split('/');
+    return `${newDate[2]}/${newDate[1]}/${newDate[0]}`;
+  }
+
   async function getCurrentLocation() {
     const { results: { temp, description, date, city } } = await getRequest('https://api.hgbrasil.com/weather?format=json-cors&key=9fc46912&user_ip=remote');
+
     temperature.innerText = temp;
     weatherDescription.innerText = description;
 
@@ -32,8 +38,11 @@ const cityConteiner = document.body.querySelector('#city');
     weatherImg.setAttribute('src', weatherImgSrc.replace('description', description));
     weatherImg.setAttribute('alt', description);
 
-    console.log(date);
-    dateConteiner.innerText = new Date().toLocaleDateString('Brazil');
+    const newDate = getAmericaDateFormat(date);
+    dateConteiner.innerText = new Date(newDate).toLocaleDateString('pt-br', {
+      timeZone: 'America/Sao_Paulo',
+      dateStyle: 'medium',
+    });
 
     cityConteiner.innerText = city;
   }
