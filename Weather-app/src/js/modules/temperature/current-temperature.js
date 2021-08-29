@@ -1,4 +1,4 @@
-import { getRequest } from '../util/common.js';
+import { getRequest, getCurrentLocation } from '../util/common.js';
 
 // Conteiners
 const temperature = document.body.querySelector('#current-temperature .temperature');
@@ -27,8 +27,22 @@ function putDateOnConteiner(date) {
   dateConteiner.innerText = newDateFormated;
 }
 
-export default async function getCurrentLocation() {
-  const { results: { temp, description, date, city } } = await getRequest('https://api.hgbrasil.com/weather?format=json-cors&key=9fc46912&user_ip=remote');
+function getUrlToCurrentLocation(lat, lon) {
+  return `https://api.hgbrasil.com/weather?format=json-cors&key=9fc46912&lat=${lat}&lon=${lon}&user_ip=remote`;
+}
+
+async function getCurrentTemperatureInfos() {
+  getCurrentLocation();
+  const { lat, lon } = localStorage;
+
+  const url = getUrlToCurrentLocation(lat, lon);
+  const { results: { temp, description, date, city } } = await getRequest(url);
+
+  return { temp, description, date, city };
+}
+
+export default async function getCurrentTemperatureLocation() {
+  const { temp, description, date, city } = await getCurrentTemperatureInfos();
 
   temperature.innerText = temp;
   weatherDescription.innerText = description;

@@ -1,10 +1,10 @@
 import { switchTemperatureScale, getTemperatureScale } from './modules/switch-temperature-scale.js';
 import { openSearchScreen, closeTheSearchScreen } from './modules/search-screen.js';
-import getCurrentLocation from './modules/temperature/current-temperature.js';
+import getCurrentTemperatureLocation from './modules/temperature/current-temperature.js';
 
 (function () {
   getTemperatureScale();
-  getCurrentLocation();
+  getCurrentTemperatureLocation();
 
   window.addEventListener('click', (e) => {
     const { target } = e;
@@ -12,6 +12,6 @@ import getCurrentLocation from './modules/temperature/current-temperature.js';
     if (target.parentNode.id === 'convert-temperature') switchTemperatureScale();
     else if (target.id === 'search') openSearchScreen();
     else if (target.id === 'close') closeTheSearchScreen();
-    else if (target.id === 'my_location') getCurrentLocation();
+    else if (target.id === 'my_location') getCurrentTemperatureLocation();
   });
 }());
