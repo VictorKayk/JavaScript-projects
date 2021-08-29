@@ -16,6 +16,10 @@
       Challenge
     </a>
     <span> | </span>
+    <a href="https://www.figma.com/file/5X3Ao3gEqZPqqKctP7riDF/weather-app?node-id=0%3A1">
+      Figma
+    </a>
+    <span> | </span>
     <a href="https://trello.com/b/m5R41nxO/weather-app">
       Trello
     </a>

@@ -318,7 +318,7 @@ main section#todays-weather > div#current #current-infos div > span.icons {
   background: #585676;
 }
 
-#convert-temperature button#fahr {
+#convert-temperature button#fahrenheit {
   font-size: 18px;
   font-weight: 700;
   text-align: center;
@@ -332,7 +332,7 @@ main section#todays-weather > div#current #current-infos div > span.icons {
   transition: all 0.3s;
 }
 
-#convert-temperature button#fahr:hover {
+#convert-temperature button#fahrenheit:hover {
   color: #110E3C;
   background: var(--main-text-color);
 }
