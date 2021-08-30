@@ -10,3 +10,12 @@ export function getCurrentLocation() {
   }
   navigator.geolocation.getCurrentPosition(geoSuccess);
 }
+
+export function convertTemperature(temp) {
+  return localStorage.temperatureScale === 'fahrenheit' ? (temp * 1.8) + 32 : temp;
+}
+
+export function getAmericaDateFormat(date) {
+  const newDate = date.split('/');
+  return `${newDate[2]}/${newDate[1]}/${newDate[0]}`;
+}

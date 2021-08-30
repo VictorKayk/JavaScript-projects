@@ -3,10 +3,6 @@ const convertButtons = document.body.querySelectorAll('#convert-temperature butt
 const scales = document.body.querySelectorAll('.scale');
 const temperatures = document.body.querySelectorAll('.temp');
 
-export function convertTemperature(temp) {
-  return localStorage.temperatureScale === 'fahrenheit' ? (temp * 1.8) + 32 : temp;
-}
-
 function convertAllTemperature() {
   temperatures.forEach((el) => {
     if (localStorage.temperatureScale === 'fahrenheit') el.innerText = (Number(el.innerText) * 1.8) + 32;
