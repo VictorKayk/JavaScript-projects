@@ -1,4 +1,4 @@
-import { putWeatherImgOnConteiner } from '../util/common.js';
+import { putWeatherImgOnConteiner, convertTemperature } from '../util/common.js';
 
 // Conteiners
 const days = document.body.querySelectorAll('.day');
@@ -23,11 +23,11 @@ function putDescription(index) {
 }
 
 function putMaxTemp(index) {
-  return (max) => maxTemps[index].innerText = max;
+  return (max) => maxTemps[index].innerText = convertTemperature(max);
 }
 
 function putMinTemp(index) {
-  return (min) => minTemps[index].innerText = min;
+  return (min) => minTemps[index].innerText = convertTemperature(min);
 }
 
 export default function putWeatherForecast({ forecast }) {
