@@ -1,4 +1,4 @@
-import { convertTemperature, getAmericaDateFormat } from '../util/common.js';
+import { convertTemperature, getAmericaDateFormat, putWeatherImgOnConteiner } from '../util/common.js';
 
 // Conteiners
 const temperature = document.body.querySelector('#current-temperature .temperature');
@@ -6,12 +6,6 @@ const weatherDescription = document.body.querySelector('#current-temperature .we
 const weatherImg = document.body.querySelector('#current > img');
 const dateConteiner = document.body.querySelector('#date');
 const cityConteiner = document.body.querySelector('#city');
-
-export function putWeatherImgOnConteiner(description) {
-  const weatherImgSrc = '../assets/img/icons/description.png';
-  weatherImg.setAttribute('src', weatherImgSrc.replace('description', description));
-  weatherImg.setAttribute('alt', description);
-}
 
 export function putDateOnConteiner(date) {
   const newDate = getAmericaDateFormat(date);
@@ -29,6 +23,7 @@ export function getTemperature(temp) {
 
 export function putDescription(desc) {
   weatherDescription.innerText = desc;
+  putWeatherImgOnConteiner(weatherImg)(desc);
 }
 
 export function putCityOnConteiner(city) {

@@ -19,3 +19,11 @@ export function getAmericaDateFormat(date) {
   const newDate = date.split('/');
   return `${newDate[2]}/${newDate[1]}/${newDate[0]}`;
 }
+
+export function putWeatherImgOnConteiner(conteiner) {
+  const weatherImgSrc = '../assets/img/icons/description.png';
+  return (desc) => {
+    conteiner.setAttribute('src', weatherImgSrc.replace('description', desc));
+    conteiner.setAttribute('alt', desc);
+  };
+}
