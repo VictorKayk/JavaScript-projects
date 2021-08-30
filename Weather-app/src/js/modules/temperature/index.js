@@ -1,6 +1,7 @@
 import { getRequest, getCurrentLocation } from '../util/common.js';
 import { getTemperature, putDescription, putCityOnConteiner, putDateOnConteiner } from './current-temperature.js';
 import putWeatherForecast from './weather-forecast-5days.js';
+import putHighlights from './highlights.js';
 
 function getUrlToCurrentLocation() {
   const { lat, lon } = localStorage;
@@ -26,4 +27,5 @@ export async function initialConfig() {
   const { results } = await getRequest(url);
   putCurrentTemperature(results);
   putWeatherForecast(results);
+  putHighlights(results);
 }

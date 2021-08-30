@@ -427,7 +427,7 @@ main section#todays-weather > div#current #current-infos div > span.icons {
   margin-bottom: 10px;
 }
 
-#hightlights .hightlights-conteiner .data-hightlights span {
+#hightlights .hightlights-conteiner .data-hightlights span.measure {
   font-size: 2rem;
   font-weight: 500;
 }

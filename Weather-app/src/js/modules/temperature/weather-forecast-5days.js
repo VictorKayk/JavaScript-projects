@@ -23,11 +23,15 @@ function putDescription(index) {
 }
 
 function putMaxTemp(index) {
-  return (max) => maxTemps[index].innerText = convertTemperature(max);
+  return (max) => {
+    maxTemps[index].innerText = `${convertTemperature(max)}`;
+  };
 }
 
 function putMinTemp(index) {
-  return (min) => minTemps[index].innerText = convertTemperature(min);
+  return (min) => {
+    minTemps[index].innerText = `${convertTemperature(min)}`;
+  };
 }
 
 export default function putWeatherForecast({ forecast }) {

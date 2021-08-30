@@ -13,19 +13,19 @@ export function putDateOnConteiner(date) {
     timeZone: 'America/Sao_Paulo',
     dateStyle: 'medium',
   });
-  dateConteiner.innerText = newDateFormated;
+  dateConteiner.innerText = `${newDateFormated}`;
 }
 
 export function getTemperature(temp) {
   const newTemp = convertTemperature(temp);
-  temperature.innerText = newTemp;
+  temperature.innerText = `${newTemp}`;
 }
 
 export function putDescription(desc) {
-  weatherDescription.innerText = desc;
+  weatherDescription.innerText = `${desc}`;
   putWeatherImgOnConteiner(weatherImg)(desc);
 }
 
 export function putCityOnConteiner(city) {
-  cityConteiner.innerText = city;
+  cityConteiner.innerText = `${city}`;
 }
