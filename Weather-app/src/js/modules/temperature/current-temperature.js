@@ -1,3 +1,4 @@
+import { convertTemperature } from '../switch-temperature-scale.js';
 import { getRequest, getCurrentLocation } from '../util/common.js';
 
 // Conteiners
@@ -41,10 +42,15 @@ async function getCurrentTemperatureInfos() {
   return { temp, description, date, city };
 }
 
+function getTemperature(temp) {
+  const newTemp = convertTemperature(temp);
+  temperature.innerText = newTemp;
+}
+
 export default async function getCurrentTemperatureLocation() {
   const { temp, description, date, city } = await getCurrentTemperatureInfos();
 
-  temperature.innerText = temp;
+  getTemperature(temp);
   weatherDescription.innerText = description;
   cityConteiner.innerText = city;
   putWeatherImgOnConteiner(description);
