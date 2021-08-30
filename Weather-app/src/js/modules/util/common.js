@@ -5,14 +5,17 @@ export function getRequest(url) {
 
 export function getCurrentLocation() {
   function geoSuccess(position) {
-    localStorage.lat = position.coords.latitude;
-    localStorage.lon = position.coords.longitude;
+    const user = JSON.parse(localStorage.user);
+    user.lat = position.coords.latitude;
+    user.lon = position.coords.longitude;
+    localStorage.user = JSON.stringify(user);
   }
   navigator.geolocation.getCurrentPosition(geoSuccess);
 }
 
 export function convertTemperature(temp) {
-  return localStorage.temperatureScale === 'fahrenheit' ? (temp * 1.8) + 32 : temp;
+  const user = JSON.parse(localStorage.user);
+  return user.temperatureScale === 'fahrenheit' ? (temp * 1.8) + 32 : temp;
 }
 
 export function getAmericaDateFormat(date) {
@@ -23,7 +26,8 @@ export function getAmericaDateFormat(date) {
 export function putWeatherImgOnConteiner(conteiner) {
   const weatherImgSrc = '../assets/img/icons/description.png';
   return (desc) => {
-    conteiner.setAttribute('src', weatherImgSrc.replace('description', desc));
+    const newDesc = desc.toLowerCase().replace(' ', '_');
+    conteiner.setAttribute('src', weatherImgSrc.replace('description', newDesc));
     conteiner.setAttribute('alt', desc);
   };
 }
