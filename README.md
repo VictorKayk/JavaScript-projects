@@ -5,13 +5,19 @@ Esse repositorio tem o intuito de armazenar alguns de meus projetos em JavaScrip
 - [Jogo pedra, papel e tesoura.](https://victorkayk.github.io/Projetos-JavaScript/Jokenpo/src)
   - Um pequeno e simples jogo de pedra, papel e tesoura que fiz para fixar meus conhecimentos em JavaScript.
 - [Pokedex.](https://victorkayk.github.io/Projetos-JavaScript/Pokedex/public)
-  - Uma pokedex simples, feita ultilizando a pokeapi. Baseada neste [projeto](https://www.youtube.com/watch?v=Uptu3NrBFBM).
-- [Aplicativo de lista Todo.](https://victorkayk.github.io/Projetos-JavaScript/Todo-app/public/)
+  - Uma pokedex simples, feita ultilizando a [pokeapi](https://pokeapi.co/). Baseada neste [projeto](https://www.youtube.com/watch?v=Uptu3NrBFBM).
+- [Lista Todo.](https://victorkayk.github.io/Projetos-JavaScript/Todo-app/public/)
   - Um projeto todo simples, que permite a criação de múltiplas listas todo, para organizar suas tarefas. O projeto foi feita pra resolver este [desafio](https://www.frontendmentor.io/challenges/todo-app-Su1_KokOW).
+ - [Previsão do tempo.](https://victorkayk.github.io/Projetos-JavaScript/Weather-app/public/)
+    -  Ultilizando a [api](https://hgbrasil.com/status/weather), realizei a criação de uma aplicação de previsão do tempo simples. O projeto foi feita pra resolver este [desafio](https://devchallenges.io/challenges/mM1UIenRhK808W8qmLWv). <br>
+       **Funcionalidades da aplicação:**
+       - Ultiliza a api do Google, para conseguir a localização do usuario.
+       - Mostra a previsão de temperatura do dia atual e dos 5 de seguinte.
+       - Permite que o usuario solicite a previsão do temperatura, para o seu atual local novamente.
 
 ## 💡 Ideias para projetos:
 - Mural Kanban.
-- Aplicativo de clima.
+- ~~Aplicativo de clima.~~
 
 ## 📷 Minhas redes sociais: 
 <p align="left">
