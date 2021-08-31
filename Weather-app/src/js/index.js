@@ -1,6 +1,6 @@
 import { switchTemperatureScale, getTemperatureScale } from './modules/switch-temperature-scale.js';
 import { openSearchScreen, closeTheSearchScreen } from './modules/search-screen.js';
-import { initialConfig, currentTemperature } from './modules/temperature/index.js';
+import { initialConfig, search, getCityOfHistory } from './modules/temperature/index.js';
 
 (function () {
   initialConfig();
@@ -12,9 +12,11 @@ import { initialConfig, currentTemperature } from './modules/temperature/index.j
       const { target } = e;
 
       if (target.parentNode.id === 'convert-temperature') switchTemperatureScale();
-      else if (target.id === 'search') openSearchScreen();
+      else if (target.id === 'search-city') openSearchScreen();
       else if (target.id === 'close') closeTheSearchScreen();
-      else if (target.id === 'my_location') currentTemperature();
+      else if (target.id === 'my_location') initialConfig();
+      else if (target.id === 'search') search(e);
+      else if (target.classList.contains('city-conteiner')) getCityOfHistory(target);
     });
   });
 }());

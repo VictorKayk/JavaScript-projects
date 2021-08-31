@@ -32,19 +32,30 @@
         <button id="close" class="material-icons button">close</button>
         <form action="">
           <div>
-            <span class="material-icons">search</span><input type="text" name="" id="" placeholder="pesquisar cidade">
+            <span class="material-icons">search</span><input type="search" id="search-input" placeholder="pesquisar cidade" list="city-list">
+            <datalist id="city-list">
+              <option value="São Paulo"></option>
+              <option value="Rio De Janeiro"></option>
+              <option value="Salvador" data-js=""></option>
+              <option value="Brasilia" data-js=""></option>
+            </datalist>
           </div>
-          <button type="submit" class="button">Pesquisar</button>
+          <button type="submit" id="search" class="button">Pesquisar</button>
         </form>
-        <ul>
-          <li>cidade 1 <span class="material-icons">chevron_right</span></li>
-          <li>cidade 2 <span class="material-icons">chevron_right</span></li>
-          <li>cidade 3 <span class="material-icons">chevron_right</span></li>
+        <ul id="history">
+          <!-- <li><span class="city">Current Location</span> <span class="material-icons">chevron_right</span></li> 
+              data-js="455827"
+              data-js="455825"-->
+
+          <li class="city-conteiner"><span class="city">São Paulo</span><span class="material-icons">chevron_right</span></li>
+          <li class="city-conteiner"><span class="city">Rio De Janeiro</span><span class="material-icons">chevron_right</span></li>
+          <li class="city-conteiner"><span class="city">Salvador</span><span class="material-icons">chevron_right</span></li>
+          <li class="city-conteiner"><span class="city">Brasilia</span><span class="material-icons">chevron_right</span></li>
         </ul>
       </div>
 
       <header>
-        <button id="search" class="button">Pesquisar por cidade</button>
+        <button id="search-city" class="button">Pesquisar por cidade</button>
         <button id="my_location" class="icons material-icons button">my_location</button>
       </header>
 

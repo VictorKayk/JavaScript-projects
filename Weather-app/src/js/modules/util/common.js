@@ -1,3 +1,6 @@
+import { getTemperature, putDescription, putCityOnConteiner, putDateOnConteiner } from '../temperature/current-temperature.js';
+import { putCityOnHistory } from '../temperature/history.js';
+
 export function getRequest(url) {
   const data = fetch(url);
   return data.then((e) => e.json());
@@ -30,4 +33,12 @@ export function putWeatherImgOnConteiner(conteiner) {
     conteiner.setAttribute('src', weatherImgSrc.replace('description', newDesc));
     conteiner.setAttribute('alt', desc);
   };
+}
+
+export async function putCurrentTemperature({ temp, description, date, city }) {
+  getTemperature(temp);
+  putDescription(description);
+  putCityOnConteiner(city);
+  putCityOnHistory(city);
+  putDateOnConteiner(date);
 }
