@@ -15,9 +15,8 @@ Esse repositorio tem o intuito de armazenar alguns de meus projetos em JavaScrip
        - Mostra a previsão de temperatura do dia atual e dos 5 de seguinte.
        - Permite que o usuario solicite a previsão do temperatura, para o seu atual local novamente.
 
-## 💡 Ideias para projetos:
+## 💡 Ideias para próximos projetos:
 - Mural Kanban.
-- ~~Aplicativo de clima.~~
 
 ## 📷 Minhas redes sociais: 
 <p align="left">
