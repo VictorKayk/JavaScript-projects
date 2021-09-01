@@ -109,8 +109,16 @@ I intend to buid at least one more front-end application in this period to conso
 
 - GitHub - [@VictorKayk](https://github.com/VictorKayk)
 - Frontend Mentor - [@VictorKayk](https://www.frontendmentor.io/profile/VictorKayk)
+- <p align="left">
+  <a href="https://www.instagram.com/victorkayk77/" alt="Instagram">
+  <img src="https://img.shields.io/badge/-Instagram-1C1C1C?style=for-the-badge&logo=Instagram&logoColor=00FFFF&link=https://www.instagram.com/victorkayk77/"/>
+  </a>
+  <a href="https://www.linkedin.com/in/victorkayk/" alt="Linkedin">
+    <img src="https://img.shields.io/badge/-Linkedin-1C1C1C?style=for-the-badge&logo=Linkedin&logoColor=00FFFF&link=https://www.linkedin.com/in/victorkayk/"/>
+  </a>
+</p>
 
 ## Acknowledgments
 
 Special thanks to Frontend Mentor for the project ideia :D. <br>
-And sure a special thanks for you <3.
+And sure a special thanks for you.
