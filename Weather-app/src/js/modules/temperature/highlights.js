@@ -1,4 +1,4 @@
-import { getNewTemp } from '../util/common.js';
+import { getNewTemp, convertTemperature } from '../util/common.js';
 
 // Conteiners
 const windSpeed = document.body.querySelector('#wind-speed');
@@ -22,8 +22,9 @@ function putHumidity(humidity) {
 
 function putFeelsLike(feelsLike) {
   const newFeels = getNewTemp(feelsLike);
-  feelsLikeConteiner.innerText = `${newFeels}`;
-  feelsLikeMeasrue.innerText = '°c';
+  const newTemp = convertTemperature(newFeels);
+  feelsLikeConteiner.innerText = `${newTemp}`;
+  // feelsLikeMeasrue.innerText = '°c';
 }
 
 function putvisibility(visibility) {
@@ -31,8 +32,8 @@ function putvisibility(visibility) {
   visibilityMeasrue.innerText = 'Km/h';
 }
 
-export default function putHighlights({ wind: { speed }, main: { humidity, feels_like }, visibility }) {
-  putWindSpeed(speed);
+export default function putHighlights({ wind_speed, humidity, feels_like, visibility }) {
+  putWindSpeed(wind_speed);
   putHumidity(humidity);
   putFeelsLike(feels_like);
   putvisibility(visibility);

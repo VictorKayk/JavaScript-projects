@@ -10,6 +10,11 @@ span.icons {
   color: var(--main-text-color);
 }
 
+span.scale {
+  color: #A09FB1;
+  font-size: 36px;
+}
+
 button.button {
   outline: none;
   border: none;
@@ -382,6 +387,10 @@ main section#todays-weather > div#current #current-infos div > span.icons {
   margin-top: 5px;
 }
 
+#weather-forecast-5days div div.max-and-min-temp span.scale {
+  font-size: 1rem;
+}
+
 #weather-forecast-5days div div.max-and-min-temp p.min-temp {
   color: #A09FB1;
 }
@@ -595,7 +604,7 @@ footer#footer p a:hover {
     width: 100px;
   }
 
-  #weather-forecast-5days div div.max-and-min-temp {
+  #weather-forecast-5days div div.max-and-min-temp, #weather-forecast-5days div div.max-and-min-temp span.scale {
     font-size: 18px;
 
     margin-top: 10px;

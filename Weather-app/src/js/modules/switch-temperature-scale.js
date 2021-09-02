@@ -6,8 +6,8 @@ const temperatures = document.body.querySelectorAll('.temp');
 function convertAllTemperature() {
   const user = JSON.parse(localStorage.user);
   temperatures.forEach((el) => {
-    if (user.temperatureScale === 'fahrenheit') el.innerText = (Number(el.innerText) * 1.8) + 32;
-    else el.innerText = Math.round((Number(el.innerText) - 32) / 1.8);
+    if (user.temperatureScale === 'fahrenheit') el.innerText = ((Number(el.innerText) * 1.8) + 32).toFixed(1);
+    else el.innerText = ((Number(el.innerText) - 32) / 1.8).toFixed(1);
   });
 }
 

@@ -9,29 +9,29 @@ const searchInput = document.body.querySelector('#search-input');
 function getUrlToCurrentLocation() {
   const user = JSON.parse(localStorage.user);
   const { lat, lon } = user;
-  return `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&lang=pt_br&appid=8a1b6c8a637eee68a8dc5da6a90c3bcd`;
+  return `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&lang=pt_br&exclude=hourly,minutely,alerts&appid=8a1b6c8a637eee68a8dc5da6a90c3bcd`;
 }
 
 export async function currentTemperature() {
   const url = getUrlToCurrentLocation();
-  const { results } = await getRequest(url);
-  putCurrentTemperature(results);
+  const { current } = await getRequest(url);
+  putCurrentTemperature(current);
 }
 
 function getUserInfo() {
-  localStorage.user = localStorage.user || JSON.stringify({ history: { } });
+  localStorage.user = localStorage.user || JSON.stringify({ });
 }
 
 export async function initialConfig() {
   getUserInfo();
   getCurrentLocation();
   // getHistoryOfCities();
-  const url = getUrlToCurrentLocation();
-  const results = await getRequest(url);
-  console.log(results);
-  putCurrentTemperature(results);
-  //   putWeatherForecast(results);
-  putHighlights(results);
+  const currentUrl = getUrlToCurrentLocation();
+  const { current, daily } = await getRequest(currentUrl);
+  console.log(current, daily);
+  putCurrentTemperature(current);
+  putHighlights(current);
+  putWeatherForecast(daily);
 }
 
 export function search(e) {

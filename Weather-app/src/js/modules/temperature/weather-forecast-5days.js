@@ -1,4 +1,4 @@
-import { putWeatherImgOnConteiner, convertTemperature } from '../util/common.js';
+import { putWeatherImgOnConteiner, convertTemperature, getNewTemp } from '../util/common.js';
 
 // Conteiners
 const days = document.body.querySelectorAll('.day');
@@ -11,34 +11,38 @@ function getNext5Days(forecast) {
 }
 
 function putDate(index) {
-  return (weekday, date) => {
-    if (index !== 0) days[index].innerText = `${weekday}, ${date}.`;
-  };
+  const newDateFormated = new Date(Date.now() + (index + 1) * 86400000).toLocaleDateString('pt-br', {
+    timeZone: 'America/Sao_Paulo',
+    dateStyle: 'medium',
+  });
+  if (index !== 0) days[index].innerText = `${newDateFormated}`;
 }
 
 function putDescription(index) {
   return (desc) => {
-    putWeatherImgOnConteiner(weatherImgs[index])(desc);
+    putWeatherImgOnConteiner(weatherImgs[index])(desc[0].main);
   };
 }
 
 function putMaxTemp(index) {
   return (max) => {
-    maxTemps[index].innerText = `${convertTemperature(max)}`;
+    const newTemp = getNewTemp(max);
+    maxTemps[index].innerText = `${convertTemperature(newTemp)}`;
   };
 }
 
 function putMinTemp(index) {
   return (min) => {
-    minTemps[index].innerText = `${convertTemperature(min)}`;
+    const newTemp = getNewTemp(min);
+    minTemps[index].innerText = `${convertTemperature(newTemp)}`;
   };
 }
 
-export default function putWeatherForecast({ forecast }) {
-  const next5Days = getNext5Days(forecast);
-  next5Days.forEach(({ date, weekday, max, min, description }, index) => {
-    putDate(index)(weekday, date);
-    putDescription(index)(description);
+export default function putWeatherForecast(list) {
+  const next5Days = getNext5Days(list);
+  next5Days.forEach(({ temp: { max, min }, weather }, index) => {
+    putDate(index);
+    putDescription(index)(weather);
     putMaxTemp(index)(max);
     putMinTemp(index)(min);
   });

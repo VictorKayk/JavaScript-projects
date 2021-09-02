@@ -1,5 +1,4 @@
 import { getTemperature, putDescription, putCityOnConteiner, putDateOnConteiner } from '../temperature/current-temperature.js';
-import { putCityOnHistory } from '../temperature/history.js';
 
 export function getRequest(url) {
   const data = fetch(url);
@@ -18,7 +17,8 @@ export function getCurrentLocation() {
 
 export function convertTemperature(temp) {
   const user = JSON.parse(localStorage.user);
-  return user.temperatureScale === 'fahrenheit' ? (temp * 1.8) + 32 : temp;
+  const fahrenheit = (temp * 1.8) + 32;
+  return user.temperatureScale === 'fahrenheit' ? fahrenheit.toFixed(1) : temp.toFixed(1);
 }
 
 export function getAmericaDateFormat(date) {
@@ -42,12 +42,11 @@ export function getNewTemp(temp) {
   return Math.trunc(newTemp) / 10;
 }
 
-export async function putCurrentTemperature({ main: { temp }, name, weather }) {
+export async function putCurrentTemperature({ temp, name, weather }) {
   const newTemp = getNewTemp(temp);
   getTemperature(newTemp);
   putDescription(weather[0].description);
   putCityOnConteiner(name);
-  putCityOnHistory(name);
   putWeatherImgOnConteiner(weatherImg)(weather[0].main);
   putDateOnConteiner();
 }
