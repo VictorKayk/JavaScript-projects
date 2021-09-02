@@ -1,59 +1,21 @@
-import { getRequest, putCurrentTemperature } from '../util/common.js';
+import { getRequest, putCurrentTemperature, getOneCallUrl } from '../util/common.js';
 import putWeatherForecast from './weather-forecast-5days.js';
 import putHighlights from './highlights.js';
+import { putCity } from './current-temperature.js';
 import { closeTheSearchScreen } from '../search-screen.js';
 
-// Conteiner
-const history = document.querySelector('#history');
-
-export function putCityOnHistory(city) {
-  const user = JSON.parse(localStorage.user);
-  user.history[city] = city;
-  localStorage.user = JSON.stringify(user);
-}
-
-function createCityConteiner(city) {
-  const cityConteiner = document.createElement('span');
-  cityConteiner.classList.add('city');
-  cityConteiner.innerText = city;
-  return cityConteiner;
-}
-
-function createArrowSymbol() {
-  const arrowSymbol = document.createElement('span');
-  arrowSymbol.classList.add('material-icons');
-  arrowSymbol.innerText = 'chevron_right';
-  return arrowSymbol;
-}
-
-function createCityElement(city) {
-  const li = document.createElement('li');
-  li.classList.add('city-conteiner');
-  const cityConteiner = createCityConteiner(city);
-  const arrowSymbol = createArrowSymbol();
-  li.appendChild(arrowSymbol);
-  li.appendChild(cityConteiner);
-  return li;
-}
-
-export function getHistoryOfCities() {
-  const user = JSON.parse(localStorage.user);
-  const cities = Object.keys(user.history);
-  cities.forEach((city) => {
-    const cityElement = createCityElement(city);
-    history.appendChild(cityElement);
-  });
-}
-
 function getUrlOfCity(city) {
-  return `https://api.hgbrasil.com/weather?format=json-cors&key=9fc46912&city_name=${city}`;
+  return `https://api.openweathermap.org/data/2.5/weather?q=${city}&lang=pt_br&appid=8a1b6c8a637eee68a8dc5da6a90c3bcd`;
 }
 
-export async function getCityInfosOfAHistory(city) {
+export default async function getCityInfosOfAHistory(city) {
   const url = getUrlOfCity(city);
-  const { results } = await getRequest(url);
-  putCurrentTemperature(results);
-  putWeatherForecast(results);
-  putHighlights(results);
   closeTheSearchScreen();
+  const { coord: { lat, lon }, name } = await getRequest(url);
+  const newUrl = getOneCallUrl(lat, lon);
+  const { current, daily } = await getRequest(newUrl);
+  putCurrentTemperature(current);
+  putHighlights(current);
+  putWeatherForecast(daily);
+  putCity(name);
 }

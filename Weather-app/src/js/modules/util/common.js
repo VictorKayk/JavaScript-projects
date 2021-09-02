@@ -1,4 +1,4 @@
-import { getTemperature, putDescription, putCityOnConteiner, putDateOnConteiner } from '../temperature/current-temperature.js';
+import { getTemperature, putDescription, putDateOnConteiner } from '../temperature/current-temperature.js';
 
 export function getRequest(url) {
   const data = fetch(url);
@@ -42,11 +42,15 @@ export function getNewTemp(temp) {
   return Math.trunc(newTemp) / 10;
 }
 
-export async function putCurrentTemperature({ temp, name, weather }) {
+export async function putCurrentTemperature({ temp, weather }) {
   const newTemp = getNewTemp(temp);
   getTemperature(newTemp);
   putDescription(weather[0].description);
-  putCityOnConteiner(name);
   putWeatherImgOnConteiner(weatherImg)(weather[0].main);
   putDateOnConteiner();
+}
+
+export function getOneCallUrl(lat, lon) {
+  if (lat && lon) return `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&lang=pt_br&exclude=hourly,minutely,alerts&appid=8a1b6c8a637eee68a8dc5da6a90c3bcd`;
+  return 'https://api.openweathermap.org/data/2.5/onecall?lat=-14.2082651&lon=-41.6690871&lang=pt_br&exclude=hourly,minutely,alerts&appid=8a1b6c8a637eee68a8dc5da6a90c3bcd';
 }
