@@ -7,9 +7,8 @@ const weatherImg = document.body.querySelector('#current > img');
 const dateConteiner = document.body.querySelector('#date');
 const cityConteiner = document.body.querySelector('#city');
 
-export function putDateOnConteiner(date) {
-  const newDate = getAmericaDateFormat(date);
-  const newDateFormated = new Date(newDate).toLocaleDateString('pt-br', {
+export function putDateOnConteiner() {
+  const newDateFormated = new Date().toLocaleDateString('pt-br', {
     timeZone: 'America/Sao_Paulo',
     dateStyle: 'medium',
   });
@@ -23,7 +22,7 @@ export function getTemperature(temp) {
 
 export function putDescription(desc) {
   weatherDescription.innerText = `${desc}`;
-  putWeatherImgOnConteiner(weatherImg)(desc);
+  // putWeatherImgOnConteiner(weatherImg)(desc);
 }
 
 export function putCityOnConteiner(city) {

@@ -1,15 +1,18 @@
+import { getNewTemp } from '../util/common.js';
+
 // Conteiners
 const windSpeed = document.body.querySelector('#wind-speed');
 const windMeasrue = document.body.querySelector('#wind-speed ~ .measure');
 const humidityConteiner = document.body.querySelector('#humidity');
 const progress = document.body.querySelector('#progress');
-const sunriseConteiner = document.body.querySelector('#sunrise');
-const sunsetConteiner = document.body.querySelector('#sunset');
+const feelsLikeConteiner = document.body.querySelector('#feels-like');
+const feelsLikeMeasrue = document.body.querySelector('#feels-like ~ .measure');
+const visibilityConteiner = document.body.querySelector('#visibility');
+const visibilityMeasrue = document.body.querySelector('#visibility ~ .measure');
 
-function putWindSpeed(wind_speedy) {
-  const newWindSpeed = wind_speedy.split(' ');
-  windSpeed.innerText = `${newWindSpeed[0]}`;
-  windMeasrue.innerText = `${newWindSpeed[1]}`;
+function putWindSpeed(speed) {
+  windSpeed.innerText = `${speed}`;
+  windMeasrue.innerText = 'Km/h';
 }
 
 function putHumidity(humidity) {
@@ -17,20 +20,20 @@ function putHumidity(humidity) {
   progress.setAttribute('value', humidity);
 }
 
-function putSunrise(sunrise) {
-  const newSunrise = sunrise.split(' ');
-  sunriseConteiner.innerText = `${newSunrise[0]}`;
+function putFeelsLike(feelsLike) {
+  const newFeels = getNewTemp(feelsLike);
+  feelsLikeConteiner.innerText = `${newFeels}`;
+  feelsLikeMeasrue.innerText = '°c';
 }
 
-function putSunset(sunset) {
-  const newSunset = sunset.split(' ');
-  const hourSunset = newSunset[0].split(':');
-  sunsetConteiner.innerText = `${Number(hourSunset[0]) + 12}:${hourSunset[1]}`;
+function putvisibility(visibility) {
+  visibilityConteiner.innerText = `${Math.trunc(visibility) / 1000}`;
+  visibilityMeasrue.innerText = 'Km/h';
 }
 
-export default function putHighlights({ wind_speedy, humidity, sunrise, sunset }) {
-  putWindSpeed(wind_speedy);
+export default function putHighlights({ wind: { speed }, main: { humidity, feels_like }, visibility }) {
+  putWindSpeed(speed);
   putHumidity(humidity);
-  putSunrise(sunrise);
-  putSunset(sunset);
+  putFeelsLike(feels_like);
+  putvisibility(visibility);
 }

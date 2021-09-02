@@ -9,7 +9,7 @@ const searchInput = document.body.querySelector('#search-input');
 function getUrlToCurrentLocation() {
   const user = JSON.parse(localStorage.user);
   const { lat, lon } = user;
-  return `https://api.hgbrasil.com/weather?format=json-cors&key=9fc46912&lat=${lat}&lon=${lon}&user_ip=remote`;
+  return `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&lang=pt_br&appid=8a1b6c8a637eee68a8dc5da6a90c3bcd`;
 }
 
 export async function currentTemperature() {
@@ -25,11 +25,12 @@ function getUserInfo() {
 export async function initialConfig() {
   getUserInfo();
   getCurrentLocation();
-  getHistoryOfCities();
+  // getHistoryOfCities();
   const url = getUrlToCurrentLocation();
-  const { results } = await getRequest(url);
+  const results = await getRequest(url);
+  console.log(results);
   putCurrentTemperature(results);
-  putWeatherForecast(results);
+  //   putWeatherForecast(results);
   putHighlights(results);
 }
 

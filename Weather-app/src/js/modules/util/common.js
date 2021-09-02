@@ -26,6 +26,8 @@ export function getAmericaDateFormat(date) {
   return `${newDate[2]}/${newDate[1]}/${newDate[0]}`;
 }
 
+const weatherImg = document.body.querySelector('#current > img');
+
 export function putWeatherImgOnConteiner(conteiner) {
   const weatherImgSrc = '../assets/img/icons/description.png';
   return (desc) => {
@@ -35,10 +37,17 @@ export function putWeatherImgOnConteiner(conteiner) {
   };
 }
 
-export async function putCurrentTemperature({ temp, description, date, city }) {
-  getTemperature(temp);
-  putDescription(description);
-  putCityOnConteiner(city);
-  putCityOnHistory(city);
-  putDateOnConteiner(date);
+export function getNewTemp(temp) {
+  const newTemp = temp;
+  return Math.trunc(newTemp) / 10;
+}
+
+export async function putCurrentTemperature({ main: { temp }, name, weather }) {
+  const newTemp = getNewTemp(temp);
+  getTemperature(newTemp);
+  putDescription(weather[0].description);
+  putCityOnConteiner(name);
+  putCityOnHistory(name);
+  putWeatherImgOnConteiner(weatherImg)(weather[0].main);
+  putDateOnConteiner();
 }
