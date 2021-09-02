@@ -35,7 +35,7 @@
 
 ## Overview
 
-
+![Captura de tela 2021-09-02 194556](https://user-images.githubusercontent.com/76819323/131926951-5ef571bb-e5aa-4b09-a4c8-ac7d5e9dff88.png)
 
 ### Built With
 
@@ -56,3 +56,9 @@ And sure a special thank you for you :D
 ## Contact
 
 - GitHub [@VictorKayk](https://github.com/VictorKayk/)
+- <a href="https://www.instagram.com/victorkayk77/" alt="Instagram">
+  <img src="https://img.shields.io/badge/-Instagram-1C1C1C?style=for-the-badge&logo=Instagram&logoColor=00FFFF&link=https://www.instagram.com/victorkayk77/"/>
+  </a>
+- <a href="https://www.linkedin.com/in/victorkayk/" alt="Linkedin">
+    <img src="https://img.shields.io/badge/-Linkedin-1C1C1C?style=for-the-badge&logo=Linkedin&logoColor=00FFFF&link=https://www.linkedin.com/in/victorkayk/"/>
+  </a>
