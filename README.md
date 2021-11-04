@@ -3,13 +3,13 @@ Esse repositorio tem o intuito de armazenar alguns de meus projetos em JavaScrip
 
 ## ✅ Projetos realizados:
 ### JavaScript:
-- [Jogo pedra, papel e tesoura.](https://victorkayk.github.io/JavaScript-projects/Jokenpo/src)
+- [Jogo pedra, papel e tesoura.](https://victorkayk.github.io/JavaScript-projects/jokenpo/src)
   - Um pequeno e simples jogo de pedra, papel e tesoura que fiz para fixar meus conhecimentos em JavaScript.
-- [Pokedex.](https://victorkayk.github.io/JavaScript-projects/Pokedex/public)
+- [Pokedex.](https://victorkayk.github.io/JavaScript-projects/pokedex/public)
   - Uma pokedex simples, feita ultilizando a [pokeapi](https://pokeapi.co/). Baseada neste [projeto](https://www.youtube.com/watch?v=Uptu3NrBFBM).
-- [Lista Todo.](https://victorkayk.github.io/JavaScript-projects/Todo-app/public/)
+- [Lista Todo.](https://victorkayk.github.io/JavaScript-projects/todo-app/public/)
   - Um projeto todo simples, que permite a criação de múltiplas listas todo, para organizar suas tarefas. O projeto foi feita pra resolver este [desafio](https://www.frontendmentor.io/challenges/todo-app-Su1_KokOW).
- - [Previsão do tempo.](https://victorkayk.github.io/JavaScript-projects/Weather-app/public/)
+ - [Previsão do tempo.](https://victorkayk.github.io/JavaScript-projects/weather-app/public/)
     -  Ultilizando a [api](https://hgbrasil.com/status/weather), realizei a criação de uma aplicação de previsão do tempo simples. O projeto foi feita pra resolver este [desafio](https://devchallenges.io/challenges/mM1UIenRhK808W8qmLWv). <br>
        **Funcionalidades da aplicação:**
        - Ultiliza a api do Google, para conseguir a localização do usuario.
