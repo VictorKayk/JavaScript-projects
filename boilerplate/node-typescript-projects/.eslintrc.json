@@ -31,7 +31,8 @@
           "tsx": "never"
         }
       ],
-      "prettier/prettier": ["error", { "singleQuote": true }]
+      "prettier/prettier": ["error", { "singleQuote": true }],
+      "no-useless-constructor": "off"
     },
     "settings": {
       "import/resolver": {
