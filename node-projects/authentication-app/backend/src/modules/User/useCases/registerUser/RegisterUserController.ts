@@ -15,21 +15,8 @@ export default class RegisterUserController {
   async handle(req: Request, res: Response) {
     const { name, email, password, avatar, bio, phone }: IRegister = req.body;
 
-    const errors: string[] = [];
-
-    if (!name || typeof name !== 'string') errors.push('Name is invalid.');
-    if (!email || typeof email !== 'string') errors.push('Email is invalid.');
-    if (!password || typeof password !== 'string')
-      errors.push('Password is invalid.');
-    if (avatar && typeof password !== 'string')
-      errors.push('Avatar is invalid.');
-    if (bio && typeof password !== 'string') errors.push('Bio is invalid.');
-    if (phone && typeof password !== 'string') errors.push('Phone is invalid.');
-
-    if (errors.length > 0) throw new RegisterError(errors);
-
     try {
-      await this.registerUserUseCase.execute({
+      const token = await this.registerUserUseCase.execute({
         name,
         email,
         password,
@@ -37,9 +24,9 @@ export default class RegisterUserController {
         bio,
         phone,
       });
-      return res.status(201).json({ success: true });
+      return res.status(201).json({ success: true, token });
     } catch (e) {
-      throw new RegisterError();
+      throw new RegisterError([e.message]);
     }
   }
 }

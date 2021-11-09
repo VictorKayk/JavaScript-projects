@@ -32,7 +32,8 @@
         }
       ],
       "prettier/prettier": ["error", { "singleQuote": true }],
-      "no-useless-constructor": "off"
+      "no-useless-constructor": "off",
+      "class-methods-use-this": "off"
     },
     "settings": {
       "import/resolver": {

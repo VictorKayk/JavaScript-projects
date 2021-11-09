@@ -1,13 +1,15 @@
+import { ValidationError } from 'fastest-validator';
+
 export default class AppError {
-  public message: string | string[];
+  public message:
+    | string[]
+    | ValidationError[]
+    | Promise<true | ValidationError[]>;
 
   public statusCode: number;
 
-  constructor(
-    message = 'An error occurred, please try again later',
-    statusCode = 500,
-  ) {
-    this.message = message;
+  constructor(message?, statusCode = 500) {
+    this.message = message || ['An error occurred, please try again later'];
     this.statusCode = statusCode;
   }
 }

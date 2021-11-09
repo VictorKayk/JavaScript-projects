@@ -13,8 +13,8 @@ Project Description
 
 ### In Progress
 
-- [ ] I can register a new account  
 
 ### Done ✓
 
+- [x] I can register a new account  
 
