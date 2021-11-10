@@ -36,6 +36,15 @@ class UserRepository implements IUserRepository {
     });
     return !!phoneExists;
   }
+
+  async getUserByEmail(email) {
+    const user = await prisma.user.findUnique({
+      where: {
+        email,
+      },
+    });
+    return user;
+  }
 }
 
 export default new UserRepository();

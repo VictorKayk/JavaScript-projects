@@ -8,7 +8,7 @@ import IUserRepository from '../../repositories/IUserRepository';
 import IRegister from '../../interfaces/IRegister';
 
 // Validate
-import validate from '../../validations/RegisterUserValidate';
+import validate from '../../validations/registerUserValidate';
 
 // Errors
 import RegisterError from '../../../../errors/userErrors/RegisterError';
@@ -16,7 +16,7 @@ import RegisterError from '../../../../errors/userErrors/RegisterError';
 export default class RegisterUserUseCase {
   constructor(private UserRepository: IUserRepository) {}
 
-  validate({ name, email, password, avatar, bio, phone }) {
+  validate({ name, email, password, avatar, bio, phone }: IRegister) {
     const valid = validate({ name, email, password, avatar, bio, phone });
     if (valid !== true) throw new RegisterError(valid);
   }
@@ -28,7 +28,7 @@ export default class RegisterUserUseCase {
     const emailExists = await this.UserRepository.emailExists(email);
     if (emailExists)
       errors.push(
-        'Email already exists, please sign in or use another email to register.',
+        'Email already exists, please login or use another email to register.',
       );
 
     // Phone already exists
@@ -36,7 +36,7 @@ export default class RegisterUserUseCase {
       const phoneExists = await this.UserRepository.phoneExists(phone);
       if (phoneExists)
         errors.push(
-          'Phone already exists, please sign in or use another phone to register.',
+          'Phone already exists, please login or use another phone to register.',
         );
     }
     if (errors.length > 0) throw new RegisterError(errors);
