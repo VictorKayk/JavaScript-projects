@@ -24,14 +24,14 @@ class UserRepository implements IUserRepository {
   }
 
   async emailExists(email: string) {
-    const emailExists = await prisma.user.findFirst({
+    const emailExists = await prisma.user.findUnique({
       where: { email },
     });
     return !!emailExists;
   }
 
   async phoneExists(phone: string) {
-    const phoneExists = await prisma.user.findFirst({
+    const phoneExists = await prisma.user.findUnique({
       where: { phone },
     });
     return !!phoneExists;
@@ -39,11 +39,16 @@ class UserRepository implements IUserRepository {
 
   async getUserByEmail(email) {
     const user = await prisma.user.findUnique({
-      where: {
-        email,
-      },
+      where: { email },
     });
     return user;
+  }
+
+  async githubIdExists(githubId: number) {
+    const githubIdExists = await prisma.user.findUnique({
+      where: { githubId },
+    });
+    return !!githubIdExists;
   }
 }
 

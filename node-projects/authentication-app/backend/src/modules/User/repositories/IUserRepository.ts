@@ -6,4 +6,5 @@ export default interface IUserRepository {
   emailExists(email: string);
   phoneExists(phone: string);
   getUserByEmail(email: string);
+  githubIdExists(githubId: number);
 }
