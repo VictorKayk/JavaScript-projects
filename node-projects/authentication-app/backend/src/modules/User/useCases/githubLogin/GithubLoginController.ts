@@ -22,10 +22,10 @@ export class GithubLoginAuth {
 
     if (!code) throw new GithubLoginError(["Code doesn't provider."]);
     try {
-      const token = this.githubLoginUseCase.execute(code);
+      const token = await this.githubLoginUseCase.execute(code);
       return res.status(201).json({ success: true, token });
     } catch (e) {
-      throw new GithubLoginError([e.message]);
+      throw new GithubLoginError([e.message], e.statusCode);
     }
   }
 }

@@ -8,9 +8,18 @@ import IUserRepository from '../IUserRepository';
 import IRegister from '../../interfaces/IRegister';
 
 class UserRepository implements IUserRepository {
-  async register({ name, email, password, avatar, bio, phone }: IRegister) {
+  async register({
+    githubId,
+    name,
+    email,
+    password,
+    avatar,
+    bio,
+    phone,
+  }: IRegister) {
     const user = await prisma.user.create({
       data: {
+        githubId,
         name,
         email,
         password,
