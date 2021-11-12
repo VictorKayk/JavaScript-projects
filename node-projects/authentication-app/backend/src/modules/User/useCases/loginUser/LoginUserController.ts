@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 
 // Interface
-import ILogin from '../../interfaces/ILogin';
+import ILogin from '../../../../interfaces/user/ILogin';
 
 // Use case
 import LoginUserUseCase from './LoginUserUseCase';
@@ -19,7 +19,7 @@ export default class LoginUserController {
       const token = await this.loginUserUseCase.execute({ email, password });
       return res.status(201).json({ success: true, token });
     } catch (e) {
-      throw new LoginError([e.message]);
+      throw new LoginError([e.message], e.statusCode);
     }
   }
 }

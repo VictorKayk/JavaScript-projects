@@ -1,5 +1,8 @@
 import { Router } from 'express';
 
+// Middlewares
+import auth from '../middlewares/auth';
+
 // Use cases
 import registerUser from '../modules/User/useCases/registerUser';
 import loginUser from '../modules/User/useCases/loginUser';
@@ -7,14 +10,15 @@ import {
   GithubLogin,
   githubLoginController,
 } from '../modules/User/useCases/githubLogin';
+import userProfile from '../modules/User/useCases/userProfile';
 
 const routes = Router();
 
-// User routes
-// Register
+// Register routes
 // POST
 routes.post('/register', (req, res) => registerUser.handle(req, res));
-// Login
+
+// Login routes
 // POST
 routes.post('/login', (req, res) => loginUser.handle(req, res));
 
@@ -27,5 +31,9 @@ routes.get('/register/github', (req, res) =>
 routes.get('/register/github/auth', (req, res) =>
   githubLoginController.handle(req, res),
 );
+
+// User profile routes
+// GET
+routes.get('/', auth.handle, (req, res) => userProfile.handle(req, res));
 
 export default routes;

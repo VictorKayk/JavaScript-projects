@@ -25,7 +25,7 @@ export default class GithubLoginUseCase {
             Accept: 'application/json',
           },
         })
-        .catch((e) => {
+        .catch(() => {
           throw new GithubLoginError(['Github token invalid.']);
         });
 
@@ -35,7 +35,7 @@ export default class GithubLoginUseCase {
             authorization: `Bearer ${IAccessTokenResponse.access_token}`,
           },
         })
-        .catch((e) => {
+        .catch(() => {
           throw new GithubLoginError(['Github token invalid.']);
         });
 

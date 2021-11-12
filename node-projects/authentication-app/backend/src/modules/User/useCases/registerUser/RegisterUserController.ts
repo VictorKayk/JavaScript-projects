@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 
 // Interface
-import IRegister from '../../interfaces/IRegister';
+import IRegister from '../../../../interfaces/user/IRegister';
 
 // Use case
 import RegisterUserUseCase from './RegisterUserUseCase';
@@ -26,7 +26,7 @@ export default class RegisterUserController {
       });
       return res.status(201).json({ success: true, token });
     } catch (e) {
-      throw new RegisterError([e.message]);
+      throw new RegisterError([e.message], e.statusCode);
     }
   }
 }

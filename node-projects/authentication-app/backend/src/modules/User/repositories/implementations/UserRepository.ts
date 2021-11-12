@@ -5,7 +5,7 @@ import prisma from '../../../../database';
 import IUserRepository from '../IUserRepository';
 
 // Interfaces
-import IRegister from '../../interfaces/IRegister';
+import IRegister from '../../../../interfaces/user/IRegister';
 
 class UserRepository implements IUserRepository {
   async register({
@@ -58,6 +58,20 @@ class UserRepository implements IUserRepository {
       where: { githubId },
     });
     return !!githubIdExists;
+  }
+
+  async userInfos(userId: string) {
+    const user = await prisma.user.findUnique({
+      where: { id: userId },
+      select: {
+        name: true,
+        email: true,
+        bio: true,
+        avatar: true,
+        phone: true,
+      },
+    });
+    return user;
   }
 }
 

@@ -1,5 +1,5 @@
 // Interfaces
-import IRegister from '../interfaces/IRegister';
+import IRegister from '../../../interfaces/user/IRegister';
 
 export default interface IUserRepository {
   register(user: IRegister);
@@ -7,4 +7,5 @@ export default interface IUserRepository {
   phoneExists(phone: string);
   getUserByEmail(email: string);
   githubIdExists(githubId: number);
+  userInfos(userId: string);
 }

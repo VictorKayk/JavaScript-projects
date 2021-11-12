@@ -5,7 +5,7 @@ import { sign } from 'jsonwebtoken';
 import IUserRepository from '../../repositories/IUserRepository';
 
 // Interfaces
-import IRegister from '../../interfaces/IRegister';
+import IRegister from '../../../../interfaces/user/IRegister';
 
 // Validate
 import validate from '../../validations/registerUserValidate';

@@ -19,8 +19,8 @@ export class GithubLoginAuth {
 
   async handle(req: Request, res: Response) {
     const { code } = req.query;
-
     if (!code) throw new GithubLoginError(["Code doesn't provider."]);
+
     try {
       const token = await this.githubLoginUseCase.execute(code);
       return res.status(201).json({ success: true, token });
