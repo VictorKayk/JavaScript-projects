@@ -4,7 +4,7 @@ import { Request, Response } from 'express';
 import UserProfileUseCase from './UserProfileUseCase';
 
 // Errors
-import UserProfileError from '../../../../errors/userErrors/UserProfileError';
+import UserProfileError from '../../errors/UserProfileError';
 
 export default class UserProfileController {
   constructor(private userProfileUseCase: UserProfileUseCase) {}

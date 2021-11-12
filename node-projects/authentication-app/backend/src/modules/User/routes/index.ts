@@ -1,17 +1,17 @@
 import { Router } from 'express';
 
 // Middlewares
-import auth from '../middlewares/auth';
+import auth from '../../../shared/middlewares/auth';
 
 // Use cases
-import registerUser from '../modules/User/useCases/registerUser';
-import loginUser from '../modules/User/useCases/loginUser';
+import registerUser from '../useCases/registerUser';
+import loginUser from '../useCases/loginUser';
 import {
   GithubLogin,
   githubLoginController,
-} from '../modules/User/useCases/githubLogin';
-import userProfile from '../modules/User/useCases/userProfile';
-import editUserProfile from '../modules/User/useCases/editUserProfile';
+} from '../useCases/githubLogin';
+import userProfile from '../useCases/userProfile';
+import editUserProfile from '../useCases/editUserProfile';
 
 const routes = Router();
 

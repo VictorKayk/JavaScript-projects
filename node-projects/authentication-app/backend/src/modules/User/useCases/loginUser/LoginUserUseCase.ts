@@ -8,7 +8,7 @@ import IUserRepository from '../../repositories/IUserRepository';
 import validate from '../../validations/loginUserValidate';
 
 // Error
-import LoginError from '../../../../errors/userErrors/LoginError';
+import LoginError from '../../errors/LoginError';
 
 // Interface
 interface IRequest {

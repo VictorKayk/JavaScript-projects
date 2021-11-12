@@ -7,7 +7,7 @@ import ILogin from '../../interfaces/ILogin';
 import LoginUserUseCase from './LoginUserUseCase';
 
 // Error
-import LoginError from '../../../../errors/userErrors/LoginError';
+import LoginError from '../../errors/LoginError';
 
 export default class LoginUserController {
   constructor(private loginUserUseCase: LoginUserUseCase) {}

@@ -11,7 +11,7 @@ import IRegister from '../../interfaces/IRegister';
 import validate from '../../validations/registerUserValidate';
 
 // Errors
-import RegisterError from '../../../../errors/userErrors/RegisterError';
+import RegisterError from '../../errors/RegisterError';
 
 export default class RegisterUserUseCase {
   constructor(private UserRepository: IUserRepository) {}

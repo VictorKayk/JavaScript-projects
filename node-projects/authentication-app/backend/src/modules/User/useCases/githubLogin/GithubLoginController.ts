@@ -4,7 +4,7 @@ import { Request, Response } from 'express';
 import GithubLoginUseCase from './GithubLoginUseCase';
 
 // Errors
-import GithubLoginError from '../../../../errors/userErrors/GithubLoginError';
+import GithubLoginError from '../../errors/GithubLoginError';
 
 export class GithubLogin {
   handle(req: Request, res: Response) {

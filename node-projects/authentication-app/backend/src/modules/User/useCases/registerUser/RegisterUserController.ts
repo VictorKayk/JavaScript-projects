@@ -7,7 +7,7 @@ import IRegister from '../../interfaces/IRegister';
 import RegisterUserUseCase from './RegisterUserUseCase';
 
 // Error
-import RegisterError from '../../../../errors/userErrors/RegisterError';
+import RegisterError from '../../errors/RegisterError';
 
 export default class RegisterUserController {
   constructor(private registerUserUseCase: RegisterUserUseCase) {}

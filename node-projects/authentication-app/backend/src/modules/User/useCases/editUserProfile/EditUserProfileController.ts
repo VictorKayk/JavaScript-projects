@@ -4,7 +4,7 @@ import { Request, Response } from 'express';
 import EditUserProfileUseCase from './EditUserProfileUseCase';
 
 // Errors
-import EditUserProfileError from '../../../../errors/userErrors/EditUserProfileError';
+import EditUserProfileError from '../../errors/EditUserProfileError';
 
 export default class UserInfosController {
   constructor(private editUserProfileUseCase: EditUserProfileUseCase) {}

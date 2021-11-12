@@ -5,7 +5,7 @@ import { sign } from 'jsonwebtoken';
 import IUserRepository from '../../repositories/IUserRepository';
 
 // Errors
-import GithubLoginError from '../../../../errors/userErrors/GithubLoginError';
+import GithubLoginError from '../../errors/GithubLoginError';
 
 export default class GithubLoginUseCase {
   constructor(private UserRepository: IUserRepository) {}

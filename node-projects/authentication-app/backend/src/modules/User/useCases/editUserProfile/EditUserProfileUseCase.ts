@@ -11,7 +11,7 @@ import IEditUserProfile from '../../interfaces/IEditUserProfile';
 import validate from '../../validations/editUserValidate';
 
 // Errors
-import EditUserProfileError from '../../../../errors/userErrors/EditUserProfileError';
+import EditUserProfileError from '../../errors/EditUserProfileError';
 
 export default class UserInfosUseCase {
   constructor(private UserRepository: IUserRepository) {}

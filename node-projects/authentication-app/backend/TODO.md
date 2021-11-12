@@ -9,6 +9,7 @@ Project Description
 ### In Progress
 
 - [ ] I can upload a new photo or provide an image URL  
+- [ ] Regex to validate the phone
 
 ### Done ✓
 

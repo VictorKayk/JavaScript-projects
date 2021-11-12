@@ -2,7 +2,7 @@ import { NextFunction, Request, Response } from 'express';
 import { verify } from 'jsonwebtoken';
 
 // Error
-import AuthorizationError from '../errors/userErrors/AuthorizationError';
+import AuthorizationError from '../../modules/User/errors/AuthorizationError';
 
 // Interface
 interface IPayload {

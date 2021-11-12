@@ -1,5 +1,5 @@
 // Error
-import AppError from '../AppError';
+import AppError from '../../../shared/errors/AppError';
 
 export default class AuthorizationError extends AppError {
   super(message?, statusCode = 401) {
