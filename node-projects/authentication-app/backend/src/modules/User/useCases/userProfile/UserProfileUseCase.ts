@@ -5,7 +5,7 @@ export default class UserInfosUseCase {
   constructor(private UserRepository: IUserRepository) {}
 
   async execute(userId: string) {
-    const user = await this.UserRepository.userInfos(userId);
+    const user = await this.UserRepository.userProfile(userId);
     return user;
   }
 }

@@ -40,7 +40,6 @@ export default class LoginUserUseCase {
     await this.emailExists(email);
 
     const user = await this.UserRepository.getUserByEmail(email);
-
     this.comparePassword(password, user.password);
 
     const token = sign({}, process.env.JWT_SECRET, {

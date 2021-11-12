@@ -5,7 +5,8 @@ import prisma from '../../../../database';
 import IUserRepository from '../IUserRepository';
 
 // Interfaces
-import IRegister from '../../../../interfaces/user/IRegister';
+import IRegister from '../../interfaces/IRegister';
+import IEditUserProfile from '../../interfaces/IEditUserProfile';
 
 class UserRepository implements IUserRepository {
   async register({
@@ -28,7 +29,6 @@ class UserRepository implements IUserRepository {
         phone,
       },
     });
-
     return user.id;
   }
 
@@ -53,6 +53,20 @@ class UserRepository implements IUserRepository {
     return user;
   }
 
+  async getUserByPhone(phone) {
+    const user = await prisma.user.findUnique({
+      where: { phone },
+    });
+    return user;
+  }
+
+  async getUserByGithubId(githubId) {
+    const user = await prisma.user.findUnique({
+      where: { githubId },
+    });
+    return user;
+  }
+
   async githubIdExists(githubId: number) {
     const githubIdExists = await prisma.user.findUnique({
       where: { githubId },
@@ -60,7 +74,7 @@ class UserRepository implements IUserRepository {
     return !!githubIdExists;
   }
 
-  async userInfos(userId: string) {
+  async userProfile(userId: string) {
     const user = await prisma.user.findUnique({
       where: { id: userId },
       select: {
@@ -72,6 +86,28 @@ class UserRepository implements IUserRepository {
       },
     });
     return user;
+  }
+
+  async editUserProfile(userId: string, {
+    name,
+    email,
+    password,
+    avatar,
+    bio,
+    phone
+  }: IEditUserProfile) {
+    const user = await prisma.user.update({
+      where: { id: userId },
+      data:  {
+        name,
+        email,
+        password,
+        avatar,
+        bio,
+        phone,
+      }
+    });
+    return user.id;
   }
 }
 

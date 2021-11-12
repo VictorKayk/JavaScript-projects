@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 
 // Interface
-import IRegister from '../../../../interfaces/user/IRegister';
+import IRegister from '../../interfaces/IRegister';
 
 // Use case
 import RegisterUserUseCase from './RegisterUserUseCase';
@@ -14,7 +14,6 @@ export default class RegisterUserController {
 
   async handle(req: Request, res: Response) {
     const { name, email, password, avatar, bio, phone }: IRegister = req.body;
-
     try {
       const token = await this.registerUserUseCase.execute({
         name,

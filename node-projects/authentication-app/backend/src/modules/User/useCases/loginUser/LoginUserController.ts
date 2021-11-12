@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 
 // Interface
-import ILogin from '../../../../interfaces/user/ILogin';
+import ILogin from '../../interfaces/ILogin';
 
 // Use case
 import LoginUserUseCase from './LoginUserUseCase';

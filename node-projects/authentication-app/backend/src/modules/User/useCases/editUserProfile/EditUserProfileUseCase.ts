@@ -4,30 +4,30 @@ import { sign } from 'jsonwebtoken';
 // Repository
 import IUserRepository from '../../repositories/IUserRepository';
 
-// Interfaces
-import IRegister from '../../interfaces/IRegister';
+// Interface
+import IEditUserProfile from '../../interfaces/IEditUserProfile';
 
 // Validate
-import validate from '../../validations/registerUserValidate';
+import validate from '../../validations/editUserValidate';
 
 // Errors
-import RegisterError from '../../../../errors/userErrors/RegisterError';
+import EditUserProfileError from '../../../../errors/userErrors/EditUserProfileError';
 
-export default class RegisterUserUseCase {
+export default class UserInfosUseCase {
   constructor(private UserRepository: IUserRepository) {}
 
-  validate({ name, email, password, avatar, bio, phone }: IRegister) {
+  validate({ name, email, password, avatar, bio, phone }: IEditUserProfile) {
     const valid = validate({ name, email, password, avatar, bio, phone });
-    if (valid !== true) throw new RegisterError(valid);
+    if (valid !== true) throw new EditUserProfileError(valid);
   }
 
-  async valuesUniques(email: string, phone: string) {
+  async valuesUniques(userId: string, { email, phone }) {
     const errors = [];
 
     // Email already exists
     if (email) {
-      const emailExists = await this.UserRepository.emailExists(email);
-      if (emailExists)
+      const emailUser = await this.UserRepository.getUserByEmail(email);
+      if (emailUser && userId !== emailUser.id)
         errors.push(
           'Email already exists, please login or use another email to register.',
         );
@@ -35,19 +35,21 @@ export default class RegisterUserUseCase {
 
     // Phone already exists
     if (phone) {
-      const phoneExists = await this.UserRepository.phoneExists(phone);
-      if (phoneExists)
+      const phoneUser = await this.UserRepository.getUserByPhone(phone);
+      if (phoneUser && userId !== phoneUser.id)
         errors.push(
           'Phone already exists, please login or use another phone to register.',
         );
     }
-    if (errors.length > 0) throw new RegisterError(errors);
+    if (errors.length > 0) throw new EditUserProfileError(errors);
   }
 
   hashPassword(password) {
-    const salt = genSaltSync();
-    const hashPassword = hashSync(password, salt);
-    return hashPassword;
+    if (password) {
+      const salt = genSaltSync();
+      const hashPassword = hashSync(password, salt);
+      return hashPassword;
+    }
   }
 
   getToken(userId) {
@@ -58,14 +60,14 @@ export default class RegisterUserUseCase {
    return token;
   }
 
-  async execute({ name, email, password, avatar, bio, phone }: IRegister) {
+  async execute(id: string, { name, email, password, avatar, bio, phone }: IEditUserProfile) {
     this.validate({ name, email, password, avatar, bio, phone });
 
-    await this.valuesUniques(email, phone);
+    await this.valuesUniques(id, { email, phone });
 
     const hashPassword = this.hashPassword(password);
 
-    const userId = await this.UserRepository.register({
+    const userId = await this.UserRepository.editUserProfile(id, {
       name,
       email,
       password: hashPassword,
@@ -73,7 +75,7 @@ export default class RegisterUserUseCase {
       bio,
       phone,
     });
-
+  
     const token = this.getToken(userId);
     return token;
   }

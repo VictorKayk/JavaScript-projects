@@ -10,11 +10,9 @@ import GithubLoginError from '../../../../errors/userErrors/GithubLoginError';
 export default class GithubLoginUseCase {
   constructor(private UserRepository: IUserRepository) {}
 
-  async execute(code) {
-    const url = 'https://github.com/login/oauth/access_token';
-
+  async accessToken(url, code) {
     try {
-      const { data: IAccessTokenResponse } = await axios
+      const accessToken = await axios
         .post(url, null, {
           params: {
             client_id: process.env.GITHUB_CLIENT_ID,
@@ -24,40 +22,58 @@ export default class GithubLoginUseCase {
           headers: {
             Accept: 'application/json',
           },
-        })
-        .catch(() => {
-          throw new GithubLoginError(['Github token invalid.']);
         });
+        return accessToken;
+    } catch(e) {
+      throw new GithubLoginError(['Github token invalid.']);
+    }
+  }
 
-      const res = await axios
-        .get('https://api.github.com/user', {
-          headers: {
-            authorization: `Bearer ${IAccessTokenResponse.access_token}`,
-          },
-        })
-        .catch(() => {
-          throw new GithubLoginError(['Github token invalid.']);
-        });
+  async githubData(accessToken) {
+    try {
+      const data = await axios
+      .get('https://api.github.com/user', {
+        headers: {
+          authorization: `Bearer ${accessToken.access_token}`,
+        },
+      });
+      return data;
+    } catch(e) {
+      throw new GithubLoginError(['Github token invalid.']);
+    }
+  }
 
+  getToken(userId) {
+    const token = sign({}, process.env.JWT_SECRET, {
+      expiresIn: process.env.JWT_EXPIRES_IN,
+      subject: `${userId}`,
+    });
+    return token;
+  }
+
+  async execute(code) {
+    let userId;
+    const url = 'https://github.com/login/oauth/access_token';
+    try {
+      const { data: IAccessTokenResponse } = await this.accessToken(url, code)
+
+      const res =  await this.githubData(IAccessTokenResponse);
       const { name, email, id, avatar_url, bio } = res.data;
 
       const githubIdExists = await this.UserRepository.githubIdExists(id);
-      if (githubIdExists)
-        throw new GithubLoginError(['Account already exists.']);
+      if (githubIdExists) {
+        userId = await this.UserRepository.getUserByGithubId(id);
+      } else {
+        userId = await this.UserRepository.register({
+          githubId: id,
+          name,
+          email,
+          bio,
+          avatar: avatar_url,
+        });
+      }
 
-      const userId = await this.UserRepository.register({
-        githubId: id,
-        name,
-        email,
-        bio,
-        avatar: avatar_url,
-      });
-
-      const token = sign({}, process.env.JWT_SECRET, {
-        expiresIn: process.env.JWT_EXPIRES_IN,
-        subject: `${userId}`,
-      });
-
+      const token = this.getToken(userId);
       return token;
     } catch (e) {
       throw new GithubLoginError([e.message], e.statusCode);

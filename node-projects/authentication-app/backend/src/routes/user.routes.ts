@@ -11,6 +11,7 @@ import {
   githubLoginController,
 } from '../modules/User/useCases/githubLogin';
 import userProfile from '../modules/User/useCases/userProfile';
+import editUserProfile from '../modules/User/useCases/editUserProfile';
 
 const routes = Router();
 
@@ -35,5 +36,7 @@ routes.get('/register/github/auth', (req, res) =>
 // User profile routes
 // GET
 routes.get('/', auth.handle, (req, res) => userProfile.handle(req, res));
+// PATCH
+routes.patch('/', auth.handle, (req, res) => editUserProfile.handle(req, res));
 
 export default routes;

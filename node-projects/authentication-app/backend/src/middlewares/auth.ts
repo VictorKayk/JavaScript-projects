@@ -5,7 +5,9 @@ import { verify } from 'jsonwebtoken';
 import AuthorizationError from '../errors/userErrors/AuthorizationError';
 
 // Interface
-import IPayload from '../interfaces/IPayload';
+interface IPayload {
+  sub: string;
+}
 
 class Auth {
   async handle(req: Request, res: Response, next: NextFunction) {
