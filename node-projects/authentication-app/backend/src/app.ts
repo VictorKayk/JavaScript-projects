@@ -2,6 +2,8 @@ import 'dotenv';
 import 'express-async-errors';
 import express from 'express';
 import swagger from 'swagger-ui-express';
+import helmet from 'helmet';
+import cors from 'cors';
 
 // Swagger file
 import swaggerFile from './swagger.json';
@@ -13,6 +15,10 @@ import routes from './routes';
 import AppError from './shared/errors/AppError';
 
 const app = express();
+
+// Security
+app.use(helmet());
+app.use(cors());
 
 // Allow json
 app.use(express.json());

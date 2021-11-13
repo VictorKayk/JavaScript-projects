@@ -5,20 +5,20 @@ import { sign } from 'jsonwebtoken';
 import IUserRepository from '../../repositories/IUserRepository';
 
 // Interface
-import IEditUserProfile from '../../interfaces/IEditUserProfile';
+import IUpdateUserProfile from '../../interfaces/IUpdateUserProfile';
 
 // Validate
-import validate from '../../validations/editUserValidate';
+import validate from '../../validations/updateUserValidate';
 
 // Errors
-import EditUserProfileError from '../../errors/EditUserProfileError';
+import UpdateUserProfileError from '../../errors/UpdateUserProfileError';
 
-export default class UserInfosUseCase {
+export default class UpdateUserProfilesUseCase {
   constructor(private UserRepository: IUserRepository) {}
 
-  validate({ name, email, password, avatar, bio, phone }: IEditUserProfile) {
-    const valid = validate({ name, email, password, avatar, bio, phone });
-    if (valid !== true) throw new EditUserProfileError(valid);
+  validate({ name, email, password, bio, phone }: IUpdateUserProfile) {
+    const valid = validate({ name, email, password, bio, phone });
+    if (valid !== true) throw new UpdateUserProfileError(valid);
   }
 
   async valuesUniques(userId: string, { email, phone }) {
@@ -41,7 +41,7 @@ export default class UserInfosUseCase {
           'Phone already exists, please login or use another phone to register.',
         );
     }
-    if (errors.length > 0) throw new EditUserProfileError(errors);
+    if (errors.length > 0) throw new UpdateUserProfileError(errors);
   }
 
   hashPassword(password) {
@@ -60,18 +60,17 @@ export default class UserInfosUseCase {
    return token;
   }
 
-  async execute(id: string, { name, email, password, avatar, bio, phone }: IEditUserProfile) {
-    this.validate({ name, email, password, avatar, bio, phone });
+  async execute(id: string, { name, email, password, bio, phone }: IUpdateUserProfile) {
+    this.validate({ name, email, password, bio, phone });
 
     await this.valuesUniques(id, { email, phone });
 
     const hashPassword = this.hashPassword(password);
 
-    const userId = await this.UserRepository.editUserProfile(id, {
+    const userId = await this.UserRepository.updateUserProfile(id, {
       name,
       email,
       password: hashPassword,
-      avatar,
       bio,
       phone,
     });

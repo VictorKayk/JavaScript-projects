@@ -8,11 +8,11 @@ Project Description
 
 ### In Progress
 
-- [ ] I can upload a new photo or provide an image URL  
-- [ ] Regex to validate the phone
+- [ ] Regex to validate the phone  
 
 ### Done ✓
 
+- [x] I can upload a new photo or provide an image URL  
 - [x] I can edit my details including: photo, name, bio, phone, email and password  
 - [x] I can register a new account  
 - [x] I can log in  

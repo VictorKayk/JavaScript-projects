@@ -6,7 +6,7 @@ import IUserRepository from '../IUserRepository';
 
 // Interfaces
 import IRegister from '../../interfaces/IRegister';
-import IEditUserProfile from '../../interfaces/IEditUserProfile';
+import IUpdateUserProfile from '../../interfaces/IUpdateUserProfile';
 
 class UserRepository implements IUserRepository {
   async register({
@@ -44,6 +44,13 @@ class UserRepository implements IUserRepository {
       where: { phone },
     });
     return !!phoneExists;
+  }
+
+  async getUserById(id) {
+    const user = await prisma.user.findUnique({
+      where: { id },
+    });
+    return user;
   }
 
   async getUserByEmail(email) {
@@ -88,26 +95,38 @@ class UserRepository implements IUserRepository {
     return user;
   }
 
-  async editUserProfile(userId: string, {
+  async updateUserProfile(userId: string, {
     name,
     email,
     password,
-    avatar,
     bio,
     phone
-  }: IEditUserProfile) {
+  }: IUpdateUserProfile) {
     const user = await prisma.user.update({
       where: { id: userId },
       data:  {
         name,
         email,
         password,
-        avatar,
         bio,
         phone,
       }
     });
     return user.id;
+  }
+
+  async updateAvatar(userId: string, avatar: string) {
+    await prisma.user.update({
+      where: { id: userId },
+      data: { avatar }
+    });
+  }
+  
+  async removeAvatar(userId: string) {
+    await prisma.user.update({
+      where: { id: userId },
+      data: { avatar: 'avatar_default.jpg' }
+    });
   }
 }
 
