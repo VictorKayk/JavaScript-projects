@@ -16,8 +16,8 @@ import RegisterError from '../../errors/RegisterError';
 export default class RegisterUserUseCase {
   constructor(private UserRepository: IUserRepository) {}
 
-  validate({ name, email, password, avatar, bio, phone }: IRegister) {
-    const valid = validate({ name, email, password, avatar, bio, phone });
+  validate({ name, email, password, bio, phone }: IRegister) {
+    const valid = validate({ name, email, password, bio, phone });
     if (valid !== true) throw new RegisterError(valid);
   }
 
@@ -58,8 +58,8 @@ export default class RegisterUserUseCase {
    return token;
   }
 
-  async execute({ name, email, password, avatar, bio, phone }: IRegister) {
-    this.validate({ name, email, password, avatar, bio, phone });
+  async execute({ name, email, password, bio, phone }: IRegister) {
+    this.validate({ name, email, password, bio, phone });
 
     await this.valuesUniques(email, phone);
 
@@ -69,10 +69,11 @@ export default class RegisterUserUseCase {
       name,
       email,
       password: hashPassword,
-      avatar,
       bio,
       phone,
     });
+
+    await this.UserRepository.createAvatar({ userId, avatar: {} });
 
     const token = this.getToken(userId);
     return token;

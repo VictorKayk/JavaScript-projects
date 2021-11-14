@@ -13,13 +13,12 @@ export default class RegisterUserController {
   constructor(private registerUserUseCase: RegisterUserUseCase) {}
 
   async handle(req: Request, res: Response) {
-    const { name, email, password, avatar, bio, phone }: IRegister = req.body;
+    const { name, email, password, bio, phone }: IRegister = req.body;
     try {
       const token = await this.registerUserUseCase.execute({
         name,
         email,
         password,
-        avatar,
         bio,
         phone,
       });

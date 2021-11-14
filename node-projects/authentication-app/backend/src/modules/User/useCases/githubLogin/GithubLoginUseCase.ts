@@ -69,8 +69,9 @@ export default class GithubLoginUseCase {
           name,
           email,
           bio,
-          avatar: avatar_url,
         });
+        
+        await this.UserRepository.createAvatar({ userId, avatar: { url: avatar_url }});
       }
 
       const token = this.getToken(userId);

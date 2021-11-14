@@ -18,6 +18,6 @@ export default class AvatarUploadUrlUseCase {
   async execute(userId: string, avatarUrl: string) {
     this.validate(avatarUrl);
 
-    await this.UserRepository.updateAvatar(userId, avatarUrl);
+    await this.UserRepository.updateAvatar({ userId, avatar: { url: avatarUrl }});
   }
 }

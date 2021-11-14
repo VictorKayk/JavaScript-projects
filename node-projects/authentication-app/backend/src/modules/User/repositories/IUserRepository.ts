@@ -1,6 +1,7 @@
 // Interfaces
 import IUpdateUserProfile from '../interfaces/IUpdateUserProfile';
 import IRegister from '../interfaces/IRegister';
+import IAvatarUpload from '../interfaces/IAvatarUpload';
 
 export default interface IUserRepository {
   register(user: IRegister);
@@ -13,6 +14,7 @@ export default interface IUserRepository {
   githubIdExists(githubId: number);
   userProfile(userId: string);
   updateUserProfile(userId: string, user: IUpdateUserProfile);
-  updateAvatar(userId: string, avatar: string);
+  createAvatar({ userId, avatar: { url }}: IAvatarUpload);
+  updateAvatar({ userId, avatar: { name, size, url }}: IAvatarUpload);
   removeAvatar(userId: string);
 }

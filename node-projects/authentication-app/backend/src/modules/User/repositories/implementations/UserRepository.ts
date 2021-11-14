@@ -7,6 +7,7 @@ import IUserRepository from '../IUserRepository';
 // Interfaces
 import IRegister from '../../interfaces/IRegister';
 import IUpdateUserProfile from '../../interfaces/IUpdateUserProfile';
+import IAvatarUpload from '../../interfaces/IAvatarUpload';
 
 class UserRepository implements IUserRepository {
   async register({
@@ -14,7 +15,6 @@ class UserRepository implements IUserRepository {
     name,
     email,
     password,
-    avatar,
     bio,
     phone,
   }: IRegister) {
@@ -24,7 +24,6 @@ class UserRepository implements IUserRepository {
         name,
         email,
         password,
-        avatar,
         bio,
         phone,
       },
@@ -115,17 +114,27 @@ class UserRepository implements IUserRepository {
     return user.id;
   }
 
-  async updateAvatar(userId: string, avatar: string) {
-    await prisma.user.update({
-      where: { id: userId },
-      data: { avatar }
+  async createAvatar({ userId, avatar: { url }}: IAvatarUpload) {
+    await prisma.userAvatar.create({
+      data: { userId, url }
+    });
+  }
+
+  async updateAvatar({ userId, avatar: { name, size, url }}: IAvatarUpload) {
+    await prisma.userAvatar.update({
+      where: { userId },
+      data: { name, url, size },
+      include: { User: true },
     });
   }
   
   async removeAvatar(userId: string) {
-    await prisma.user.update({
+    await prisma.userAvatar.update({
       where: { id: userId },
-      data: { avatar: 'avatar_default.jpg' }
+      data: {
+        name: 'avatar_default.jpg',
+        url: 'avatar_default.jpg',
+      }
     });
   }
 }

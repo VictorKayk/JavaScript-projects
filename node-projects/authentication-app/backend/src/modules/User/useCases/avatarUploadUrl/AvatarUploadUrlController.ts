@@ -11,9 +11,9 @@ export default class AvatarUrlController {
 
   async handle(req: Request, res: Response) {
     const { userId } = req.user;
-    const { avatar } = req.body;
+    const { avatarUrl } = req.body;
     try {
-      await this.avatarUrlUseCase.execute(userId, avatar);
+      await this.avatarUrlUseCase.execute(userId, avatarUrl);
       return res.status(200).json({ success: true });
     } catch (e) {
       throw new AvatarUploadError([e.message], e.statusCode);

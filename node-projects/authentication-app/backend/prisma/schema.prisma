@@ -14,15 +14,25 @@ enum Role {
 }
 
 model User {
-  id        String   @id @default(dbgenerated()) @map("_id") @db.ObjectId
-  githubId  Int?     @unique
+  id        String      @id @default(dbgenerated()) @map("_id") @db.ObjectId
+  githubId  Int?        @unique
   name      String
-  email     String?  @unique
+  email     String?     @unique
   password  String?
-  avatar    String?   @default("avatar_default.jpg")
-  bio       String?  @default("Hello!!!")
-  phone     String?  @unique
-  role      Role?     @default(USER)
+  bio       String?     @default("Hello!!!")
+  phone     String?     @unique
+  avatar    UserAvatar?
+  role      Role?       @default(USER)
+  createdAt DateTime    @default(now())
+  updatedAt DateTime    @updatedAt
+}
+
+model UserAvatar {
+  id        String   @id @default(dbgenerated()) @map("_id") @db.ObjectId
+  name      String?  @default("Profile picture")
+  url       String?  @default("avatar_default.jpg")
+  size      Float?
   createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  userId    String   @db.ObjectId
+  User      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
