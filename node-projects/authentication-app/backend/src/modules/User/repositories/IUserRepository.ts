@@ -17,4 +17,5 @@ export default interface IUserRepository {
   createAvatar({ userId, avatar: { url }}: IAvatarUpload);
   updateAvatar({ userId, avatar: { name, size, url }}: IAvatarUpload);
   removeAvatar(userId: string);
+  getAvatarByUserId(userId: string);
 }

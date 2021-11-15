@@ -31,8 +31,9 @@ model UserAvatar {
   id        String   @id @default(dbgenerated()) @map("_id") @db.ObjectId
   name      String?  @default("Profile picture")
   url       String?  @default("avatar_default.jpg")
-  size      Float?
-  createdAt DateTime @default(now())
+  size      Float?   @default(0)
   userId    String   @db.ObjectId
   User      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }

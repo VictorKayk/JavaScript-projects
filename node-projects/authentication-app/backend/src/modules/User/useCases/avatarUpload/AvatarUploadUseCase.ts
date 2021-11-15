@@ -3,25 +3,23 @@ import { resolve } from 'path';
 // Repository
 import IUserRepository from '../../repositories/IUserRepository';
 
-// Utils
-import deleteFile from '../../../../shared/utils/deleteFile';
-
 // Interface
 import IAvatarUpload from '../../interfaces/IAvatarUpload';
+
+// Utils
+import deleteFile from '../../../../shared/utils/deleteFile';
 
 export default class AvatarUploadUseCase {
   constructor(private UserRepository: IUserRepository) {}
   
   async execute({ userId, avatar: { name, size, url }}: IAvatarUpload) {
-    const user = await this.UserRepository.getUserById(userId);
+    const avatar = await this.UserRepository.getAvatarByUserId(userId);
 
-    if (!user.avatar.endsWith('avatar_default.jpg')) {
-      const path = resolve('./tmp', 'uploads', user.avatar.name);
+    if (avatar.name !== 'Profile picture') {
+      const path = resolve('./tmp', 'uploads', avatar.name);
       await deleteFile(path);
-    }
+    };
 
     await this.UserRepository.updateAvatar({ userId, avatar:{ name, size, url }});
   }
 }
-
-// Upload to amazon

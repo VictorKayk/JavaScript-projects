@@ -87,8 +87,14 @@ class UserRepository implements IUserRepository {
         name: true,
         email: true,
         bio: true,
-        avatar: true,
         phone: true,
+        avatar: {
+          select: {
+            name: true,
+            url: true,
+            size: true,
+          }
+        },
       },
     });
     return user;
@@ -124,18 +130,25 @@ class UserRepository implements IUserRepository {
     await prisma.userAvatar.update({
       where: { userId },
       data: { name, url, size },
-      include: { User: true },
     });
   }
   
   async removeAvatar(userId: string) {
     await prisma.userAvatar.update({
-      where: { id: userId },
+      where: { userId },
       data: {
-        name: 'avatar_default.jpg',
+        name: 'Profile picture',
         url: 'avatar_default.jpg',
+        size: 0,
       }
     });
+  }
+
+  async getAvatarByUserId(userId: string) {
+    const avatar = await prisma.userAvatar.findUnique({
+      where: { userId },
+    });
+    return avatar;
   }
 }
 

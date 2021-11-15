@@ -13,10 +13,12 @@ export default class AvatarController {
     const { userId } = req.user;
     const { filename, size } = req.file;
     try {
-      await this.avatarUseCase.execute({userId, avatar:{ name: filename, size, url:'' }});
+      await this.avatarUseCase.execute({userId, avatar:{ name: filename, size, url: filename }});
       return res.status(200).json({ success: true });
     } catch (e) {
       throw new AvatarUploadError([e.message], e.statusCode);
     }
   }
 }
+
+// Avatar was uploaded in disk - didn't have an url
