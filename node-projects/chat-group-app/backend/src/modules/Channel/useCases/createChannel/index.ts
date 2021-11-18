@@ -1,4 +1,4 @@
-import ChannelRepository from "../../repositories/Implementations/ChannelRepository";
+import ChannelRepository from "../../repositories/implementations/ChannelRepository";
 
 // Use case
 import CreateChannelUseCase from "./CreateChannelUseCase";

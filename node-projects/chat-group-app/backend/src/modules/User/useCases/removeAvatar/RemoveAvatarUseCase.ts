@@ -9,7 +9,7 @@ import deleteFile from '../../../../shared/utils/deleteFile';
 export default class RemoveAvatarUseCase {
   constructor(private UserRepository: IUserRepository) {}
   
-  async execute(userID: string) {
+  async execute(userID: number) {
     const avatar = await this.UserRepository.getAvatarByUserID(userID);
 
     if (avatar.name !== 'Profile picture') {

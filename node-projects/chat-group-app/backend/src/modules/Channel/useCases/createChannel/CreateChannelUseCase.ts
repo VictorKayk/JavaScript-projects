@@ -20,6 +20,8 @@ export default class CreateChannelUseCase {
 
   async execute({ userID, name, description }: ICreateChannel) {
     this.validate({ name, description });
-    await this.ChannelRepository.createChannel({ userID, name, description });
+    const channelID = await this.ChannelRepository.createChannel({ userID, name, description });
+
+    await this.ChannelRepository.createChannelIcon({ channelID, icon: {} });
   }
 }

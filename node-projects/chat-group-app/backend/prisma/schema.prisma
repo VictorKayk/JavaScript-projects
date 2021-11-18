@@ -45,6 +45,7 @@ model Channel {
   id          Int                   @id @default(autoincrement())
   name        String
   description String
+  icon        ChannelIcon?
   creatorID   Int
   admins      ChannelOnUserAdmin[]
   members     ChannelOnUserMember[]
@@ -70,6 +71,17 @@ model ChannelOnUserAdmin {
   Channel   Channel @relation(fields: [channelID], references: [id], onDelete: Cascade)
 
   @@id([userID, channelID])
+}
+
+model ChannelIcon {
+  id        Int      @id @default(autoincrement())
+  name      String?  @default("Channel icon")
+  url       String?  @default("channel_icon_default.jpg")
+  size      Float?   @default(0)
+  channelID Int      @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  Channel   Channel  @relation(fields: [channelID], references: [id], onDelete: Cascade)
 }
 
 model Message {

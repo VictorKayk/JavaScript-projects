@@ -4,7 +4,7 @@ import { resolve } from 'path';
 import IUserRepository from '../../repositories/IUserRepository';
 
 // Validate
-import validate from '../../validations/userAvatarValidate';
+import validate from '../../validations/avatarUploadUrlValidate';
 
 // Error
 import AvatarUploadError from '../../errors/AvatarUploadError';
@@ -15,12 +15,12 @@ import deleteFile from '../../../../shared/utils/deleteFile';
 export default class AvatarUploadUrlUseCase {
   constructor(private UserRepository: IUserRepository) {}
   
-  validate(avatar) {
-    const valid = validate({ avatar });
+  validate(url) {
+    const valid = validate({ url });
     if (valid !== true) throw new AvatarUploadError(valid);
   }
 
-  async execute(userID: string, avatarUrl: string) {
+  async execute(userID: number, avatarUrl: string) {
     this.validate(avatarUrl);
 
     const avatar = await this.UserRepository.getAvatarByUserID(userID);

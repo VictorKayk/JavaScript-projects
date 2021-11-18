@@ -16,7 +16,7 @@ export default class AvatarUploadUseCase {
     const avatar = await this.UserRepository.getAvatarByUserID(userID);
 
     if (avatar.name !== 'Profile picture') {
-      const path = resolve('./tmp', 'uploads', avatar.name);
+      const path = resolve('./tmp', 'uploads', 'avatar', avatar.name);
       await deleteFile(path);
     };
 

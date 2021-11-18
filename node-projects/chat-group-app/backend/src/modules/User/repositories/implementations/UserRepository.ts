@@ -80,7 +80,7 @@ class UserRepository implements IUserRepository {
     return !!githubIdExists;
   }
 
-  async userProfile(userID: string) {
+  async userProfile(userID: number) {
     const user = await prisma.user.findUnique({
       where: { id: userID },
       select: {
@@ -100,7 +100,7 @@ class UserRepository implements IUserRepository {
     return user;
   }
 
-  async updateUserProfile(userID: string, {
+  async updateUserProfile(userID: number, {
     name,
     email,
     password,
@@ -133,7 +133,7 @@ class UserRepository implements IUserRepository {
     });
   }
   
-  async removeAvatar(userID: string) {
+  async removeAvatar(userID: number) {
     await prisma.avatar.update({
       where: { userID },
       data: {
@@ -144,7 +144,7 @@ class UserRepository implements IUserRepository {
     });
   }
 
-  async getAvatarByUserID(userID: string) {
+  async getAvatarByUserID(userID: number) {
     const avatar = await prisma.avatar.findUnique({
       where: { userID },
     });
