@@ -13,7 +13,7 @@ export default class AvatarUploadUseCase {
   constructor(private UserRepository: IUserRepository) {}
   
   async execute({ userID, avatar: { name, size, url }}: IAvatarUpload) {
-    const avatar = await this.UserRepository.getAvatarByuserID(userID);
+    const avatar = await this.UserRepository.getAvatarByUserID(userID);
 
     if (avatar.name !== 'Profile picture') {
       const path = resolve('./tmp', 'uploads', avatar.name);

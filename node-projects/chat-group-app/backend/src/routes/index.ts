@@ -2,14 +2,14 @@ import { Router } from 'express';
 
 // Routes - Import
 import user from '../modules/User/routes';
-import chat from '../modules/Chat/routes';
+import channel from '../modules/Channel/routes';
 
 const routes = Router();
 
 // User router
 routes.use('/user', user);
 
-// Chat router
-routes.use('/', chat);
+// Channel router
+routes.use('/channel', channel);
 
 export default routes;

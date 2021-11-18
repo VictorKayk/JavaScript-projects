@@ -20,7 +20,7 @@ class Auth {
 
     try {
       const { sub: userID } = verify(token, process.env.JWT_SECRET) as IPayload;
-      req.user = { userID };
+      req.user = { userID: Number(userID) };
       next();
     } catch (e) {
       throw new AuthorizationError(undefined, 500);

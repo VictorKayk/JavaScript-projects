@@ -29,7 +29,7 @@ export default class RegisterUserUseCase {
       const emailExists = await this.UserRepository.emailExists(email);
       if (emailExists)
         errors.push(
-          'Email already exists, please login or use another email to register.',
+          'An account with that email address already exists. Please login to continue.',
         );
     }
 
@@ -38,7 +38,7 @@ export default class RegisterUserUseCase {
       const phoneExists = await this.UserRepository.phoneExists(phone);
       if (phoneExists)
         errors.push(
-          'Phone already exists, please login or use another phone to register.',
+          'An account with that phone number address already exists. Please login to continue.',
         );
     }
     if (errors.length > 0) throw new RegisterError(errors);

@@ -6,8 +6,6 @@ Project Description
 
 ### Todo
 
-- [ ] I can select a channel of my choice  
-- [ ] When I can select a channel, I am added as a member of the channel  
 - [ ] I can see a member of the channel  
 - [ ] I can send a message  
 - [ ] I can see other people's messages  
@@ -16,6 +14,10 @@ Project Description
 ### In Progress
 
 - [ ] By default, I am in the Welcome channel  
-- [ ] I can create a new channel with a name and a description  
+- [ ] I can select a channel of my choice  
+- [ ] When I can select a channel, I am added as a member of the channel  
 
 ### Done ✓
+
+- [x] I can create a new channel with a name and a description  
+

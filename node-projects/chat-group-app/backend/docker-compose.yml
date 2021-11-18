@@ -1,0 +1,19 @@
+version: "3.7"
+
+services:
+  database:
+    image: postgres
+    container_name: database
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=VictorKayk
+      - POSTGRES_PASSWORD=password123
+      - POSTGRES_DB=Chat-Group-App
+    volumes:
+      - pgdata:/data/postgres
+
+volumes: 
+  pgdata:
+    driver: local

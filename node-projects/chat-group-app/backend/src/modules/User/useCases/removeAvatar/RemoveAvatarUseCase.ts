@@ -10,7 +10,7 @@ export default class RemoveAvatarUseCase {
   constructor(private UserRepository: IUserRepository) {}
   
   async execute(userID: string) {
-    const avatar = await this.UserRepository.getAvatarByuserID(userID);
+    const avatar = await this.UserRepository.getAvatarByUserID(userID);
 
     if (avatar.name !== 'Profile picture') {
       const path = resolve('./tmp', 'uploads', avatar.name);

@@ -23,7 +23,7 @@ import avatarUpload from '../useCases/avatarUpload';
 const routes = Router();
 
 // Upload
-const upload = multer(uploadConfig.upload('./tmp/uploads'));
+const upload = multer(uploadConfig.upload('./tmp/uploads/avatar'));
 
 // Register routes
 // POST
