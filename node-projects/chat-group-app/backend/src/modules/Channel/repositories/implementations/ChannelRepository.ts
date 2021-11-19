@@ -23,12 +23,127 @@ class ChannelRepository implements IChannelRepository {
     return channel.id;
   }
 
+    async getChannel(channelID: number) {
+    const channel = await prisma.channel.findUnique({
+      where: { id: channelID },
+      select: {
+        id: true,
+        name: true,
+        description: true,
+        icon: {
+          select: {
+            name: true,
+            url: true,
+          }
+        },
+        creator: {
+          select: {
+            id: true,
+            name: true,
+          }
+        },
+        createdAt: true,
+        admins: {
+          select: {
+            user: {
+              select: {
+                id: true,
+                name: true,
+                avatar: {
+                  select: {
+                    name: true,
+                    url: true,
+                  }
+                },
+                bio: true,
+              }
+            }
+          },
+          orderBy: {
+            user: {
+              name: 'asc'
+            }
+          }
+        },
+        members: {
+          select: {
+            user: {
+              select: {
+                id: true,
+                name: true,
+                avatar: {
+                  select: {
+                    name: true,
+                    url: true,
+                  }
+                },
+                bio: true,
+              }
+            }
+          },
+          orderBy: {
+            user: {
+              name: 'asc'
+            }
+          }
+        },
+        messages: {
+          select: {
+            id: true,
+            message: true,
+            user: {
+              select: {
+                id: true,
+                name: true,
+                avatar: {
+                  select: {
+                    name: true,
+                    url: true,
+                  }
+                }
+              }
+            },
+            createdAt: true
+          },
+          take: 50,
+          orderBy: {
+            createdAt: 'asc'
+          }
+        },
+      }
+    });
+    return channel;
+  }
+
+  async get10Channels() {
+    const channels = await prisma.channel.findMany({
+      select: {
+        id: true,
+        name: true,
+        icon: {
+          select: {
+            id: true,
+            name: true,
+            url: true,
+          }
+        },
+      },
+      orderBy: {
+        members: {
+          _count: 'desc'
+        }
+      },
+      take: 10
+    });
+    return channels;
+  }
+
   async createChannelIcon({ channelID }: IIconUpload) {
     await prisma.channelIcon.create({
       data: {
         channelID
       }
-    })
+    });
   }
 
   async isChannelAdmin(userID: number, channelID: number) {
@@ -105,97 +220,6 @@ class ChannelRepository implements IChannelRepository {
     });
   }
 
-  async getChannel(channelID: number) {
-    const channel = await prisma.channel.findUnique({
-      where: { id: channelID },
-      select: {
-        id: true,
-        name: true,
-        description: true,
-        icon: {
-          select: {
-            name: true,
-            url: true,
-          }
-        }, 
-        messages: {
-          select: {
-            id: true,
-            message: true,
-            user: {
-              select: {
-                id: true,
-                name: true,
-                avatar: {
-                  select: {
-                    name: true,
-                    url: true,
-                  }
-                }
-              }
-            }
-          },
-          take: 50,
-          orderBy: {
-            createdAt: 'asc'
-          }
-        },
-        creator: {
-          select: {
-            id: true,
-            name: true,
-          }
-        },
-        createdAt: true,
-        admins: {
-          select: {
-            user: {
-              select: {
-                id: true,
-                name: true,
-                avatar: {
-                  select: {
-                    name: true,
-                    url: true,
-                  }
-                },
-                bio: true,
-              }
-            }
-          },
-          orderBy: {
-            user: {
-              name: 'asc'
-            }
-          }
-        },
-        members: {
-          select: {
-            user: {
-              select: {
-                id: true,
-                name: true,
-                avatar: {
-                  select: {
-                    name: true,
-                    url: true,
-                  }
-                },
-                bio: true,
-              }
-            }
-          },
-          orderBy: {
-            user: {
-              name: 'asc'
-            }
-          }
-        },
-      }
-    });
-    return channel;
-  }
-
   async getIconByChannelID(channelID: number) {
     const icon = await prisma.channelIcon.findFirst({
       where: { channelID }
@@ -211,7 +235,7 @@ class ChannelRepository implements IChannelRepository {
         url,
         size
       }
-    })
+    });
   }
 
   async removeIcon(channelID: number) {
@@ -222,7 +246,17 @@ class ChannelRepository implements IChannelRepository {
         url: 'channel_icon_default.jpg',
         size: 0
       }
-    })
+    });
+  }
+
+  async sendMessage(userID: number, channelID: number, message: string) {
+    await prisma.message.create({
+      data: {
+        message,
+        userID,
+        channelID
+      }
+    });
   }
 }
 

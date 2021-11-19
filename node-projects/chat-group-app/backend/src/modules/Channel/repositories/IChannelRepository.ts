@@ -4,6 +4,8 @@ import IIconUpload from "../interfaces/IIconUpload";
 
 export default interface IChannelRepository {
   createChannel({ userID, name, description }: ICreateChannel);
+  getChannel(channelID: number);
+  get10Channels();
   createChannelIcon({ channelID, icon: { name, size, url }}: IIconUpload);
   isChannelAdmin(userID: number, channelID: number);
   isChannelMember(userID: number, channelID: number);
@@ -12,8 +14,8 @@ export default interface IChannelRepository {
   removeChannelMember(userID: number, channelID: number);
   addChannelAdmin(userID: number, channelID: number);
   removeChannelAdmin(userID: number, channelID: number);
-  getChannel(channelID: number);
   getIconByChannelID(channelID: number);
   updateIcon({ channelID, icon: { name, size, url }}: IIconUpload);
   removeIcon(channelID: number);
+  sendMessage(userID: number, channelID: number, message: string);
 }
