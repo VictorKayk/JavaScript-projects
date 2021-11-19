@@ -11,14 +11,15 @@ import ensureAuthenticated from '../../../shared/middlewares/ensureAuthenticated
 import get10Channels from '../useCases/get10Channels';
 import getChannel from '../useCases/getChannel';
 import createChannel from '../useCases/createChannel';
+import deleteChannel from '../useCases/deleteChannel';
 import iconUpload from '../useCases/iconUpload';
 import iconUploadUrl from '../useCases/iconUploadUrl';
 import removeIcon from '../useCases/removeIcon';
 import removeMember from '../useCases/removeMember';
 import addAdmin from '../useCases/addAdmin';
 import removeAdmin from '../useCases/removeAdmin';
-import sendMessage from '../useCases/sendMessage'
 import exitChannel from '../useCases/exitChannel'
+import sendMessage from '../useCases/sendMessage'
 
 
 const routes = Router();
@@ -34,6 +35,7 @@ routes.get('/:channelID', ensureAuthenticated.handle, (req, res) => getChannel.h
 // POST
 routes.post('/', ensureAuthenticated.handle, (req, res) => createChannel.handle(req, res));
 // DELETE
+routes.delete('/:channelID', ensureAuthenticated.handle, (req, res) => deleteChannel.handle(req, res))
 
 
 // Channel icon routes

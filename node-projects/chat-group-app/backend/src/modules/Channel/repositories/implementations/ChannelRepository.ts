@@ -23,7 +23,15 @@ class ChannelRepository implements IChannelRepository {
     return channel.id;
   }
 
-    async getChannel(channelID: number) {
+  async deleteChannel(channelID: number) {
+    await prisma.channel.delete({
+      where: {
+        id: channelID
+      }
+    });
+  }
+
+  async getChannel(channelID: number) {
     const channel = await prisma.channel.findUnique({
       where: { id: channelID },
       select: {
