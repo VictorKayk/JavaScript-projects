@@ -18,6 +18,7 @@ import removeMember from '../useCases/removeMember';
 import addAdmin from '../useCases/addAdmin';
 import removeAdmin from '../useCases/removeAdmin';
 import sendMessage from '../useCases/sendMessage'
+import exitChannel from '../useCases/exitChannel'
 
 
 const routes = Router();
@@ -32,6 +33,8 @@ routes.get('/', ensureAuthenticated.handle, (req, res) => get10Channels.handle(r
 routes.get('/:channelID', ensureAuthenticated.handle, (req, res) => getChannel.handle(req, res));
 // POST
 routes.post('/', ensureAuthenticated.handle, (req, res) => createChannel.handle(req, res));
+// DELETE
+
 
 // Channel icon routes
 // POST - Upload icon
@@ -43,14 +46,18 @@ routes.delete('/icon/:channelID', ensureAuthenticated.handle, (req, res) => remo
 
 // Members routes
 // The member is created when get the channel content
+// DELETE - Exiting the channel
+routes.delete('/:channelID/members', ensureAuthenticated.handle, (req, res) => exitChannel.handle(req, res));
 // DELETE - remove member
 routes.delete('/:channelID/members/:memberID', ensureAuthenticated.handle, (req, res) => removeMember.handle(req, res))
 
 // Admins routes
 // POST - add admins
-routes.post('/:channelID/admins/:adminID', ensureAuthenticated.handle, (req, res) => addAdmin.handle(req, res))
+routes.post('/:channelID/admins/:adminID', ensureAuthenticated.handle, (req, res) => addAdmin.handle(req, res));
+// DELETE - Exiting the channel
+routes.delete('/:channelID/admins', ensureAuthenticated.handle, (req, res) => exitChannel.handle(req, res));
 // DELETE - remove admins
-routes.delete('/:channelID/admins/:adminID', ensureAuthenticated.handle, (req, res) => removeAdmin.handle(req, res))
+routes.delete('/:channelID/admins/:adminID', ensureAuthenticated.handle, (req, res) => removeAdmin.handle(req, res));
 
 // Message routes
 // POST - send message
