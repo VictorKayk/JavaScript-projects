@@ -19,7 +19,6 @@ export default class CreateChannelController {
       await this.createChannelUseCase.execute({ userID, name, description })
       return res.status(201).json({ success: true });
     } catch(e) {
-      console.log(e)
       throw new CreateChannelError([e.message], e.statusCode);
     }
   }

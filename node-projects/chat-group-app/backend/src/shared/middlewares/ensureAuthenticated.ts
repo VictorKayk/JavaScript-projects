@@ -9,7 +9,7 @@ interface IPayload {
   sub: string;
 }
 
-class Auth {
+class ensureAuthenticated {
   async handle(req: Request, res: Response, next: NextFunction) {
     const { authorization } = req.headers;
     if (!authorization)
@@ -28,4 +28,4 @@ class Auth {
   }
 }
 
-export default new Auth();
+export default new ensureAuthenticated();

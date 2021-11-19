@@ -19,7 +19,7 @@ export default class IconUploadUseCase {
   constructor(private ChannelRepository: IChannelRepository) {}
   
   async execute(userID, { channelID }: IIconUpload) {
-    const admin = await this.ChannelRepository.IsChannelAdmin(userID, channelID);
+    const admin = await this.ChannelRepository.isChannelAdmin(userID, channelID);
     if (!admin) throw new RemoveIconError(['User is not an admin.'], 403);
 
     const icon = await this.ChannelRepository.getIconByChannelID(channelID);

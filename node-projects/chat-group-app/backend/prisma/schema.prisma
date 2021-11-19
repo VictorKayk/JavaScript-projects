@@ -38,7 +38,7 @@ model Avatar {
   userID    Int      @unique
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  User      User     @relation(fields: [userID], references: [id], onDelete: Cascade)
+  user      User     @relation(fields: [userID], references: [id], onDelete: Cascade)
 }
 
 model Channel {
@@ -52,23 +52,23 @@ model Channel {
   messages    Message[]
   createdAt   DateTime              @default(now())
   updatedAt   DateTime              @updatedAt
-  Creator     User                  @relation(fields: [creatorID], references: [id], onDelete: Cascade)
+  creator     User                  @relation(fields: [creatorID], references: [id], onDelete: Cascade)
 }
 
 model ChannelOnUserMember {
   userID    Int
-  User      User    @relation(fields: [userID], references: [id], onDelete: Cascade)
+  user      User    @relation(fields: [userID], references: [id], onDelete: Cascade)
   channelID Int
-  Channel   Channel @relation(fields: [channelID], references: [id], onDelete: Cascade)
+  channel   Channel @relation(fields: [channelID], references: [id], onDelete: Cascade)
 
   @@id([userID, channelID])
 }
 
 model ChannelOnUserAdmin {
   userID    Int
-  User      User    @relation(fields: [userID], references: [id], onDelete: Cascade)
+  user      User    @relation(fields: [userID], references: [id], onDelete: Cascade)
   channelID Int
-  Channel   Channel @relation(fields: [channelID], references: [id], onDelete: Cascade)
+  channel   Channel @relation(fields: [channelID], references: [id], onDelete: Cascade)
 
   @@id([userID, channelID])
 }
@@ -81,7 +81,7 @@ model ChannelIcon {
   channelID Int      @unique
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  Channel   Channel  @relation(fields: [channelID], references: [id], onDelete: Cascade)
+  channel   Channel  @relation(fields: [channelID], references: [id], onDelete: Cascade)
 }
 
 model Message {
@@ -90,6 +90,6 @@ model Message {
   userID    Int
   channelID Int
   createdAt DateTime @default(now())
-  User      User     @relation(fields: [userID], references: [id], onDelete: Cascade)
-  Channel   Channel  @relation(fields: [channelID], references: [id], onDelete: Cascade)
+  user      User     @relation(fields: [userID], references: [id], onDelete: Cascade)
+  channel   Channel  @relation(fields: [channelID], references: [id], onDelete: Cascade)
 }

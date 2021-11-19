@@ -11,10 +11,10 @@ export default class IconController {
 
   async handle(req: Request, res: Response) {
     const { userID } = req.user;
-    const { id } = req.params;
+    const { channelID } = req.params;
     const { url } = req.body;
     try {
-      await this.iconUploadUrlUseCase.execute(userID, { channelID: Number(id), icon: { url } });
+      await this.iconUploadUrlUseCase.execute(userID, { channelID: Number(channelID), icon: { url } });
       return res.status(200).json({ success: true });
     } catch (e) {
       throw new RemoveIconError([e.message], e.statusCode);
