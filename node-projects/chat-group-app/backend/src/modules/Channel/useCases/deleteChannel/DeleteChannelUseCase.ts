@@ -1,3 +1,5 @@
+import { io } from '../../../../http';
+
 // Repository
 import IChannelRepository from '../../repositories/IChannelRepository';
 
@@ -11,6 +13,7 @@ export default class DeleteChannelUseCase {
     const creator = await this.ChannelRepository.isChannelCreator(userID, channelID);
     if (!creator) throw new DeleteChannelError(['User must be the channel creator to delete the channel.'], 403);
 
-    await this.ChannelRepository.deleteChannel(channelID);
+    const channel = await this.ChannelRepository.deleteChannel(channelID);
+    io.emit('deleting-channel', channel);
   }
 }

@@ -5,6 +5,7 @@ import IIconUpload from "../interfaces/IIconUpload";
 export default interface IChannelRepository {
   createChannel({ userID, name, description }: ICreateChannel);
   deleteChannel(channelID: number);
+  getAllChannels();
   getChannel(channelID: number);
   get10Channels();
   createChannelIcon({ channelID, icon: { name, size, url }}: IIconUpload);

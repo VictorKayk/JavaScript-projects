@@ -1,3 +1,5 @@
+import { io } from '../../../../http';
+
 // Repository
 import IChannelRepository from '../../repositories/IChannelRepository';
 
@@ -19,6 +21,7 @@ export default class AddAdminUseCase {
 
     await this.ChannelRepository.removeChannelMember(memberID, channelID);
 
-    await this.ChannelRepository.addChannelAdmin(memberID, channelID);
+    const adm = await this.ChannelRepository.addChannelAdmin(memberID, channelID);
+    io.emit('new-adm', adm);
   }
 }

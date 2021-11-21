@@ -16,6 +16,8 @@ import AppError from './shared/errors/AppError';
 
 const app = express();
 
+app.use(express.static('/home/victorkayk/Documents/Projects/my-projects/programming/JavaScript-projects/node-projects/chat-group-app/backend/public')) // Delete this
+
 // Security
 app.use(helmet());
 app.use(cors());

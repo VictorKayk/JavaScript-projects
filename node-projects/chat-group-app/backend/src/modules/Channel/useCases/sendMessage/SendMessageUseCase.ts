@@ -1,3 +1,5 @@
+import { io } from '../../../../http';
+
 // Repository
 import IChannelRepository from '../../repositories/IChannelRepository';
 
@@ -25,6 +27,7 @@ export default class SendMessageUseCase {
 
     this.validate(message);
 
-    await this.ChannelRepository.sendMessage(userID, channelID, message);
+    const messageDb = await this.ChannelRepository.sendMessage(userID, channelID, message);
+    io.emit('message', messageDb)
   }
 }

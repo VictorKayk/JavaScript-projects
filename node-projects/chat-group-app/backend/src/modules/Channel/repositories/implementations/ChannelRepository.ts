@@ -18,17 +18,64 @@ class ChannelRepository implements IChannelRepository {
         admins: {
           create: { userID }
         }
+      },
+      select: {
+        id: true,
+        name: true,
+        icon: {
+          select: {
+            id: true,
+            name: true,
+            url: true,
+          }
+        },
+        creator: {
+          select: {
+            id: true,
+            name: true,
+          }
+        },
+        createdAt: true,
       }
     });
-    return channel.id;
+    return channel;
   }
 
   async deleteChannel(channelID: number) {
-    await prisma.channel.delete({
+    const channel = await prisma.channel.delete({
       where: {
         id: channelID
+      },
+      select: {
+        id: true,
+        name: true
       }
     });
+    return channel;
+  }
+
+  async getAllChannels() {
+    const channels = await prisma.channel.findMany({
+      select: {
+        id: true,
+        name: true,
+        icon: {
+          select: {
+            id: true,
+            name: true,
+            url: true,
+          }
+        },
+        creator: {
+          select: {
+            id: true,
+            name: true,
+          }
+        },
+        createdAt: true,
+      }
+    });
+    return channels;
   }
 
   async getChannel(channelID: number) {
@@ -161,9 +208,18 @@ class ChannelRepository implements IChannelRepository {
           userID,
           channelID
         }
+      },
+      select: {
+        channelID: true,
+        user: {
+          select: {
+            id: true,
+            name: true,
+          }
+        }
       }
     });
-    return !!adm;
+    return adm;
   }
 
   async isChannelMember(userID: number, channelID: number) {
@@ -173,9 +229,18 @@ class ChannelRepository implements IChannelRepository {
           userID,
           channelID
         }
+      },
+      select: {
+        channelID: true,
+        user: {
+          select: {
+            id: true,
+            name: true,
+          }
+        }
       }
     });
-    return !!member;
+    return member;
   }
 
   async isChannelCreator(userID: number, channelID: number) {
@@ -189,32 +254,74 @@ class ChannelRepository implements IChannelRepository {
   }
 
   async addChannelMember(userID: number, channelID: number) {
-    await prisma.channelOnUserMember.create({
+    const newMember = await prisma.channelOnUserMember.create({
       data: {
         userID,
         channelID
+      },
+      select: {
+        channelID: true,
+        user: {
+          select: {
+            id: true,
+            name: true,
+            avatar: {
+              select: {
+                name: true,
+                url: true,
+              }
+            }
+          }
+        }
       }
     });
+    return newMember;
   }
 
   async removeChannelMember(userID: number, channelID: number) {
-    await prisma.channelOnUserMember.delete({
+    const member = await prisma.channelOnUserMember.delete({
       where: {
         userID_channelID: {
           userID,
           channelID
         }
+      },
+      select: {
+        channelID: true,
+        user: {
+          select: {
+            id: true,
+            name: true,
+          }
+        }
       }
     });
+    return member;
   }
   
   async addChannelAdmin(userID: number, channelID: number) {
-    await prisma.channelOnUserAdmin.create({
+    const adm = await prisma.channelOnUserAdmin.create({
       data: {
         userID,
         channelID
+      },
+      select: {
+        channelID: true,
+        user: {
+          select: {
+            id: true,
+            name: true,
+            avatar: {
+              select: {
+                name: true,
+                url: true,
+              }
+            }
+          }
+        }
       }
     });
+    return adm;
   }
   
   async removeChannelAdmin(userID: number, channelID: number) {
@@ -258,13 +365,14 @@ class ChannelRepository implements IChannelRepository {
   }
 
   async sendMessage(userID: number, channelID: number, message: string) {
-    await prisma.message.create({
+    const messageDb = await prisma.message.create({
       data: {
         message,
         userID,
         channelID
       }
     });
+    return messageDb;
   }
 }
 

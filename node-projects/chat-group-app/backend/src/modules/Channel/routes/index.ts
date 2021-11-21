@@ -8,6 +8,7 @@ import uploadConfig from '../../../configs/upload';
 import ensureAuthenticated from '../../../shared/middlewares/ensureAuthenticated';
 
 // Controllers
+import getAllChannels from '../useCases/getAllChannels';
 import get10Channels from '../useCases/get10Channels';
 import getChannel from '../useCases/getChannel';
 import createChannel from '../useCases/createChannel';
@@ -28,8 +29,10 @@ const routes = Router();
 const upload = multer(uploadConfig.upload('./tmp/uploads/icons'));
 
 // Channel routes
+// GET - Get all channels
+routes.get('/', ensureAuthenticated.handle, (req, res) => getAllChannels.handle(req, res));
 // GET - Get 10 channels
-routes.get('/', ensureAuthenticated.handle, (req, res) => get10Channels.handle(req, res));
+routes.get('/10channels', ensureAuthenticated.handle, (req, res) => get10Channels.handle(req, res));
 // GET - Specific channel
 routes.get('/:channelID', ensureAuthenticated.handle, (req, res) => getChannel.handle(req, res));
 // POST

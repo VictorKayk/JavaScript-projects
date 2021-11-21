@@ -1,3 +1,5 @@
+import { io } from '../../../../http';
+
 // Repository
 import IChannelRepository from '../../repositories/IChannelRepository';
 
@@ -20,8 +22,10 @@ export default class CreateChannelUseCase {
 
   async execute({ userID, name, description }: ICreateChannel) {
     this.validate({ name, description });
-    const channelID = await this.ChannelRepository.createChannel({ userID, name, description });
+    const channel = await this.ChannelRepository.createChannel({ userID, name, description });
 
-    await this.ChannelRepository.createChannelIcon({ channelID, icon: {} });
+    await this.ChannelRepository.createChannelIcon({ channelID: channel.id, icon: {} });
+
+    io.emit('create-channel', channel)
   }
 }

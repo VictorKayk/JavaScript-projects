@@ -1,3 +1,5 @@
+import { io } from '../../../../http';
+
 // Repository
 import IChannelRepository from '../../repositories/IChannelRepository';
 
@@ -11,9 +13,10 @@ export default class RemoveMemberUseCase {
     const userAdm = await this.ChannelRepository.isChannelAdmin(userID, channelID);
     if (!userAdm) throw new RemoveMemberError(['You must be an admin to remove other members.'], 403);
 
-    const member = await this.ChannelRepository.isChannelMember(memberID, channelID);
+    let member = await this.ChannelRepository.isChannelMember(memberID, channelID);
     if (!member) throw new RemoveMemberError(['The user must be a member to be removed of the channel.'], 400);
 
-    await this.ChannelRepository.removeChannelMember(memberID, channelID);
+    member = await this.ChannelRepository.removeChannelMember(memberID, channelID);
+    io.emit('removing-member', member);
   }
 }

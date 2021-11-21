@@ -1,3 +1,5 @@
+import { io } from '../../../../http';
+
 // Repository
 import IChannelRepository from '../../repositories/IChannelRepository';
 
@@ -14,6 +16,10 @@ export default class ExitChannelUseCase {
       const member = await this.ChannelRepository.isChannelMember(userID, channelID);
       if (!member) throw new ExitChannelError(['User must be a channel member to exit of the channel.'], 403);
       await this.ChannelRepository.removeChannelMember(userID, channelID);
-    } else await this.ChannelRepository.removeChannelAdmin(userID, channelID);
+      io.emit('member-exiting', member);
+    } else {
+      await this.ChannelRepository.removeChannelAdmin(userID, channelID);
+      io.emit('adm-exiting', adm);
+    }
   }
 }
