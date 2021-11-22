@@ -28,6 +28,6 @@ export default class SendMessageUseCase {
     this.validate(message);
 
     const messageDb = await this.ChannelRepository.sendMessage(userID, channelID, message);
-    io.emit('message', messageDb)
+    io.in(`channel-${channelID}`).emit('message', messageDb)
   }
 }

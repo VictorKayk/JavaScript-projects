@@ -7,11 +7,11 @@ Project Description
 ### Todo
 
 - [ ] By default, I am in the Welcome channel  
+- [ ] I can search for a group (Optional)
 - [ ] I can see other people's messages  
 
 ### In Progress
 
-- [ ] I can search for a group  
 
 ### Done ✓
 

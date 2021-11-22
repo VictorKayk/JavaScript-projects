@@ -17,6 +17,6 @@ export default class RemoveMemberUseCase {
     if (!member) throw new RemoveMemberError(['The user must be a member to be removed of the channel.'], 400);
 
     member = await this.ChannelRepository.removeChannelMember(memberID, channelID);
-    io.emit('removing-member', member);
+    io.in(`channel-${channelID}`).emit('removing-member', member);
   }
 }

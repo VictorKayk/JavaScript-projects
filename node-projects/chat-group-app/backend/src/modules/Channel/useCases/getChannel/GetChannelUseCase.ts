@@ -13,7 +13,7 @@ export default class GetChannelUseCase {
       const member = await this.ChannelRepository.isChannelMember(userID, channelID);
       if (!member) {
         const newMember = await this.ChannelRepository.addChannelMember(userID, channelID);
-        io.emit('new-member', newMember);
+        io.in(`channel-${channelID}`).emit('new-member', newMember);
       }
     }
 

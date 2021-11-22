@@ -26,6 +26,6 @@ export default class CreateChannelUseCase {
 
     await this.ChannelRepository.createChannelIcon({ channelID: channel.id, icon: {} });
 
-    io.emit('create-channel', channel)
+    io.in('welcome-page').emit('create-channel', channel)
   }
 }

@@ -14,6 +14,6 @@ export default class DeleteChannelUseCase {
     if (!creator) throw new DeleteChannelError(['User must be the channel creator to delete the channel.'], 403);
 
     const channel = await this.ChannelRepository.deleteChannel(channelID);
-    io.emit('deleting-channel', channel);
+    io.in(`channel-${channelID}`).emit('deleting-channel', channel);
   }
 }

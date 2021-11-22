@@ -22,6 +22,6 @@ export default class RemoveAdminUseCase {
     await this.ChannelRepository.removeChannelAdmin(adminID, channelID);
 
     const member = await this.ChannelRepository.addChannelMember(adminID, channelID);
-    io.emit('removing-adm', member);
+    io.in(`channel-${channelID}`).emit('removing-adm', member);
   }
 }

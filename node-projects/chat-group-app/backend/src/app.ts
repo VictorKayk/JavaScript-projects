@@ -16,7 +16,7 @@ import AppError from './shared/errors/AppError';
 
 const app = express();
 
-app.use(express.static('/home/victorkayk/Documents/Projects/my-projects/programming/JavaScript-projects/node-projects/chat-group-app/backend/public')) // Delete this
+app.use(express.static('/home/victorkayk/Documents/Projects/my-projects/programming/JavaScript-projects/node-projects/chat-group-app/backend/public')) // Delete this and de public folder
 
 // Security
 app.use(helmet());
