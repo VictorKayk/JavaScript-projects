@@ -2,9 +2,6 @@ import multer from 'multer';
 import { resolve } from 'path';
 import crypto from 'crypto';
 
-// Utils
-import deleteFile from '../shared/utils/deleteFile';
-
 // Error
 import AvatarUploadError from '../modules/User/errors/AvatarUploadError';
 
@@ -37,10 +34,7 @@ export default {
           'image/gif',
         ];
 
-        if (!allowedMimes.includes(file.mimetype)) {
-          // await deleteFile(resolve(__dirname, '..', '..', folder));
-          cb(new AvatarUploadError());
-        }
+        if (!allowedMimes.includes(file.mimetype)) cb(new AvatarUploadError(['Invalid file type.'], 400));
 
         cb(null, true);
       } 

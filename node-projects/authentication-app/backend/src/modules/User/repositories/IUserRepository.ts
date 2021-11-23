@@ -12,10 +12,10 @@ export default interface IUserRepository {
   getUserByPhone(phone: string);
   getUserByGithubId(githubId: number);
   githubIdExists(githubId: number);
-  userProfile(userId: string);
-  updateUserProfile(userId: string, user: IUpdateUserProfile);
-  createAvatar({ userId, avatar: { url }}: IAvatarUpload);
-  updateAvatar({ userId, avatar: { name, size, url }}: IAvatarUpload);
-  removeAvatar(userId: string);
-  getAvatarByUserId(userId: string);
+  userProfile(userID: number);
+  updateUserProfile(userID: number, user: IUpdateUserProfile);
+  createAvatar({ userID, avatar: { url }}: IAvatarUpload);
+  updateAvatar({ userID, avatar: { name, size, url }}: IAvatarUpload);
+  removeAvatar(userID: number);
+  getAvatarByUserID(userID: number);
 }

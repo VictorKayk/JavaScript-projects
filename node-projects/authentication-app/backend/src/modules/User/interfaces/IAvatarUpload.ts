@@ -1,5 +1,5 @@
 export default interface IAvatarUpload {
-  userId: string;
+  userID: number;
   avatar?: {
     name?: string,
     size?: number,

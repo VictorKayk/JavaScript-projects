@@ -10,10 +10,10 @@ export default class AvatarUrlController {
   constructor(private avatarUrlUseCase: AvatarUrlUseCase) {}
 
   async handle(req: Request, res: Response) {
-    const { userId } = req.user;
-    const { avatarUrl } = req.body;
+    const { userID } = req.user;
+    const { url } = req.body;
     try {
-      await this.avatarUrlUseCase.execute(userId, avatarUrl);
+      await this.avatarUrlUseCase.execute(userID, url);
       return res.status(200).json({ success: true });
     } catch (e) {
       throw new AvatarUploadError([e.message], e.statusCode);

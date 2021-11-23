@@ -1,10 +1,9 @@
 generator client {
-  provider        = "prisma-client-js"
-  previewFeatures = "mongoDb"
+  provider = "prisma-client-js"
 }
 
 datasource db {
-  provider = "mongodb"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
@@ -14,26 +13,26 @@ enum Role {
 }
 
 model User {
-  id        String      @id @default(dbgenerated()) @map("_id") @db.ObjectId
-  githubId  Int?        @unique
-  name      String
-  email     String?     @unique
-  password  String?
-  bio       String?     @default("Hello!!!")
-  phone     String?     @unique
-  avatar    UserAvatar?
-  role      Role?       @default(USER)
-  createdAt DateTime    @default(now())
-  updatedAt DateTime    @updatedAt
+  id          Int                   @id @default(autoincrement())
+  githubId    Int?                  @unique
+  name        String
+  email       String?               @unique
+  password    String?
+  bio         String?               @default("Hello!!!")
+  phone       String?               @unique
+  avatar      Avatar?
+  role        Role?                 @default(USER)
+  createdAt   DateTime              @default(now())
+  updatedAt   DateTime              @updatedAt
 }
 
-model UserAvatar {
-  id        String   @id @default(dbgenerated()) @map("_id") @db.ObjectId
+model Avatar {
+  id        Int      @id @default(autoincrement())
   name      String?  @default("Profile picture")
   url       String?  @default("avatar_default.jpg")
   size      Float?   @default(0)
-  userId    String   @db.ObjectId
-  User      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userID    Int      @unique
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  user      User     @relation(fields: [userID], references: [id], onDelete: Cascade)
 }

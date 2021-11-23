@@ -9,7 +9,7 @@ interface IPayload {
   sub: string;
 }
 
-class Auth {
+class EnsureAuthenticated {
   async handle(req: Request, res: Response, next: NextFunction) {
     const { authorization } = req.headers;
     if (!authorization)
@@ -19,8 +19,8 @@ class Auth {
     if (!token) throw new AuthorizationError(['Token required.']);
 
     try {
-      const { sub: userId } = verify(token, process.env.JWT_SECRET) as IPayload;
-      req.user = { userId };
+      const { sub: userID } = verify(token, process.env.JWT_SECRET) as IPayload;
+      req.user = { userID: Number(userID) };
       next();
     } catch (e) {
       throw new AuthorizationError(undefined, 500);
@@ -28,4 +28,4 @@ class Auth {
   }
 }
 
-export default new Auth();
+export default new EnsureAuthenticated();

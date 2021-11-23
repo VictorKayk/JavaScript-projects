@@ -21,13 +21,13 @@ export default class UpdateUserProfilesUseCase {
     if (valid !== true) throw new UpdateUserProfileError(valid);
   }
 
-  async valuesUniques(userId: string, { email, phone }) {
+  async valuesUniques(userID: number, { email, phone }) {
     const errors = [];
 
     // Email already exists
     if (email) {
       const emailUser = await this.UserRepository.getUserByEmail(email);
-      if (emailUser && userId !== emailUser.id)
+      if (emailUser && userID !== emailUser.id)
         errors.push(
           'Email already exists, please login or use another email to register.',
         );
@@ -36,7 +36,7 @@ export default class UpdateUserProfilesUseCase {
     // Phone already exists
     if (phone) {
       const phoneUser = await this.UserRepository.getUserByPhone(phone);
-      if (phoneUser && userId !== phoneUser.id)
+      if (phoneUser && userID !== phoneUser.id)
         errors.push(
           'Phone already exists, please login or use another phone to register.',
         );
@@ -52,22 +52,22 @@ export default class UpdateUserProfilesUseCase {
     }
   }
 
-  getToken(userId) {
+  getToken(userID) {
     const token = sign({}, process.env.JWT_SECRET, {
       expiresIn: process.env.JWT_EXPIRES_IN,
-      subject: `${userId}`,
+      subject: `${userID}`,
     });
    return token;
   }
 
-  async execute(id: string, { name, email, password, bio, phone }: IUpdateUserProfile) {
+  async execute(id: number, { name, email, password, bio, phone }: IUpdateUserProfile) {
     this.validate({ name, email, password, bio, phone });
 
     await this.valuesUniques(id, { email, phone });
 
     const hashPassword = this.hashPassword(password);
 
-    const userId = await this.UserRepository.updateUserProfile(id, {
+    const userID = await this.UserRepository.updateUserProfile(id, {
       name,
       email,
       password: hashPassword,
@@ -75,7 +75,7 @@ export default class UpdateUserProfilesUseCase {
       phone,
     });
   
-    const token = this.getToken(userId);
+    const token = this.getToken(userID);
     return token;
   }
 }

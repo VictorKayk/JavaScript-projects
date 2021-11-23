@@ -12,14 +12,14 @@ import deleteFile from '../../../../shared/utils/deleteFile';
 export default class AvatarUploadUseCase {
   constructor(private UserRepository: IUserRepository) {}
   
-  async execute({ userId, avatar: { name, size, url }}: IAvatarUpload) {
-    const avatar = await this.UserRepository.getAvatarByUserId(userId);
+  async execute({ userID, avatar: { name, size, url }}: IAvatarUpload) {
+    const avatar = await this.UserRepository.getAvatarByUserID(userID);
 
     if (avatar.name !== 'Profile picture') {
-      const path = resolve('./tmp', 'uploads', avatar.name);
+      const path = resolve('./tmp', 'uploads', 'avatar', avatar.name);
       await deleteFile(path);
     };
 
-    await this.UserRepository.updateAvatar({ userId, avatar:{ name, size, url }});
+    await this.UserRepository.updateAvatar({ userID, avatar:{ name, size, url }});
   }
 }

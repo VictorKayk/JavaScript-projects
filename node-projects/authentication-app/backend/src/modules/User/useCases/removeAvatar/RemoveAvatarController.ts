@@ -10,9 +10,9 @@ export default class LoginUserController {
   constructor(private removeAvatarUseCase: RemoveAvatarUseCase) {}
 
   async handle(req: Request, res: Response) {
-    const { userId } = req.user;
+    const { userID } = req.user;
     try {
-      await this.removeAvatarUseCase.execute(userId);
+      await this.removeAvatarUseCase.execute(userID);
       return res.status(200).json({ success: true });
     } catch (e) {
       throw new RemoveAvatarError([e.message], e.statusCode);

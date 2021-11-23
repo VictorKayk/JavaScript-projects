@@ -80,9 +80,9 @@ class UserRepository implements IUserRepository {
     return !!githubIdExists;
   }
 
-  async userProfile(userId: string) {
+  async userProfile(userID: number) {
     const user = await prisma.user.findUnique({
-      where: { id: userId },
+      where: { id: userID },
       select: {
         name: true,
         email: true,
@@ -100,7 +100,7 @@ class UserRepository implements IUserRepository {
     return user;
   }
 
-  async updateUserProfile(userId: string, {
+  async updateUserProfile(userID: number, {
     name,
     email,
     password,
@@ -108,7 +108,7 @@ class UserRepository implements IUserRepository {
     phone
   }: IUpdateUserProfile) {
     const user = await prisma.user.update({
-      where: { id: userId },
+      where: { id: userID },
       data:  {
         name,
         email,
@@ -120,22 +120,22 @@ class UserRepository implements IUserRepository {
     return user.id;
   }
 
-  async createAvatar({ userId, avatar: { url }}: IAvatarUpload) {
-    await prisma.userAvatar.create({
-      data: { userId, url }
+  async createAvatar({ userID, avatar: { url }}: IAvatarUpload) {
+    await prisma.avatar.create({
+      data: { userID, url }
     });
   }
 
-  async updateAvatar({ userId, avatar: { name, size, url }}: IAvatarUpload) {
-    await prisma.userAvatar.update({
-      where: { userId },
+  async updateAvatar({ userID, avatar: { name, size, url }}: IAvatarUpload) {
+    await prisma.avatar.update({
+      where: { userID },
       data: { name, url, size },
     });
   }
   
-  async removeAvatar(userId: string) {
-    await prisma.userAvatar.update({
-      where: { userId },
+  async removeAvatar(userID: number) {
+    await prisma.avatar.update({
+      where: { userID },
       data: {
         name: 'Profile picture',
         url: 'avatar_default.jpg',
@@ -144,9 +144,9 @@ class UserRepository implements IUserRepository {
     });
   }
 
-  async getAvatarByUserId(userId: string) {
-    const avatar = await prisma.userAvatar.findUnique({
-      where: { userId },
+  async getAvatarByUserID(userID: number) {
+    const avatar = await prisma.avatar.findUnique({
+      where: { userID },
     });
     return avatar;
   }

@@ -43,16 +43,16 @@ export default class GithubLoginUseCase {
     }
   }
 
-  getToken(userId) {
+  getToken(userID) {
     const token = sign({}, process.env.JWT_SECRET, {
       expiresIn: process.env.JWT_EXPIRES_IN,
-      subject: `${userId}`,
+      subject: `${userID}`,
     });
     return token;
   }
 
   async execute(code) {
-    let userId;
+    let userID;
     const url = 'https://github.com/login/oauth/access_token';
     try {
       const { data: IAccessTokenResponse } = await this.accessToken(url, code)
@@ -62,19 +62,19 @@ export default class GithubLoginUseCase {
 
       const githubIdExists = await this.UserRepository.githubIdExists(id);
       if (githubIdExists) {
-        userId = await this.UserRepository.getUserByGithubId(id);
+        userID = await this.UserRepository.getUserByGithubId(id);
       } else {
-        userId = await this.UserRepository.register({
+        userID = await this.UserRepository.register({
           githubId: id,
           name,
           email,
           bio,
         });
         
-        await this.UserRepository.createAvatar({ userId, avatar: { url: avatar_url }});
+        await this.UserRepository.createAvatar({ userID, avatar: { url: avatar_url }});
       }
 
-      const token = this.getToken(userId);
+      const token = this.getToken(userID);
       return token;
     } catch (e) {
       throw new GithubLoginError([e.message], e.statusCode);
