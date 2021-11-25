@@ -11,8 +11,8 @@ import swaggerFile from './swagger.json';
 // Routes
 import routes from './routes';
 
-// Errors
-import AppError from './shared/errors/AppError';
+// Error Handling
+import errorHandling from './shared/middlewares/errorHandling';
 
 const app = express();
 
@@ -30,13 +30,6 @@ app.use('/docs', swagger.serve, swagger.setup(swaggerFile));
 app.use(routes);
 
 // Default Errors
-app.use((err, req, res, _) => {
-  if (err instanceof AppError)
-    return res.status(err.statusCode).json({ errors: err.message });
-
-  return res
-    .status(500)
-    .json({ msg: `Internal server error - ${err.message}` });
-});
+app.use(errorHandling);
 
 export default app;
