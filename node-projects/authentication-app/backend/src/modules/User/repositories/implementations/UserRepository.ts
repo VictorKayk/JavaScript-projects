@@ -45,21 +45,22 @@ class UserRepository implements IUserRepository {
     return !!phoneExists;
   }
 
-  async getUserById(id) {
+  async getUserById(id: number) {
     const user = await prisma.user.findUnique({
       where: { id },
+      select: { id: true }
     });
     return user;
   }
 
-  async getUserByEmail(email) {
+  async getUserByEmail(email: string) {
     const user = await prisma.user.findUnique({
       where: { email },
     });
     return user;
   }
 
-  async getUserByPhone(phone) {
+  async getUserByPhone(phone: string) {
     const user = await prisma.user.findUnique({
       where: { phone },
     });
@@ -120,13 +121,13 @@ class UserRepository implements IUserRepository {
     return user.id;
   }
 
-  async createAvatar({ userID, avatar: { url }}: IAvatarUpload) {
+  async createAvatar(userID, { avatar: { url }}: IAvatarUpload) {
     await prisma.avatar.create({
       data: { userID, url }
     });
   }
 
-  async updateAvatar({ userID, avatar: { name, size, url }}: IAvatarUpload) {
+  async updateAvatar(userID, { avatar: { name, size, url }}: IAvatarUpload) {
     await prisma.avatar.update({
       where: { userID },
       data: { name, url, size },

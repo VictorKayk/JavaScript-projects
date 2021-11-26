@@ -42,9 +42,10 @@ export default class LoginUserUseCase {
     const user = await this.UserRepository.getUserByEmail(email);
     this.comparePassword(password, user.password);
 
-    const token = sign({}, process.env.JWT_SECRET, {
-      expiresIn: process.env.JWT_EXPIRES_IN,
-      subject: `${user.id}`,
+    const token = sign({
+      sub: `${user.id}`,
+    }, process.env.JWT_SECRET, {
+      expiresIn: process.env.JWT_EXPIRES_IN
     });
 
     return token;

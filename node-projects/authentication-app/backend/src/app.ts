@@ -4,6 +4,10 @@ import express from 'express';
 import swagger from 'swagger-ui-express';
 import helmet from 'helmet';
 import cors from 'cors';
+import passport from 'passport';
+
+// Passport
+import './configs/passportConfig'
 
 // Swagger file
 import swaggerFile from './swagger.json';
@@ -19,6 +23,7 @@ const app = express();
 // Security
 app.use(helmet());
 app.use(cors());
+app.use(passport.initialize());
 
 // Allow json
 app.use(express.json());

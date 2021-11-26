@@ -51,9 +51,10 @@ export default class RegisterUserUseCase {
   }
 
   getToken(userID) {
-    const token = sign({}, process.env.JWT_SECRET, {
-      expiresIn: process.env.JWT_EXPIRES_IN,
-      subject: `${userID}`,
+    const token = sign({
+      sub: `${userID}`,
+    }, process.env.JWT_SECRET, {
+      expiresIn: process.env.JWT_EXPIRES_IN
     });
    return token;
   }

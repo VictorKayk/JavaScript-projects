@@ -15,8 +15,8 @@ import deleteFile from '../../../../shared/utils/deleteFile';
 export default class AvatarUploadUrlUseCase {
   constructor(private UserRepository: IUserRepository) {}
   
-  validate(url) {
-    const valid = validate({ url });
+  validate(avatar) {
+    const valid = validate({ avatar });
     if (valid !== true) throw new AvatarUploadError(valid);
   }
 
@@ -30,6 +30,6 @@ export default class AvatarUploadUrlUseCase {
       await deleteFile(path);
     };
 
-    await this.UserRepository.updateAvatar({ userID, avatar: { name: 'Profile picture', url: avatarUrl, size: 0 }});
+    await this.UserRepository.updateAvatar(userID, { avatar: { name: 'Profile picture', url: avatarUrl, size: 0 }});
   }
 }
