@@ -3,7 +3,7 @@ import { Router } from 'express';
 
 // Config
 import uploadConfig from '../../../configs/upload';
-import auth from '../../../configs/authorizationConfig';
+import auth from '../../../shared/middlewares/authorization';
 
 // Use cases
 import registerUser from '../useCases/registerUser';
