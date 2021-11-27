@@ -37,13 +37,16 @@
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "express-async-errors": "^3.1.1",
+    "express-bouncer": "^0.2.0",
     "fastest-validator": "^1.12.0",
     "helmet": "^4.6.0",
+    "hpp": "^0.2.3",
     "jsonwebtoken": "^8.5.1",
     "multer": "^1.4.3",
     "passport": "^0.5.0",
     "passport-jwt": "^4.0.0",
     "swagger-ui-express": "^4.1.6",
+    "toobusy-js": "^0.5.1",
     "validator": "^13.7.0"
   }
 }

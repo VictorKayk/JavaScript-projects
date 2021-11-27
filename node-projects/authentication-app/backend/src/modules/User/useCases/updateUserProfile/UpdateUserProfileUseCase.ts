@@ -52,15 +52,6 @@ export default class UpdateUserProfilesUseCase {
     }
   }
 
-  getToken(userID) {
-    const token = sign({
-      sub: `${userID}`,
-    }, process.env.JWT_SECRET, {
-      expiresIn: process.env.JWT_EXPIRES_IN
-    });
-   return token;
-  }
-
   async execute(id: number, { name, email, password, bio, phone }: IUpdateUserProfile) {
     this.validate({ name, email, password, bio, phone });
 
@@ -68,15 +59,12 @@ export default class UpdateUserProfilesUseCase {
 
     const hashPassword = this.hashPassword(password);
 
-    const userID = await this.UserRepository.updateUserProfile(id, {
+    await this.UserRepository.updateUserProfile(id, {
       name,
       email,
       password: hashPassword,
       bio,
       phone,
     });
-  
-    const token = this.getToken(userID);
-    return token;
   }
 }

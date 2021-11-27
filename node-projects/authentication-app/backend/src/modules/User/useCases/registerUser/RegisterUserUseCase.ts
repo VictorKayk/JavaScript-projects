@@ -74,7 +74,7 @@ export default class RegisterUserUseCase {
       phone,
     });
 
-    await this.UserRepository.createAvatar({ userID, avatar: {} });
+    await this.UserRepository.createAvatar(userID, { avatar: {} });
 
     const token = this.getToken(userID);
     return token;

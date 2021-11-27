@@ -3,7 +3,7 @@ import { Router } from 'express';
 
 // Config
 import uploadConfig from '../../../configs/upload';
-import auth from '../../../shared/middlewares/authorization';
+import isAuth from '../../../shared/middlewares/isAuth';
 
 // Use cases
 import registerUser from '../useCases/registerUser';
@@ -43,16 +43,16 @@ routes.get('/github/auth', (req, res) =>
 
 // User profile routes
 // GET
-routes.get('/', auth, (req, res) => userProfile.handle(req, res));
+routes.get('/', isAuth, (req, res) => userProfile.handle(req, res));
 // PATCH
-routes.patch('/', auth, (req, res) => updateUserProfile.handle(req, res));
+routes.patch('/', isAuth, (req, res) => updateUserProfile.handle(req, res));
 
 // User avatar routes
 // POST - Upload avatar
-routes.post('/avatar', auth, upload.single('avatar'), (req, res) => avatarUpload.handle(req, res));
+routes.post('/avatar', isAuth, upload.single('avatar'), (req, res) => avatarUpload.handle(req, res));
 // POST - Upload avatar url
-routes.post('/avatar/url', auth, (req, res) => avatarUploadUrl.handle(req, res));
+routes.post('/avatar/url', isAuth, (req, res) => avatarUploadUrl.handle(req, res));
 // DELETE - Remove avatar
-routes.delete('/avatar', auth, (req, res) => removeAvatar.handle(req, res));
+routes.delete('/avatar', isAuth, (req, res) => removeAvatar.handle(req, res));
 
 export default routes;

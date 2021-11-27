@@ -13,8 +13,8 @@ export default class UpdateUserProfileController {
     const { id } = req.user;
     const { name, email, password, bio, phone } = req.body;
     try {
-      const token = await this.updateUserProfileUseCase.execute(Number(id), { name, email, password, bio, phone });
-      return res.status(200).json({ success: true, token });
+      await this.updateUserProfileUseCase.execute(Number(id), { name, email, password, bio, phone });
+      return res.status(200).json({ success: true });
     } catch (e) {
       throw new UpdateUserProfileError([e.message], e.statusCode);
     }
