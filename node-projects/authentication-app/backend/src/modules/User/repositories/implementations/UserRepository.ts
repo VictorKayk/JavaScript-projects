@@ -10,26 +10,12 @@ import IUpdateUserProfile from '../../interfaces/IUpdateUserProfile';
 import IAvatarUpload from '../../interfaces/IAvatarUpload';
 
 class UserRepository implements IUserRepository {
-  async isModerator(id: number) {
+  async getUserRoles(id: number) {
     const user = await prisma.user.findUnique({
       where: { id },
-      select: {
-        id: true,
-        role: true
-      }
+      select: { role: true }
     });
-    return user.role === 'ADMIN' || user.role === 'MODERATOR';
-  }
-
-  async isAdmin(id: number) {
-    const user = await prisma.user.findUnique({
-      where: { id },
-      select: {
-        id: true,
-        role: true
-      }
-    });
-    return user.role === 'ADMIN';
+    return `${user.role}`;
   }
 
   async register({

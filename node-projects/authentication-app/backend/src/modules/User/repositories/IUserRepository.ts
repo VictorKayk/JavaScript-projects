@@ -4,8 +4,7 @@ import IRegister from '../interfaces/IRegister';
 import IAvatarUpload from '../interfaces/IAvatarUpload';
 
 export default interface IUserRepository {
-  isModerator(id: number);
-  isAdmin(id: number);
+  getUserRoles(id: number);
   register(user: IRegister);
   emailExists(email: string);
   phoneExists(phone: string);
