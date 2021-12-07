@@ -2,9 +2,9 @@
 import AppError from '../../../shared/errors/AppError';
 
 export default class AuthorizationError extends AppError {
-  super(message?, statusCode = 401) {
+  super(message?, statusCode = 500) {
     this.message = message || [
-      'An error occurred while the authorization, please try again later.',
+      'An authorization error occurred, please try again later',
     ];
     this.statusCode = statusCode;
   }

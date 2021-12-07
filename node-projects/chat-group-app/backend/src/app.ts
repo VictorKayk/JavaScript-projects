@@ -4,6 +4,17 @@ import express from 'express';
 import swagger from 'swagger-ui-express';
 import helmet from 'helmet';
 import cors from 'cors';
+import hpp from 'hpp';
+import passport from 'passport';
+import { resolve } from 'path';
+
+// Too Busy
+import tooBusy from './shared/middlewares/tooBusy';
+
+// Passport
+import './configs/passport-jwt';
+import './configs/passport-google';
+import './configs/passport-github';
 
 // Swagger file
 import swaggerFile from './swagger.json';
@@ -11,19 +22,22 @@ import swaggerFile from './swagger.json';
 // Routes
 import routes from './routes';
 
-// Errors
-import AppError from './shared/errors/AppError';
+// Error Handling
+import errorHandling from './shared/middlewares/errorHandling';
 
 const app = express();
 
-app.use(express.static('/home/victorkayk/Documents/Projects/my-projects/programming/JavaScript-projects/node-projects/chat-group-app/backend/public')) // Delete this and de public folder
+app.use(express.static(resolve('../public'))) // Delete this and de public folder
 
 // Security
 app.use(helmet());
 app.use(cors());
+app.use(hpp());
+app.use(tooBusy);
+app.use(passport.initialize());
 
 // Allow json
-app.use(express.json());
+app.use(express.json({ limit: '100kb' }));
 
 // Swagger - routes docs
 app.use('/docs', swagger.serve, swagger.setup(swaggerFile));
@@ -32,13 +46,6 @@ app.use('/docs', swagger.serve, swagger.setup(swaggerFile));
 app.use(routes);
 
 // Default Errors
-app.use((err, req, res, _) => {
-  if (err instanceof AppError)
-    return res.status(err.statusCode).json({ errors: err.message });
-
-  return res
-    .status(500)
-    .json({ msg: `Internal server error - ${err.message}` });
-});
+app.use(errorHandling);
 
 export default app;

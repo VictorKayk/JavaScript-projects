@@ -4,7 +4,9 @@ const validate = new Validator();
 
 const schema = {
   email: { type: 'email' },
-  password: { type: 'string', min: 3, max: 255, trim: true },
+  password: {
+    type: 'string', min: 3, max: 255, trim: true,
+  },
   $$strict: true,
 };
 

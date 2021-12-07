@@ -1,3 +1,917 @@
 {
-  
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Chat Group App",
+    "contact": {},
+    "version": "1.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:5000",
+      "variables": {}
+    },
+    {
+      "url": "http://localhost:5000",
+      "variables": {}
+    }
+  ],
+  "paths": {
+    "/channel/icon/1": {
+      "post": {
+        "tags": [
+          "Icon"
+        ],
+        "summary": "Upload icon",
+        "operationId": "Uploadicon",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "encoding": {},
+              "schema": {
+                "required": [
+                  "icon"
+                ],
+                "type": "object",
+                "properties": {
+                  "icon": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "servers": [
+          {
+            "url": "http://localhost:5000",
+            "variables": {}
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "Icon"
+        ],
+        "summary": "Remove icon",
+        "operationId": "Removeicon",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "servers": [
+          {
+            "url": "http://localhost:5000",
+            "variables": {}
+          }
+        ]
+      }
+    },
+    "/channel/icon/url/1": {
+      "post": {
+        "tags": [
+          "Icon"
+        ],
+        "summary": "Upload icon url",
+        "operationId": "Uploadiconurl",
+        "parameters": [],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UploadiconurlRequest"
+              },
+              "example": {
+                "url": ""
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "servers": [
+          {
+            "url": "http://localhost:5000",
+            "variables": {}
+          }
+        ]
+      }
+    },
+    "/channel/1/members/1": {
+      "delete": {
+        "tags": [
+          "Members"
+        ],
+        "summary": "Remove Members",
+        "operationId": "RemoveMembers",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "servers": [
+          {
+            "url": "http://localhost:5000",
+            "variables": {}
+          }
+        ]
+      }
+    },
+    "/channel/1/members": {
+      "delete": {
+        "tags": [
+          "Members"
+        ],
+        "summary": "Exit channel",
+        "operationId": "Exitchannel",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "servers": [
+          {
+            "url": "http://localhost:5000",
+            "variables": {}
+          }
+        ]
+      }
+    },
+    "/channel/1/admins/1": {
+      "post": {
+        "tags": [
+          "Admins"
+        ],
+        "summary": "Add Admin",
+        "operationId": "AddAdmin",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "servers": [
+          {
+            "url": "http://localhost:5000",
+            "variables": {}
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "Admins"
+        ],
+        "summary": "Remove Admin",
+        "operationId": "RemoveAdmin",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "servers": [
+          {
+            "url": "http://localhost:5000",
+            "variables": {}
+          }
+        ]
+      }
+    },
+    "/channel/1/admins": {
+      "delete": {
+        "tags": [
+          "Admins"
+        ],
+        "summary": "Exit Channel",
+        "operationId": "ExitChannel",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "servers": [
+          {
+            "url": "http://localhost:5000",
+            "variables": {}
+          }
+        ]
+      }
+    },
+    "/channel/1/message": {
+      "post": {
+        "tags": [
+          "Message"
+        ],
+        "summary": "Send Message",
+        "operationId": "SendMessage",
+        "parameters": [],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SendMessageRequest"
+              },
+              "example": {
+                "message": ""
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "servers": [
+          {
+            "url": "http://localhost:5000",
+            "variables": {}
+          }
+        ]
+      }
+    },
+    "/channel": {
+      "post": {
+        "tags": [
+          "Channel"
+        ],
+        "summary": "Create Channel",
+        "operationId": "CreateChannel",
+        "parameters": [],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateChannelRequest"
+              },
+              "example": {
+                "name": "",
+                "description": ""
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "servers": [
+          {
+            "url": "http://localhost:5000",
+            "variables": {}
+          }
+        ]
+      },
+      "get": {
+        "tags": [
+          "Channel"
+        ],
+        "summary": "Get All Channels",
+        "operationId": "GetAllChannels",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "servers": [
+          {
+            "url": "http://localhost:5000",
+            "variables": {}
+          }
+        ]
+      }
+    },
+    "/channel/1": {
+      "get": {
+        "tags": [
+          "Channel"
+        ],
+        "summary": "Get Channel",
+        "operationId": "GetChannel",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "servers": [
+          {
+            "url": "http://localhost:5000",
+            "variables": {}
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "Channel"
+        ],
+        "summary": "Remove Channel",
+        "operationId": "RemoveChannel",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "servers": [
+          {
+            "url": "http://localhost:5000",
+            "variables": {}
+          }
+        ]
+      }
+    },
+    "/channel/10channels": {
+      "get": {
+        "tags": [
+          "Channel"
+        ],
+        "summary": "Get 10 Channels",
+        "operationId": "Get10Channels",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "servers": [
+          {
+            "url": "http://localhost:5000",
+            "variables": {}
+          }
+        ]
+      }
+    },
+    "/user/avatar": {
+      "delete": {
+        "tags": [
+          "Avatar"
+        ],
+        "summary": "Remove avatar",
+        "operationId": "Removeavatar",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "servers": [
+          {
+            "url": "http://localhost:5000",
+            "variables": {}
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "Avatar"
+        ],
+        "summary": "Upload user avatar",
+        "operationId": "Uploaduseravatar",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "encoding": {},
+              "schema": {
+                "required": [
+                  "avatar"
+                ],
+                "type": "object",
+                "properties": {
+                  "avatar": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "servers": [
+          {
+            "url": "http://localhost:5000",
+            "variables": {}
+          }
+        ]
+      }
+    },
+    "/user/avatar/url": {
+      "post": {
+        "tags": [
+          "Avatar"
+        ],
+        "summary": "Upload user avatar url",
+        "operationId": "Uploaduseravatarurl",
+        "parameters": [],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UploaduseravatarurlRequest"
+              },
+              "example": {
+                "url": ""
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "servers": [
+          {
+            "url": "http://localhost:5000",
+            "variables": {}
+          }
+        ]
+      }
+    },
+    "/user/1/moderator": {
+      "post": {
+        "tags": [
+          "Moderator"
+        ],
+        "summary": "Add",
+        "operationId": "Add",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "servers": [
+          {
+            "url": "http://localhost:5000",
+            "variables": {}
+          }
+        ]
+      }
+    },
+    "/user/2/moderator": {
+      "delete": {
+        "tags": [
+          "Moderator"
+        ],
+        "summary": "Remove",
+        "operationId": "Remove",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "servers": [
+          {
+            "url": "http://localhost:5000",
+            "variables": {}
+          }
+        ]
+      }
+    },
+    "/user/moderator": {
+      "get": {
+        "tags": [
+          "Moderator"
+        ],
+        "summary": "Read All",
+        "operationId": "ReadAll",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "servers": [
+          {
+            "url": "http://localhost:5000",
+            "variables": {}
+          }
+        ]
+      }
+    },
+    "/user/admin": {
+      "get": {
+        "tags": [
+          "Admin"
+        ],
+        "summary": "Read All",
+        "operationId": "GetReadAll",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "servers": [
+          {
+            "url": "http://localhost:5000",
+            "variables": {}
+          }
+        ]
+      }
+    },
+    "/user/register": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Register user",
+        "operationId": "Registeruser",
+        "parameters": [],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegisteruserRequest"
+              },
+              "example": {
+                "name": "",
+                "email": "",
+                "password": ""
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "security": [],
+        "servers": [
+          {
+            "url": "http://localhost:5000",
+            "variables": {}
+          }
+        ]
+      }
+    },
+    "/user/login": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Login user",
+        "operationId": "Loginuser",
+        "parameters": [],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginuserRequest"
+              },
+              "example": {
+                "email": "",
+                "password": ""
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "security": [],
+        "servers": [
+          {
+            "url": "http://localhost:5000",
+            "variables": {}
+          }
+        ]
+      }
+    },
+    "/user": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "summary": "User profile",
+        "operationId": "Userprofile",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "servers": [
+          {
+            "url": "http://localhost:5000",
+            "variables": {}
+          }
+        ]
+      },
+      "patch": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Update user profile",
+        "operationId": "Updateuserprofile",
+        "parameters": [],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateuserprofileRequest"
+              },
+              "example": {
+                "phone": ""
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "servers": [
+          {
+            "url": "http://localhost:5000",
+            "variables": {}
+          }
+        ]
+      }
+    },
+    "/user/all": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Get All",
+        "operationId": "GetAll",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "servers": [
+          {
+            "url": "http://localhost:5000",
+            "variables": {}
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "UploadiconurlRequest": {
+        "title": "UploadiconurlRequest",
+        "required": [
+          "url"
+        ],
+        "type": "object",
+        "properties": {
+          "url": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "url": ""
+        }
+      },
+      "SendMessageRequest": {
+        "title": "SendMessageRequest",
+        "required": [
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "message": ""
+        }
+      },
+      "CreateChannelRequest": {
+        "title": "CreateChannelRequest",
+        "required": [
+          "name",
+          "description"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "name": "",
+          "description": ""
+        }
+      },
+      "UploaduseravatarurlRequest": {
+        "title": "UploaduseravatarurlRequest",
+        "required": [
+          "url"
+        ],
+        "type": "object",
+        "properties": {
+          "url": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "url": ""
+        }
+      },
+      "RegisteruserRequest": {
+        "title": "RegisteruserRequest",
+        "required": [
+          "name",
+          "email",
+          "password"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "name": "",
+          "email": "",
+          "password": ""
+        }
+      },
+      "LoginuserRequest": {
+        "title": "LoginuserRequest",
+        "required": [
+          "email",
+          "password"
+        ],
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "email": "",
+          "password": ""
+        }
+      },
+      "UpdateuserprofileRequest": {
+        "title": "UpdateuserprofileRequest",
+        "required": [
+          "phone"
+        ],
+        "type": "object",
+        "properties": {
+          "phone": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "phone": ""
+        }
+      }
+    },
+    "securitySchemes": {
+      "httpBearer": {
+        "type": "http",
+        "scheme": "bearer"
+      }
+    }
+  },
+  "security": [
+    {
+      "httpBearer": []
+    }
+  ],
+  "tags": [
+    {
+      "name": "Icon"
+    },
+    {
+      "name": "Members"
+    },
+    {
+      "name": "Admins"
+    },
+    {
+      "name": "Message"
+    },
+    {
+      "name": "Channel"
+    },
+    {
+      "name": "Avatar"
+    },
+    {
+      "name": "Moderator"
+    },
+    {
+      "name": "Admin"
+    },
+    {
+      "name": "User"
+    }
+  ]
 }

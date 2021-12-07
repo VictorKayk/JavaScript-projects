@@ -33,8 +33,8 @@ export default {
           'image/pjpeg',
           'image/gif',
         ];
-        
-        if (!allowedMimes.includes(file.mimetype)) cb(new AvatarUploadError(['Invalid file type.'], 400))
+
+        if (!allowedMimes.includes(file.mimetype)) cb(new AvatarUploadError(['Invalid file type.'], 400));
 
         cb(null, true);
       } 
