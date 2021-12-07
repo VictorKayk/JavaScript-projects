@@ -8,23 +8,25 @@ datasource db {
 }
 
 enum Role {
-  ADMIN
-  MODERATOR
-  USER
+  admin
+  moderator
+  user
 }
 
 model User {
-  id          Int                   @id @default(autoincrement())
-  githubId    Int?                  @unique
+  id          Int          @id @default(autoincrement())
+  githubId    Int?         @unique
+  googleId    Int?         @unique
   name        String
-  email       String?               @unique
+  email       String?      @unique
   password    String?
-  bio         String?               @default("Hello!!!")
-  phone       String?               @unique
+  bio         String       @default("Hello there!!!")
+  phone       String?      @unique
+  role        Role         @default(user)
   avatar      Avatar?
-  role        Role?                 @default(USER)
-  createdAt   DateTime              @default(now())
-  updatedAt   DateTime              @updatedAt
+  permissions Permission[]
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
 }
 
 model Avatar {
@@ -36,4 +38,29 @@ model Avatar {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   user      User     @relation(fields: [userID], references: [id], onDelete: Cascade)
+}
+
+enum Permissions {
+  create_post
+  update_post
+  delete_post
+  upload_thumb
+  upload_url_thumb
+  remove_thumb
+  upload_banner
+  upload_url_banner
+  remove_banner
+  read_tag
+  create_tag
+  update_tag
+  delete_tag
+  update_comment
+  delete_comment
+}
+
+model Permission {
+  id     Int         @id @default(autoincrement())
+  name   Permissions
+  userID Int
+  User   User        @relation(fields: [userID], references: [id], onDelete: Cascade)
 }

@@ -4,6 +4,8 @@ Project Description
 
 ### Todo
 
+- [ ] Forget my password method  
+- [ ] User email validation  
 - [ ] I can sign out  
 
 ### In Progress

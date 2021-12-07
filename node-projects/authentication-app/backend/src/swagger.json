@@ -1,3 +1,405 @@
 {
-  
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Authenticate App",
+    "contact": {},
+    "version": "1.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:5000",
+      "variables": {}
+    }
+  ],
+  "paths": {
+    "/user/1/moderator": {
+      "post": {
+        "tags": [
+          "Moderator"
+        ],
+        "summary": "Add",
+        "operationId": "Add",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/user/2/moderator": {
+      "delete": {
+        "tags": [
+          "Moderator"
+        ],
+        "summary": "Remove",
+        "operationId": "Remove",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/user/moderator": {
+      "get": {
+        "tags": [
+          "Moderator"
+        ],
+        "summary": "Read All",
+        "operationId": "ReadAll",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/user/avatar": {
+      "delete": {
+        "tags": [
+          "Avatar"
+        ],
+        "summary": "Remove avatar",
+        "operationId": "Removeavatar",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      },
+      "post": {
+        "tags": [
+          "Avatar"
+        ],
+        "summary": "Upload user avatar",
+        "operationId": "Uploaduseravatar",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "encoding": {},
+              "schema": {
+                "required": [
+                  "avatar"
+                ],
+                "type": "object",
+                "properties": {
+                  "avatar": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/user/avatar/url": {
+      "post": {
+        "tags": [
+          "Avatar"
+        ],
+        "summary": "Upload user avatar url",
+        "operationId": "Uploaduseravatarurl",
+        "parameters": [],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UploaduseravatarurlRequest"
+              },
+              "example": {
+                "url": ""
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/user/admin": {
+      "get": {
+        "tags": [
+          "Admin"
+        ],
+        "summary": "Read All",
+        "operationId": "GetReadAll",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/user/register": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Register user",
+        "operationId": "Registeruser",
+        "parameters": [],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegisteruserRequest"
+              },
+              "example": {
+                "name": "",
+                "email": "",
+                "password": ""
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "security": []
+      }
+    },
+    "/user/login": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Login user",
+        "operationId": "Loginuser",
+        "parameters": [],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginuserRequest"
+              },
+              "example": {
+                "email": "",
+                "password": ""
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "security": []
+      }
+    },
+    "/user": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "summary": "User profile",
+        "operationId": "Userprofile",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      },
+      "patch": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Update user profile",
+        "operationId": "Updateuserprofile",
+        "parameters": [],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateuserprofileRequest"
+              },
+              "example": {
+                "phone": ""
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/user/all": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Get All",
+        "operationId": "GetAll",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "UploaduseravatarurlRequest": {
+        "title": "UploaduseravatarurlRequest",
+        "required": [
+          "url"
+        ],
+        "type": "object",
+        "properties": {
+          "url": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "url": ""
+        }
+      },
+      "RegisteruserRequest": {
+        "title": "RegisteruserRequest",
+        "required": [
+          "name",
+          "email",
+          "password"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "name": "",
+          "email": "",
+          "password": ""
+        }
+      },
+      "LoginuserRequest": {
+        "title": "LoginuserRequest",
+        "required": [
+          "email",
+          "password"
+        ],
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "email": "",
+          "password": ""
+        }
+      },
+      "UpdateuserprofileRequest": {
+        "title": "UpdateuserprofileRequest",
+        "required": [
+          "phone"
+        ],
+        "type": "object",
+        "properties": {
+          "phone": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "phone": ""
+        }
+      }
+    },
+    "securitySchemes": {
+      "httpBearer": {
+        "type": "http",
+        "scheme": "bearer"
+      }
+    }
+  },
+  "security": [
+    {
+      "httpBearer": []
+    }
+  ],
+  "tags": [
+    {
+      "name": "Moderator"
+    },
+    {
+      "name": "Avatar"
+    },
+    {
+      "name": "Admin"
+    },
+    {
+      "name": "Misc",
+      "description": ""
+    },
+    {
+      "name": "User",
+      "description": ""
+    }
+  ]
 }

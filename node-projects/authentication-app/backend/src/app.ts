@@ -11,7 +11,9 @@ import passport from 'passport';
 import tooBusy from './shared/middlewares/tooBusy';
 
 // Passport
-import './configs/passportConfig'
+import './configs/passport-jwt';
+import './configs/passport-google';
+import './configs/passport-github';
 
 // Swagger file
 import swaggerFile from './swagger.json';
@@ -32,7 +34,7 @@ app.use(tooBusy);
 app.use(passport.initialize());
 
 // Allow json
-app.use(express.json({ limit: '1kb' }));
+app.use(express.json({ limit: '100kb' }));
 
 // Swagger - routes docs
 app.use('/docs', swagger.serve, swagger.setup(swaggerFile));

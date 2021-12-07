@@ -8,18 +8,20 @@ import IUserRepository from '../IUserRepository';
 import IRegister from '../../interfaces/IRegister';
 import IUpdateUserProfile from '../../interfaces/IUpdateUserProfile';
 import IAvatarUpload from '../../interfaces/IAvatarUpload';
+import IPermission from '../../../Permissions/interfaces/IPermission';
 
 class UserRepository implements IUserRepository {
   async getUserRoles(id: number) {
     const user = await prisma.user.findUnique({
       where: { id },
-      select: { role: true }
+      select: { role: true },
     });
     return `${user.role}`;
   }
 
   async register({
     githubId,
+    googleId,
     name,
     email,
     password,
@@ -29,6 +31,7 @@ class UserRepository implements IUserRepository {
     const user = await prisma.user.create({
       data: {
         githubId,
+        googleId,
         name,
         email,
         password,
@@ -56,7 +59,15 @@ class UserRepository implements IUserRepository {
   async getUserById(id: number) {
     const user = await prisma.user.findUnique({
       where: { id },
-      select: { id: true }
+      select: {
+        id: true,
+        role: true,
+        permissions: {
+          select: {
+            name: true,
+          },
+        },
+      },
     });
     return user;
   }
@@ -75,9 +86,16 @@ class UserRepository implements IUserRepository {
     return user;
   }
 
-  async getUserByGithubId(githubId) {
+  async getUserByGithubId(githubId: number) {
     const user = await prisma.user.findUnique({
       where: { githubId },
+    });
+    return user;
+  }
+
+  async getUserByGoogleId(googleId: number) {
+    const user = await prisma.user.findUnique({
+      where: { googleId },
     });
     return user;
   }
@@ -87,6 +105,41 @@ class UserRepository implements IUserRepository {
       where: { githubId },
     });
     return !!githubIdExists;
+  }
+
+  async googleIdExists(googleId: number) {
+    const googleIdExists = await prisma.user.findUnique({
+      where: { googleId },
+    });
+    return !!googleIdExists;
+  }
+
+  async userExists(userID: number) {
+    const userExists = await prisma.user.findUnique({
+      where: { id: userID },
+    });
+    return !!userExists;
+  }
+
+  async getAll() {
+    const users = await prisma.user.findMany({
+      where: {
+        role: 'user',
+      },
+      select: {
+        id: true,
+        name: true,
+        avatar: {
+          select: {
+            id: true,
+            name: true,
+            url: true,
+          },
+        },
+        role: true,
+      },
+    });
+    return users;
   }
 
   async userProfile(userID: number) {
@@ -102,7 +155,7 @@ class UserRepository implements IUserRepository {
             name: true,
             url: true,
             size: true,
-          }
+          },
         },
       },
     });
@@ -114,34 +167,34 @@ class UserRepository implements IUserRepository {
     email,
     password,
     bio,
-    phone
+    phone,
   }: IUpdateUserProfile) {
     const user = await prisma.user.update({
       where: { id: userID },
-      data:  {
+      data: {
         name,
         email,
         password,
         bio,
         phone,
-      }
+      },
     });
     return user.id;
   }
 
-  async createAvatar(userID, { avatar: { url }}: IAvatarUpload) {
+  async createAvatar(userID, { avatar: { url } }: IAvatarUpload) {
     await prisma.avatar.create({
-      data: { userID, url }
+      data: { userID, url },
     });
   }
 
-  async updateAvatar(userID, { avatar: { name, size, url }}: IAvatarUpload) {
+  async updateAvatar(userID, { avatar: { name, size, url } }: IAvatarUpload) {
     await prisma.avatar.update({
       where: { userID },
       data: { name, url, size },
     });
   }
-  
+
   async removeAvatar(userID: number) {
     await prisma.avatar.update({
       where: { userID },
@@ -149,7 +202,7 @@ class UserRepository implements IUserRepository {
         name: 'Profile picture',
         url: 'avatar_default.jpg',
         size: 0,
-      }
+      },
     });
   }
 
@@ -158,6 +211,70 @@ class UserRepository implements IUserRepository {
       where: { userID },
     });
     return avatar;
+  }
+
+  async readAllModerators() {
+    const moderators = await prisma.user.findMany({
+      where: {
+        role: 'moderator',
+      },
+      select: {
+        id: true,
+        name: true,
+        avatar: {
+          select: {
+            id: true,
+            name: true,
+            url: true,
+          },
+        },
+        role: true,
+      },
+    });
+    return moderators;
+  }
+
+  async addModerator(userID: number) {
+    await prisma.user.update({
+      where: {
+        id: userID,
+      },
+      data: {
+        role: 'moderator',
+      },
+    });
+  }
+
+  async removeModerator(userID: number) {
+    await prisma.user.update({
+      where: {
+        id: userID,
+      },
+      data: {
+        role: 'user',
+      },
+    });
+  }
+
+  async readAllAdmins() {
+    const admins = await prisma.user.findMany({
+      where: {
+        role: 'admin',
+      },
+      select: {
+        id: true,
+        name: true,
+        avatar: {
+          select: {
+            id: true,
+            name: true,
+            url: true,
+          },
+        },
+        role: true,
+      },
+    });
+    return admins;
   }
 }
 
